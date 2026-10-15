@@ -62,6 +62,7 @@ $('#close-detail').addEventListener('click',()=>{activePerson=null;$('#detail').
 $('#detail').addEventListener('click',e=>{if(e.target===$('#detail')){const r=$('#detail').getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$('#detail').close();}});
 $('#share').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(location.href);toast('Enlace copiado.');}catch{toast('Copia el enlace desde la barra del navegador.');}});
 hydrateIcons();
+window.addEventListener('hashchange',()=>{view=['ranking','games','rules','calendar','standings'].includes(location.hash.slice(1))?location.hash.slice(1):'board';if(data)render();});
 matchMedia('(min-width:1100px)').addEventListener('change',e=>{if(!manualLayout){layout=e.matches?'matrix':'cards';if(data&&view==='board')render();}});
 document.addEventListener('change',e=>{if(e.target.id==='calendar-phase'){calendarSelection.phase=e.target.value;calendarSelection.week='all';render();}if(e.target.id==='calendar-week'){calendarSelection.week=e.target.value;render();}if(e.target.id==='calendar-team'){calendarSelection.team=e.target.value;render();}});
 function renderTicker(){
