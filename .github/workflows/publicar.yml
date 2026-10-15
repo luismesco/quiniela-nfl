@@ -48,7 +48,7 @@ jobs:
         if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
         run: |
           mkdir -p public
-          cp index.html app.mjs core.mjs live.mjs league.mjs icons.mjs theme.css quiniela.json maqueta.json scores.json league.json public/
+          cp index.html app.mjs core.mjs live.mjs league.mjs icons.mjs theme.css quiniela.json scores.json league.json public/
           cp -R assets public/assets
       - uses: actions/configure-pages@v5
         if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
