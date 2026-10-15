@@ -1,0 +1,495 @@
+{
+  "schema": 1,
+  "author": "Luis Montañez Escobar",
+  "season": 2026,
+  "week": 6,
+  "fee": 50,
+  "currency": "MXN",
+  "deadline": "2026-10-15T18:00:00-06:00",
+  "updatedAt": "2026-10-14T18:27:04.013700-06:00",
+  "demo": true,
+  "teams": {
+    "DET": {
+      "name": "Detroit Lions",
+      "nick": "Lions",
+      "color": "#0076B6"
+    },
+    "KC": {
+      "name": "Kansas City Chiefs",
+      "nick": "Chiefs",
+      "color": "#E31837"
+    },
+    "GB": {
+      "name": "Green Bay Packers",
+      "nick": "Packers",
+      "color": "#203731"
+    },
+    "SF": {
+      "name": "San Francisco 49ers",
+      "nick": "49ers",
+      "color": "#AA0000"
+    },
+    "ATL": {
+      "name": "Atlanta Falcons",
+      "nick": "Falcons",
+      "color": "#A71930"
+    },
+    "PHI": {
+      "name": "Philadelphia Eagles",
+      "nick": "Eagles",
+      "color": "#004C54"
+    },
+    "TB": {
+      "name": "Tampa Bay Buccaneers",
+      "nick": "Buccaneers",
+      "color": "#A71930"
+    },
+    "BAL": {
+      "name": "Baltimore Ravens",
+      "nick": "Ravens",
+      "color": "#241773"
+    },
+    "LAC": {
+      "name": "Los Angeles Chargers",
+      "nick": "Chargers",
+      "color": "#007BC7"
+    },
+    "NYG": {
+      "name": "New York Giants",
+      "nick": "Giants",
+      "color": "#0B2265"
+    },
+    "NO": {
+      "name": "New Orleans Saints",
+      "nick": "Saints",
+      "color": "#D3BC8D"
+    },
+    "TEN": {
+      "name": "Tennessee Titans",
+      "nick": "Titans",
+      "color": "#4495D2"
+    },
+    "WAS": {
+      "name": "Washington Commanders",
+      "nick": "Commanders",
+      "color": "#5A1414"
+    },
+    "DAL": {
+      "name": "Dallas Cowboys",
+      "nick": "Cowboys",
+      "color": "#002244"
+    },
+    "MIN": {
+      "name": "Minnesota Vikings",
+      "nick": "Vikings",
+      "color": "#4F2683"
+    },
+    "ARI": {
+      "name": "Arizona Cardinals",
+      "nick": "Cardinals",
+      "color": "#97233F"
+    },
+    "LV": {
+      "name": "Las Vegas Raiders",
+      "nick": "Raiders",
+      "color": "#000000"
+    },
+    "LA": {
+      "name": "Los Angeles Rams",
+      "nick": "Rams",
+      "color": "#003594"
+    },
+    "JAX": {
+      "name": "Jacksonville Jaguars",
+      "nick": "Jaguars",
+      "color": "#006778"
+    },
+    "CHI": {
+      "name": "Chicago Bears",
+      "nick": "Bears",
+      "color": "#0B162A"
+    },
+    "NE": {
+      "name": "New England Patriots",
+      "nick": "Patriots",
+      "color": "#002244"
+    },
+    "MIA": {
+      "name": "Miami Dolphins",
+      "nick": "Dolphins",
+      "color": "#008E97"
+    },
+    "CIN": {
+      "name": "Cincinnati Bengals",
+      "nick": "Bengals",
+      "color": "#FB4F14"
+    },
+    "NYJ": {
+      "name": "New York Jets",
+      "nick": "Jets",
+      "color": "#003F2D"
+    },
+    "PIT": {
+      "name": "Pittsburgh Steelers",
+      "nick": "Steelers",
+      "color": "#000000"
+    },
+    "HOU": {
+      "name": "Houston Texans",
+      "nick": "Texans",
+      "color": "#03202F"
+    },
+    "BUF": {
+      "name": "Buffalo Bills",
+      "nick": "Bills",
+      "color": "#00338D"
+    },
+    "CAR": {
+      "name": "Carolina Panthers",
+      "nick": "Panthers",
+      "color": "#0085CA"
+    },
+    "CLE": {
+      "name": "Cleveland Browns",
+      "nick": "Browns",
+      "color": "#FF3C00"
+    },
+    "SEA": {
+      "name": "Seattle Seahawks",
+      "nick": "Seahawks",
+      "color": "#002244"
+    },
+    "IND": {
+      "name": "Indianapolis Colts",
+      "nick": "Colts",
+      "color": "#002C5F"
+    },
+    "DEN": {
+      "name": "Denver Broncos",
+      "nick": "Broncos",
+      "color": "#002244"
+    }
+  },
+  "games": [
+    {
+      "id": "2026_06_SEA_DEN",
+      "away": "SEA",
+      "home": "DEN",
+      "start": "2026-10-15T18:15:00-06:00",
+      "venue": "Empower Field at Mile High",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 27,
+      "homeScore": 20
+    },
+    {
+      "id": "2026_06_HOU_JAX",
+      "away": "HOU",
+      "home": "JAX",
+      "start": "2026-10-18T07:30:00-06:00",
+      "venue": "Wembley Stadium",
+      "neutral": true,
+      "status": "final",
+      "awayScore": 20,
+      "homeScore": 27
+    },
+    {
+      "id": "2026_06_CHI_ATL",
+      "away": "CHI",
+      "home": "ATL",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Mercedes-Benz Stadium",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 20,
+      "homeScore": 27
+    },
+    {
+      "id": "2026_06_BAL_CLE",
+      "away": "BAL",
+      "home": "CLE",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Huntington Bank Field",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 27,
+      "homeScore": 20
+    },
+    {
+      "id": "2026_06_TEN_IND",
+      "away": "TEN",
+      "home": "IND",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Lucas Oil Stadium",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 20,
+      "homeScore": 27
+    },
+    {
+      "id": "2026_06_NYJ_NE",
+      "away": "NYJ",
+      "home": "NE",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Gillette Stadium",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 20,
+      "homeScore": 27
+    },
+    {
+      "id": "2026_06_NO_NYG",
+      "away": "NO",
+      "home": "NYG",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "MetLife Stadium",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 20,
+      "homeScore": 27
+    },
+    {
+      "id": "2026_06_CAR_PHI",
+      "away": "CAR",
+      "home": "PHI",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Lincoln Financial Field",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 27,
+      "homeScore": 20
+    },
+    {
+      "id": "2026_06_PIT_TB",
+      "away": "PIT",
+      "home": "TB",
+      "start": "2026-10-18T11:00:00-06:00",
+      "venue": "Raymond James Stadium",
+      "neutral": false,
+      "status": "final",
+      "awayScore": 27,
+      "homeScore": 20
+    },
+    {
+      "id": "2026_06_ARI_LA",
+      "away": "ARI",
+      "home": "LA",
+      "start": "2026-10-18T14:05:00-06:00",
+      "venue": "SoFi Stadium",
+      "neutral": false,
+      "status": "live",
+      "awayScore": 10,
+      "homeScore": 17
+    },
+    {
+      "id": "2026_06_LAC_KC",
+      "away": "LAC",
+      "home": "KC",
+      "start": "2026-10-18T14:25:00-06:00",
+      "venue": "GEHA Field at Arrowhead Stadium",
+      "neutral": false,
+      "status": "scheduled",
+      "awayScore": null,
+      "homeScore": null
+    },
+    {
+      "id": "2026_06_BUF_LV",
+      "away": "BUF",
+      "home": "LV",
+      "start": "2026-10-18T14:25:00-06:00",
+      "venue": "Allegiant Stadium",
+      "neutral": false,
+      "status": "scheduled",
+      "awayScore": null,
+      "homeScore": null
+    },
+    {
+      "id": "2026_06_DAL_GB",
+      "away": "DAL",
+      "home": "GB",
+      "start": "2026-10-18T18:20:00-06:00",
+      "venue": "Lambeau Field",
+      "neutral": false,
+      "status": "scheduled",
+      "awayScore": null,
+      "homeScore": null
+    },
+    {
+      "id": "2026_06_WAS_SF",
+      "away": "WAS",
+      "home": "SF",
+      "start": "2026-10-19T18:15:00-06:00",
+      "venue": "Levi's Stadium",
+      "neutral": false,
+      "status": "scheduled",
+      "awayScore": null,
+      "homeScore": null
+    }
+  ],
+  "participants": [
+    {
+      "id": "ejemplo-1",
+      "name": "Alex",
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "HOU",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "TEN",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "TB",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "LV",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "ejemplo-2",
+      "name": "Sofía",
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "HOU",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NYJ",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "TB",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "DAL",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "ejemplo-3",
+      "name": "Mateo",
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "ATL",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NYJ",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "ARI",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "DAL",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "ejemplo-4",
+      "name": "Renata",
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "ATL",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "ARI",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "WAS"
+      }
+    },
+    {
+      "id": "ejemplo-5",
+      "name": "Diego",
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "CLE",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "LAC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "WAS"
+      }
+    },
+    {
+      "id": "ejemplo-6",
+      "name": "Camila",
+      "paid": false,
+      "choices": {
+        "2026_06_SEA_DEN": "DEN",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "CLE",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "PHI",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "LAC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "ejemplo-7",
+      "name": "Emilio",
+      "paid": false,
+      "choices": {
+        "2026_06_SEA_DEN": "DEN",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "TEN",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "PHI",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "LV",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "ejemplo-8",
+      "name": "Valeria",
+      "paid": null,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "HOU",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "TEN",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NO",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "TB",
+        "2026_06_ARI_LA": "LA"
+      }
+    }
+  ]
+}
