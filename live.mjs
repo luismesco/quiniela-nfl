@@ -31,11 +31,12 @@ export function normalizeFeed(payload,d,fetchedAt=stamp()){
     if(updates.has(g.id))throw Error('Coincidencia duplicada de encuentro');
     const hasScore=['live','final','suspended'].includes(status);
     const a=hasScore?Number(away.score):null,h=hasScore?Number(home.score):null;
-    if(hasScore&&(![a,h].every(n=>Number.isInteger(n)&&n>=0&&n<200)||away.score===''||home.score===''))throw Error('Marcador inválido');
+    const rawValid=[away.score,home.score].every(v=>typeof v==='number'&&Number.isFinite(v)||typeof v==='string'&&/^\d{1,3}$/.test(v));
+    if(hasScore&&(!rawValid||![a,h].every(n=>Number.isInteger(n)&&n>=0&&n<200)))throw Error('Marcador inválido');
     updates.set(g.id,{id:g.id,status,awayScore:a,homeScore:h,eventId:String(e.id),clock:hasScore?String(s.displayClock||''):null,period:hasScore?Number(s.period||0):null,phaseName:String(type.name||''),sourceUrl:`https://www.espn.com/nfl/game/_/gameId/${encodeURIComponent(e.id)}`,start:e.date,checkedAt:fetchedAt});
   }
   if(!updates.size)throw Error('No hubo coincidencias de equipos y fechas');
-  return {schema:1,season:d.season,week:d.week,source:'ESPN',fetchedAt,matched:updates.size,games:[...updates.values()]};
+  return {schema:1,author:'Luis Montañez Escobar',season:d.season,week:d.week,source:'ESPN',fetchedAt,matched:updates.size,games:[...updates.values()]};
 }
 export function mergeScores(d,snapshot){
   if(snapshot.season!==d.season||snapshot.week!==d.week||!Number.isFinite(Date.parse(snapshot.fetchedAt)))throw Error('Copia de otra jornada o sin fecha');
@@ -59,5 +60,5 @@ export function nextDelay(d,visible,now=Date.now()){
   return near?60000:300000;
 }
 export function inMonitoringWindow(d,now=Date.now()){
-  return d.games.some(g=>Math.abs(now-Date.parse(g.start))<8*3600000)&&!d.games.every(g=>['final','canceled'].includes(g.status));
+  return d.games.some(g=>!['final','canceled'].includes(g.status)&&now>=Date.parse(g.start)-3600000&&now<=Date.parse(g.start)+8*3600000);
 }

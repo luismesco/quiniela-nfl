@@ -6,7 +6,7 @@
   "fee": 50,
   "currency": "MXN",
   "deadline": "2026-10-15T18:00:00-06:00",
-  "updatedAt": "2026-10-14T18:47:52.010402-06:00",
+  "updatedAt": "2026-10-15T16:54:09.718315+00:00",
   "demo": false,
   "teams": {
     "DET": {
@@ -329,7 +329,7 @@
   "participants": [
     {
       "id": "luis",
-      "name": "Luis Montañez Escobar",
+      "name": "Luis",
       "paid": null,
       "choices": {
         "2026_06_SEA_DEN": "SEA",
@@ -513,6 +513,69 @@
         "2026_06_LAC_KC": "KC",
         "2026_06_BUF_LV": "LV",
         "2026_06_DAL_GB": "DAL",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "yessi",
+      "name": "Yessi",
+      "paid": null,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "ATL",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "TB",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "yvon",
+      "name": "Yvon",
+      "paid": null,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "HOU",
+        "2026_06_CHI_ATL": "ATL",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "PHI",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "DAL",
+        "2026_06_WAS_SF": "SF"
+      }
+    },
+    {
+      "id": "alex",
+      "name": "Alex",
+      "paid": null,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "CAR",
+        "2026_06_PIT_TB": "TB",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF"
       }
     }

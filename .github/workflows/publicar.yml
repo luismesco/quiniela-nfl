@@ -1,0 +1,62 @@
+name: Publicar y actualizar La Quiniela Fiscalizada
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['README.md']
+  workflow_dispatch:
+  schedule:
+    - cron: '2-57/5 * * * *'
+    - cron: '17 11 * * *'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: quiniela-publicacion
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Consultar resultados y posiciones
+        id: datos
+        run: |
+          if [ "${{ github.event.schedule }}" = "17 11 * * *" ]; then
+            node scripts/update-scores.mjs --daily
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            node scripts/update-scores.mjs
+          else
+            node scripts/update-scores.mjs --force
+          fi
+      - name: Conservar última consulta
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/save-snapshot.mjs
+      - name: Preparar página pública
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+        run: |
+          mkdir -p public
+          cp index.html app.mjs core.mjs live.mjs league.mjs icons.mjs theme.css quiniela.json maqueta.json scores.json league.json public/
+          cp -R assets public/assets
+      - uses: actions/configure-pages@v5
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+        with:
+          path: public
+      - name: Publicar
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+        id: deploy
+        uses: actions/deploy-pages@v4

@@ -35,10 +35,10 @@ export function validate(d) {
   if(!Array.isArray(d.games)||!d.games.length||!Array.isArray(d.participants)||!Number.isFinite(d.fee)||d.fee<0)throw Error('Datos de quiniela inválidos');
   const gameIds=new Set(),participantIds=new Set();
   for(const g of d.games){
-    if(gameIds.has(g.id)||!g.id||!g.away||!g.home||g.away===g.home||!['scheduled','live','final'].includes(g.status))throw Error('Partido inválido');
+    if(gameIds.has(g.id)||!g.id||!g.away||!g.home||g.away===g.home||!['scheduled','live','final','suspended','postponed','canceled'].includes(g.status))throw Error('Partido inválido');
     gameIds.add(g.id);
-    if(g.status!=='scheduled'&&![g.homeScore,g.awayScore].every(n=>Number.isInteger(n)&&n>=0))throw Error('Marcador inválido');
-    if(g.status==='scheduled'&&[g.homeScore,g.awayScore].some(n=>n!==null))throw Error('Marcador de partido sin jugar');
+    if(['live','final','suspended'].includes(g.status)&&![g.homeScore,g.awayScore].every(n=>Number.isInteger(n)&&n>=0))throw Error('Marcador inválido');
+    if(['scheduled','postponed','canceled'].includes(g.status)&&[g.homeScore,g.awayScore].some(n=>n!==null))throw Error('Marcador de partido sin jugar');
   }
   for(const p of d.participants){
     if(participantIds.has(p.id)||!p.id||!p.name||!p.choices||![true,false,null].includes(p.paid))throw Error('Participante inválido');
