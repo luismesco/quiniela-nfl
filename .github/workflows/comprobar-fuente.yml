@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Consultar marcador deportivo
         run: |
           curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&seasontype=2&week=6&limit=100' -o marcador.json
@@ -21,6 +27,8 @@ jobs:
         run: |
           curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=2026&seasontype=2' -o posiciones.json
           curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&seasontype=2&week=1&limit=100' -o calendario.json
+      - name: Preparar datos de la página
+        run: node scripts/update-scores.mjs --force
       - uses: actions/upload-artifact@v4
         with:
           name: marcador-fuente
@@ -28,4 +36,6 @@ jobs:
             marcador.json
             posiciones.json
             calendario.json
+            scores.json
+            league.json
           retention-days: 3
