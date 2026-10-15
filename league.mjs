@@ -13,7 +13,7 @@ export function calendarView(d,selection,teams,currentGames){
   const controls=`<div class="calendar-controls"><label>Etapa<select id="calendar-phase">${Object.entries(label).map(([v,t])=>option(v,t,phase)).join('')}</select></label><label>Semana<select id="calendar-week">${option('all','Todas las semanas',week)}${weeks.map(v=>option(v,phase==='POST'?(d.slots||[]).find(s=>s.phase===phase&&s.week===v)?.label||`Ronda ${v}`:`Semana ${v}`,week)).join('')}</select></label><label>Equipo<select id="calendar-team">${option('all','Todos los equipos',team)}${Object.entries(teams).sort((a,b)=>a[1].name.localeCompare(b[1].name)).map(([v,t])=>option(v,t.name,team)).join('')}</select></label></div>`;
   let body='',previous='';
   for(const g of entries){
-    const date=(g.start||g.date||'').slice(0,10);
+    const date=localDay(g.start||g.date);
     if(date!==previous){if(previous)body+='</div>';body+=`<h3 class="day-heading">${esc(localDay(g.start||g.date))}</h3><div class="games-grid">`;previous=date;}
     const final=g.status==='final',live=g.status==='live';
     body+=`<article class="game-card ${live?'live-card':''}"><div class="game-card-head"><span>${esc(label[g.phase])} · ${g.week}</span><span class="status-tag ${g.status}">${final?'FINAL':live?'EN JUEGO':g.status==='postponed'?'APLAZADO':g.status==='canceled'?'CANCELADO':g.timeTbd?'HORARIO POR CONFIRMAR':esc(localHour(g.start))}</span></div>${[g.away,g.home].map(t=>`<div class="game-team">${img(t,teams)}<strong>${esc(teams[t]?.nick||t)}</strong><span class="points">${final||live?t===g.away?g.awayScore:g.homeScore:'—'}</span></div>`).join('')}<p class="game-venue">${esc(g.venue||'Sede por confirmar')}${g.neutral?' · Neutral':''}</p></article>`;

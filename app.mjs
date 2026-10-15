@@ -1,7 +1,7 @@
 import {validate,summary,standings,score,winner,outcome,consensus} from './core.mjs?v=20261015-2';
 import {icon,hydrateIcons} from './icons.mjs';
 import {feedUrl,normalizeFeed,mergeScores,nextDelay} from './live.mjs';
-import {loadLeague,calendarView,standingsView} from './league.mjs';
+import {loadLeague,calendarView,standingsView} from './league.mjs?v=20261015-3';
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
