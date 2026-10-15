@@ -1,0 +1,24 @@
+name: Comprobar fuente de marcadores
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Consultar marcador deportivo
+        run: |
+          curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&seasontype=2&week=6&limit=100' -o marcador.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('marcador.json'))
+          print('Temporada:',d.get('season'),'Semana:',d.get('week'),'Partidos:',len(d.get('events',[])))
+          for e in d.get('events',[]):
+              print(e.get('id'),e.get('shortName'),e.get('date'),e.get('status',{}).get('type'))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: marcador-fuente
+          path: marcador.json
+          retention-days: 3
