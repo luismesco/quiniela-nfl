@@ -17,8 +17,15 @@ jobs:
           for e in d.get('events',[]):
               print(e.get('id'),e.get('shortName'),e.get('date'),e.get('status',{}).get('type'))
           PY
+      - name: Consultar posiciones y calendario
+        run: |
+          curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=2026&seasontype=2' -o posiciones.json
+          curl --fail --retry 2 --max-time 30 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=2026&seasontype=2&week=1&limit=100' -o calendario.json
       - uses: actions/upload-artifact@v4
         with:
           name: marcador-fuente
-          path: marcador.json
+          path: |
+            marcador.json
+            posiciones.json
+            calendario.json
           retention-days: 3
