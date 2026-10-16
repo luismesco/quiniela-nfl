@@ -11,6 +11,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  actions: write
 concurrency:
   group: quiniela-publicacion
   cancel-in-progress: false
@@ -44,11 +45,17 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           node scripts/save-snapshot.mjs
+      - name: Activar seguimiento de partidos
+        if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';import {inMonitoringWindow} from './live.mjs';import {api} from './scripts/persist.mjs';const d=JSON.parse(fs.readFileSync('league.json'));if(inMonitoringWindow(d)){const r=api('actions/workflows/seguir-partidos.yml/runs?per_page=10');if(!r.workflow_runs.some(x=>['in_progress','queued','waiting'].includes(x.status)))api('actions/workflows/seguir-partidos.yml/dispatches','POST',{ref:'main'});}"
       - name: Preparar página pública
         if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'
         run: |
           mkdir -p public
-          cp index.html app.mjs core.mjs live.mjs league.mjs icons.mjs theme.css quiniela.json scores.json league.json public/
+          cp index.html app.mjs core.mjs live.mjs league.mjs race.mjs icons.mjs theme.css quiniela.json scores.json league.json race-history.json public/
           cp -R assets public/assets
       - uses: actions/configure-pages@v5
         if: steps.datos.outputs.updated == 'true' || github.event_name != 'schedule'

@@ -2,6 +2,7 @@ import {validate,summary,standings,score,winner,outcome,consensus} from './core.
 import {icon,hydrateIcons} from './icons.mjs';
 import {feedUrl,normalizeFeed,mergeScores,nextDelay} from './live.mjs';
 import {loadLeague,calendarView,standingsView} from './league.mjs?v=20261015-3';
+import {raceView,raceState} from './race.mjs?v=20261016-1';
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -9,7 +10,7 @@ const money=n=>new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',ma
 const initials=n=>n.split(/\s+/).slice(0,2).map(v=>v[0]).join('').toUpperCase();
 const pageUrl=new URL(location.href);if(pageUrl.searchParams.has('vista')){pageUrl.searchParams.delete('vista');history.replaceState(null,'',pageUrl.pathname+pageUrl.search+pageUrl.hash);}
 let data,view=['ranking','games','rules','calendar','standings'].includes(location.hash.slice(1))?location.hash.slice(1):'board',filter='all',query='';
-let leagueData=null,conference='all',calendarSelection={phase:'REG',week:'6',team:'all'};
+let leagueData=null,raceHistory=null,conference='all',calendarSelection={phase:'REG',week:'6',team:'all'};
 let layout=matchMedia('(min-width:1100px)').matches?'matrix':'cards',manualLayout=false;
 let sync={mode:'loading',at:null},refreshTimer=null,refreshing=false,activePerson=null;
 const logos=t=>`assets/teams/${encodeURIComponent(t)}.svg`;
@@ -24,10 +25,12 @@ function selectedRows(){return standings(data).filter(p=>(!query||p.name.toLocal
 function heading(kicker,title,sub,extra=''){return `<div class="section-heading"><div><span class="section-kicker">${kicker}</span><h2>${title}</h2><p>${sub}</p></div>${extra}</div>`;}
 function renderHeader(){
  const s=summary(data);
+ $('#race').innerHTML=raceView(data,raceHistory);
  $('#week-status').textContent=s.settled?'JORNADA FINALIZADA':s.finished===data.games.length&&s.unresolved?'CRITERIO DE EMPATE PENDIENTE':s.finished||s.live?'JORNADA EN CURSO':'REGISTRO DE ELECCIONES';
  $('#pot-amount').innerHTML=`${money(s.expectedPot)}<small>MXN</small>`;$('#pot-detail').textContent=`${s.complete} registro${s.complete===1?' completo':'s completos'} × ${money(data.fee)} MXN`;
  const leader=s.leader?(s.leader.names.length>1?`${s.leader.names.length} empatados`:s.leader.names[0]):'Por definir';
  const stats=[['EN LA QUINIELA',String(data.participants.length),'participante'+(data.participants.length===1?' registrado':'s registrados'),''],['REGISTROS COMPLETOS',`${s.complete}<small>/ ${data.participants.length}</small>`,'selecciones capturadas',''],['PARTIDOS FINALIZADOS',`${s.finished}<small>/ ${data.games.length}</small>`,s.live?`${s.live} partido en curso`:'Resultados por confirmar',''],[s.settled?'GANADOR'+(s.leader?.names.length>1?'ES':''):'LIDERATO PROVISIONAL',esc(leader),s.leader?`${s.leader.correct} aciertos${s.settled?' · jornada cerrada':''}`:'Aún sin aciertos contabilizados','green']];
+ const projected=raceState(data);if(projected.live&&projected.projectedLeaders.length)stats[3]=['PROYECCIÓN EN JUEGO',esc(projected.rows.filter(p=>projected.projectedLeaders.includes(p.id)).map(p=>p.name).join(', ')),projected.bestProjected+' aciertos si terminan así','green'];
  $('#stats').innerHTML=stats.map(([label,value,desc,c])=>`<div class="stat"><span class="stat-label">${label}</span><span class="stat-value ${c}" title="${esc(label==='LIDERATO PROVISIONAL'?leader:desc)}">${value}</span><span class="stat-desc">${esc(desc)}</span></div>`).join('');
 }
 function controls(){return `<div class="toolbar"><div class="filters" role="group" aria-label="Filtrar participantes">${[['all','Todos'],['complete','Completos'],['missing','Por completar']].map(([v,n])=>`<button class="filter ${v===filter?'active':''}" data-filter="${v}" aria-pressed="${v===filter}">${n}</button>`).join('')}</div><label class="search"><span aria-hidden="true">${icon("search")}</span><span class="sr-only">Buscar participante</span><input id="participant-search" type="search" placeholder="Buscar participante…" value="${esc(query)}" autocomplete="off"></label></div>`;}
@@ -48,6 +51,7 @@ function render(){document.body.dataset.route=view;const labels={board:'La quini
 function detail(id){activePerson=id;const p=data.participants.find(p=>p.id===id);if(!p)return;const s=score(p,data.games);$('#detail-body').innerHTML=`<h2 id="detail-title" class="detail-title">${esc(p.name)}</h2><p class="detail-meta">${s.submitted}/${data.games.length} elecciones recibidas · ${esc(payment(p))}</p><div class="detail-stats"><div><strong>${s.correct}</strong><span>ACIERTOS</span></div><div><strong>${s.wrong}</strong><span>FALLOS</span></div><div><strong>${s.pending}</strong><span>POR JUGAR</span></div><div><strong>${s.max}</strong><span>MÁXIMO</span></div></div>${data.games.map(g=>{const t=p.choices[g.id],state=outcome(p,g);return `<div class="detail-game">${t?img(t):'<span style="width:33px;text-align:center">—</span>'}<div><strong>${t?esc(data.teams[t].name):'Sin elección'}</strong><small>${esc(g.away)} vs ${esc(g.home)} · ${esc(day(g))}</small></div><span class="detail-state ${state}">${stateText[state]}</span></div>`;}).join('')}`;if(!$('#detail').open)$('#detail').showModal();}
 function exportTable(){const rows=[['Participante','Elecciones','Aciertos','Máximo','Aportación',...data.games.map(g=>g.away+' vs '+g.home)],...standings(data).map(p=>[p.name,p.submitted,p.correct,p.max,payment(p),...data.games.map(g=>p.choices[g.id]||'')])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`quiniela-semana-06.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 document.addEventListener('click',e=>{
+ if(e.target.closest('#celebrate')){const panel=document.querySelector('.race-panel');panel.classList.remove('celebrating');void panel.offsetWidth;panel.classList.add('celebrating');setTimeout(()=>panel.classList.remove('celebrating'),6500);return;}
  const mode=e.target.closest('[data-layout]');if(mode){manualLayout=true;layout=mode.dataset.layout;render();return;}
  const conf=e.target.closest('[data-conference]');if(conf){conference=conf.dataset.conference;render();return;}
  const nav=e.target.closest('[data-view]');if(nav){view=nav.dataset.view;history.replaceState(null,'',location.pathname+location.search+(view==='board'?'':'#'+view));render();return;}
@@ -92,7 +96,7 @@ async function refreshScores(manual=false){
   let direct;
   try{direct=normalizeFeed(await getJson(feedUrl(data),6500),data);data=mergeScores(data,direct);sync={mode:'direct',at:direct.fetchedAt};}
   catch{try{const copy=await getJson('scores.json');data=mergeScores(data,copy);sync={mode:'snapshot',at:copy.fetchedAt};}catch{sync={...sync,mode:'unavailable'};}}
-  validate(data);try{leagueData=await loadLeague();}catch{}
+  validate(data);await Promise.allSettled([loadLeague().then(d=>{leagueData=d;}),getJson('race-history.json').then(d=>{raceHistory=d;})]);
   preserveAndRender();if(manual)toast(sync.at?'Marcadores consultados.':'No se pudo conectar. Conservamos los datos anteriores.');
  }catch{sync={...sync,mode:'unavailable'};renderTicker();if(manual)toast('No hay conexión. Conservamos la última consulta.');}
  finally{refreshing=false;$('#refresh').disabled=false;clearTimeout(refreshTimer);const delay=nextDelay(data,document.visibilityState==='visible');if(delay)refreshTimer=setTimeout(()=>refreshScores(),delay);}

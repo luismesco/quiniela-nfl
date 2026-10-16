@@ -11,3 +11,5 @@ Los marcadores muestran su hora de consulta. Sólo los encuentros finalizados as
 El calendario incluye pretemporada, las 18 semanas regulares y rondas de postemporada. Los cruces todavía no definidos se muestran por confirmar. Las posiciones se consultan por conferencia y división.
 
 Las elecciones se entregan a Luis para su registro. Las fotografías y conversaciones originales permanecen fuera de esta página.
+
+La carrera muestra aciertos confirmados y una proyección separada durante los juegos. La celebración y el ganador final aparecen al cerrarse la jornada. El historial registra cambios de marcador y liderato con hora de recepción; las consultas que no cambian el estado no duplican registros.

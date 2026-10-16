@@ -1,0 +1,31 @@
+name: Seguir marcadores en directo
+on:
+  workflow_dispatch:
+    inputs:
+      check_once:
+        description: Consultar una vez y terminar
+        type: boolean
+        default: false
+  schedule:
+    - cron: '7,37 * * * *'
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: quiniela-monitor-en-directo
+  cancel-in-progress: false
+jobs:
+  seguimiento:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Seguir resultados y publicar cambios
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/watch-live.mjs ${{ inputs.check_once && '--once' || '' }}
