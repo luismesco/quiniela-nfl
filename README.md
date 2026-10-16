@@ -13,3 +13,5 @@ El calendario incluye pretemporada, las 18 semanas regulares y rondas de postemp
 Las elecciones se entregan a Luis para su registro. Las fotografías y conversaciones originales permanecen fuera de esta página.
 
 La carrera muestra aciertos confirmados y una proyección separada durante los juegos. La celebración y el ganador final aparecen al cerrarse la jornada. El historial registra cambios de marcador y liderato con hora de recepción; las consultas que no cambian el estado no duplican registros.
+
+Cada partido admite tres elecciones: visitante, local o empate. Un final empatado asigna el acierto sólo a quienes eligieron empate. La proyección durante el juego se muestra separada de los aciertos confirmados.

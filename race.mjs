@@ -1,10 +1,10 @@
-import {score,summary,winner} from './core.mjs';
+import {score,summary,winner} from './core.mjs?v=20261016-2';
 
 export function raceState(d){
   const s=summary(d),live=d.games.filter(g=>g.status==='live');
-  const rows=d.participants.map(p=>{const official=score(p,d.games);const inPlay=live.filter(g=>g.awayScore!==g.homeScore&&p.choices[g.id]===(g.awayScore>g.homeScore?g.away:g.home)).length;return {id:p.id,name:p.name,correct:official.correct,projected:official.correct+inPlay,complete:official.complete};});
+  const rows=d.participants.map(p=>{const official=score(p,d.games);const inPlay=live.filter(g=>p.choices[g.id]===(g.awayScore===g.homeScore?'TIE':g.awayScore>g.homeScore?g.away:g.home)).length;return {id:p.id,name:p.name,correct:official.correct,projected:official.correct+inPlay,complete:official.complete};});
   const eligible=rows.filter(p=>p.complete),best=Math.max(0,...eligible.map(p=>p.correct)),bestProjected=Math.max(0,...eligible.map(p=>p.projected));
-  for(const p of rows){p.rank=p.complete&&s.resolved?1+eligible.filter(x=>x.correct>p.correct).length:null;p.projectedRank=p.complete&&(s.resolved||live.some(g=>g.awayScore!==g.homeScore))?1+eligible.filter(x=>x.projected>p.projected).length:null;}
+  for(const p of rows){p.rank=p.complete&&s.resolved?1+eligible.filter(x=>x.correct>p.correct).length:null;p.projectedRank=p.complete&&(s.resolved||live.length)?1+eligible.filter(x=>x.projected>p.projected).length:null;}
   rows.sort((a,b)=>(b.correct-a.correct)||(b.projected-a.projected)||a.name.localeCompare(b.name,'es'));
   return {season:d.season,week:d.week,finished:s.finished,total:d.games.length,live:live.length,settled:s.settled,unresolved:s.unresolved,pot:s.expectedPot,rows,leaders:eligible.filter(p=>p.rank===1).map(p=>p.id),projectedLeaders:eligible.filter(p=>p.projectedRank===1).map(p=>p.id),winners:s.settled?eligible.filter(p=>p.correct===best).map(p=>p.id):[],best,bestProjected};
 }
