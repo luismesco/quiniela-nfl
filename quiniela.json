@@ -6,7 +6,7 @@
   "fee": 50,
   "currency": "MXN",
   "deadline": "2026-10-15T18:00:00-06:00",
-  "updatedAt": "2026-10-16T17:12:02.319840+00:00",
+  "updatedAt": "2026-10-16T17:25:42.114889+00:00",
   "demo": false,
   "teams": {
     "DET": {
@@ -351,7 +351,7 @@
     {
       "id": "foto-1",
       "name": "Eve",
-      "paid": null,
+      "paid": true,
       "choices": {
         "2026_06_SEA_DEN": "SEA",
         "2026_06_HOU_JAX": "JAX",
@@ -367,7 +367,10 @@
         "2026_06_BUF_LV": "BUF",
         "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF"
-      }
+      },
+      "aliases": [
+        "Evelyn"
+      ]
     },
     {
       "id": "foto-2",
@@ -414,7 +417,7 @@
     {
       "id": "foto-4",
       "name": "Eli",
-      "paid": null,
+      "paid": true,
       "choices": {
         "2026_06_SEA_DEN": "DEN",
         "2026_06_HOU_JAX": "JAX",
@@ -435,7 +438,7 @@
     {
       "id": "foto-5",
       "name": "Jorge",
-      "paid": null,
+      "paid": true,
       "choices": {
         "2026_06_SEA_DEN": "SEA",
         "2026_06_HOU_JAX": "JAX",
@@ -451,7 +454,10 @@
         "2026_06_BUF_LV": "BUF",
         "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF"
-      }
+      },
+      "aliases": [
+        "Mua"
+      ]
     },
     {
       "id": "foto-6",
@@ -472,7 +478,10 @@
         "2026_06_BUF_LV": "BUF",
         "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF"
-      }
+      },
+      "aliases": [
+        "Lalo"
+      ]
     },
     {
       "id": "foto-7",
@@ -493,7 +502,10 @@
         "2026_06_BUF_LV": "BUF",
         "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF"
-      }
+      },
+      "aliases": [
+        "Gerardo"
+      ]
     },
     {
       "id": "rox",
@@ -556,7 +568,11 @@
         "2026_06_BUF_LV": "BUF",
         "2026_06_DAL_GB": "DAL",
         "2026_06_WAS_SF": "SF"
-      }
+      },
+      "aliases": [
+        "Ivonne",
+        "Yvonn"
+      ]
     },
     {
       "id": "alex",
@@ -598,6 +614,33 @@
         "2026_06_DAL_GB": "GB",
         "2026_06_WAS_SF": "SF",
         "2026_06_HOU_JAX": "TIE"
+      },
+      "aliases": [
+        "Sergio"
+      ]
+    },
+    {
+      "id": "juan-carlos",
+      "name": "Juan Carlos",
+      "aliases": [
+        "JC"
+      ],
+      "paid": true,
+      "choices": {
+        "2026_06_SEA_DEN": "SEA",
+        "2026_06_HOU_JAX": "JAX",
+        "2026_06_CHI_ATL": "CHI",
+        "2026_06_BAL_CLE": "BAL",
+        "2026_06_TEN_IND": "IND",
+        "2026_06_NYJ_NE": "NE",
+        "2026_06_NO_NYG": "NYG",
+        "2026_06_CAR_PHI": "PHI",
+        "2026_06_PIT_TB": "PIT",
+        "2026_06_ARI_LA": "LA",
+        "2026_06_LAC_KC": "KC",
+        "2026_06_BUF_LV": "BUF",
+        "2026_06_DAL_GB": "GB",
+        "2026_06_WAS_SF": "SF"
       }
     }
   ]
