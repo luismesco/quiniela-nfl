@@ -1219,9 +1219,9 @@
       "timeTbd": false,
       "venue": "Wembley Stadium",
       "neutral": true,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_CHI_ATL",
