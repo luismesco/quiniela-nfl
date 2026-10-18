@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T21:29:35.566Z",
+  "fetchedAt": "2026-10-18T21:35:04.771Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T21:29:35.566Z",
+  "standingsUpdatedAt": "2026-10-18T21:35:04.771Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4946,19 +4946,8 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "BAL",
-          "sourceOrder": 2,
-          "wins": 4,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.6666667,
-          "differential": 24,
-          "pointsFor": 156,
-          "pointsAgainst": 132
-        },
-        {
           "team": "CLE",
-          "sourceOrder": 6,
+          "sourceOrder": 3,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -4969,7 +4958,7 @@
         },
         {
           "team": "PIT",
-          "sourceOrder": 7,
+          "sourceOrder": 6,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -4979,8 +4968,19 @@
           "pointsAgainst": 128
         },
         {
+          "team": "BAL",
+          "sourceOrder": 7,
+          "wins": 4,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.6666667,
+          "differential": 24,
+          "pointsFor": 156,
+          "pointsAgainst": 132
+        },
+        {
           "team": "CIN",
-          "sourceOrder": 9,
+          "sourceOrder": 8,
           "wins": 3,
           "losses": 2,
           "ties": 0,
@@ -4997,7 +4997,7 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 3,
+          "sourceOrder": 2,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -5069,7 +5069,7 @@
         },
         {
           "team": "LV",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 3,
           "losses": 2,
           "ties": 0,
@@ -5119,7 +5119,7 @@
         },
         {
           "team": "PHI",
-          "sourceOrder": 11,
+          "sourceOrder": 12,
           "wins": 2,
           "losses": 4,
           "ties": 0,
@@ -5147,7 +5147,7 @@
       "teams": [
         {
           "team": "MIN",
-          "sourceOrder": 1,
+          "sourceOrder": 0,
           "wins": 5,
           "losses": 0,
           "ties": 0,
@@ -5219,7 +5219,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 2,
           "losses": 4,
           "ties": 0,
@@ -5247,7 +5247,7 @@
       "teams": [
         {
           "team": "SF",
-          "sourceOrder": 0,
+          "sourceOrder": 1,
           "wins": 5,
           "losses": 0,
           "ties": 0,
