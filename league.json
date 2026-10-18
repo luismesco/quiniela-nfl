@@ -1325,7 +1325,7 @@
       "venue": "Raymond James Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 19,
+      "awayScore": 25,
       "homeScore": 19
     },
     {
@@ -1356,7 +1356,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 0
+      "homeScore": 3
     },
     {
       "id": "2026_06_BUF_LV",
