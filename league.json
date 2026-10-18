@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T20:42:33.235Z",
+  "fetchedAt": "2026-10-18T20:44:03.059Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T20:42:33.235Z",
+  "standingsUpdatedAt": "2026-10-18T20:44:03.059Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1324,7 +1324,7 @@
       "timeTbd": false,
       "venue": "Raymond James Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 26,
       "homeScore": 19
     },
@@ -1371,7 +1371,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 3,
-      "homeScore": 6
+      "homeScore": 7
     },
     {
       "id": "2026_06_DAL_GB",
@@ -5230,14 +5230,14 @@
         },
         {
           "team": "TB",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 1,
-          "losses": 4,
+          "losses": 5,
           "ties": 0,
-          "pct": 0.2,
-          "differential": -12,
-          "pointsFor": 100,
-          "pointsAgainst": 112
+          "pct": 0.16666667,
+          "differential": -19,
+          "pointsFor": 119,
+          "pointsAgainst": 138
         }
       ]
     },
@@ -5280,7 +5280,7 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 15,
+          "sourceOrder": 14,
           "wins": 1,
           "losses": 4,
           "ties": 0,
