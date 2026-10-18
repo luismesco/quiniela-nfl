@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T17:00:51.241Z",
+  "fetchedAt": "2026-10-18T17:03:19.396Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T17:00:51.241Z",
+  "standingsUpdatedAt": "2026-10-18T17:03:19.396Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1309,9 +1309,9 @@
       "timeTbd": false,
       "venue": "Lincoln Financial Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_PIT_TB",
@@ -1324,9 +1324,9 @@
       "timeTbd": false,
       "venue": "Raymond James Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_ARI_LA",
