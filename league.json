@@ -1264,9 +1264,9 @@
       "timeTbd": false,
       "venue": "Lucas Oil Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_NYJ_NE",
