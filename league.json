@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T19:32:31.372Z",
+  "fetchedAt": "2026-10-18T19:34:00.473Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T19:32:31.372Z",
+  "standingsUpdatedAt": "2026-10-18T19:34:00.473Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1265,7 +1265,7 @@
       "venue": "Lucas Oil Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 19,
+      "awayScore": 20,
       "homeScore": 13
     },
     {
