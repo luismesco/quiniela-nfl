@@ -1234,9 +1234,9 @@
       "timeTbd": false,
       "venue": "Mercedes-Benz Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_BAL_CLE",
@@ -1279,9 +1279,9 @@
       "timeTbd": false,
       "venue": "Gillette Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_NO_NYG",
