@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T20:10:02.950Z",
+  "fetchedAt": "2026-10-18T20:12:02.582Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T20:10:02.950Z",
+  "standingsUpdatedAt": "2026-10-18T20:12:02.582Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4908,29 +4908,29 @@
         },
         {
           "team": "NE",
-          "sourceOrder": 6,
-          "wins": 3,
+          "sourceOrder": 4,
+          "wins": 4,
           "losses": 2,
           "ties": 0,
-          "pct": 0.6,
-          "differential": 16,
-          "pointsFor": 110,
-          "pointsAgainst": 94
+          "pct": 0.6666667,
+          "differential": 23,
+          "pointsFor": 136,
+          "pointsAgainst": 113
         },
         {
           "team": "NYJ",
           "sourceOrder": 10,
           "wins": 2,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.4,
-          "differential": -3,
-          "pointsFor": 93,
-          "pointsAgainst": 96
+          "pct": 0.33333334,
+          "differential": -10,
+          "pointsFor": 112,
+          "pointsAgainst": 122
         },
         {
           "team": "MIA",
-          "sourceOrder": 13,
+          "sourceOrder": 14,
           "wins": 0,
           "losses": 5,
           "ties": 0,
@@ -4958,7 +4958,7 @@
         },
         {
           "team": "CLE",
-          "sourceOrder": 5,
+          "sourceOrder": 6,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -5010,12 +5010,12 @@
           "team": "IND",
           "sourceOrder": 11,
           "wins": 2,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.4,
-          "differential": -14,
-          "pointsFor": 124,
-          "pointsAgainst": 138
+          "pct": 0.33333334,
+          "differential": -20,
+          "pointsFor": 144,
+          "pointsAgainst": 164
         },
         {
           "team": "HOU",
@@ -5030,14 +5030,14 @@
         },
         {
           "team": "TEN",
-          "sourceOrder": 15,
-          "wins": 0,
+          "sourceOrder": 13,
+          "wins": 1,
           "losses": 5,
           "ties": 0,
-          "pct": 0,
-          "differential": -51,
-          "pointsFor": 58,
-          "pointsAgainst": 109
+          "pct": 0.16666667,
+          "differential": -45,
+          "pointsFor": 84,
+          "pointsAgainst": 129
         }
       ]
     },
@@ -5058,7 +5058,7 @@
         },
         {
           "team": "DEN",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -5080,7 +5080,7 @@
         },
         {
           "team": "LAC",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 0,
           "losses": 5,
           "ties": 0,
