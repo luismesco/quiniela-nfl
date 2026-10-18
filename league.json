@@ -1339,8 +1339,8 @@
       "timeTbd": false,
       "venue": "SoFi Stadium",
       "neutral": false,
-      "status": "live",
-      "awayScore": 15,
+      "status": "final",
+      "awayScore": 18,
       "homeScore": 16
     },
     {
@@ -1371,7 +1371,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 23,
-      "homeScore": 16
+      "homeScore": 22
     },
     {
       "id": "2026_06_DAL_GB",
