@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T16:40:50.940Z",
+  "fetchedAt": "2026-10-18T16:49:25.002Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T16:40:50.940Z",
+  "standingsUpdatedAt": "2026-10-18T16:49:25.002Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1219,7 +1219,7 @@
       "timeTbd": false,
       "venue": "Wembley Stadium",
       "neutral": true,
-      "status": "live",
+      "status": "final",
       "awayScore": 34,
       "homeScore": 31
     },
@@ -4897,7 +4897,7 @@
       "teams": [
         {
           "team": "BUF",
-          "sourceOrder": 3,
+          "sourceOrder": 2,
           "wins": 4,
           "losses": 1,
           "ties": 0,
@@ -4997,14 +4997,14 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 4,
-          "losses": 1,
+          "losses": 2,
           "ties": 0,
-          "pct": 0.8,
-          "differential": 53,
-          "pointsFor": 123,
-          "pointsAgainst": 70
+          "pct": 0.6666667,
+          "differential": 50,
+          "pointsFor": 154,
+          "pointsAgainst": 104
         },
         {
           "team": "IND",
@@ -5020,13 +5020,13 @@
         {
           "team": "HOU",
           "sourceOrder": 12,
-          "wins": 1,
+          "wins": 2,
           "losses": 4,
           "ties": 0,
-          "pct": 0.2,
-          "differential": -2,
-          "pointsFor": 110,
-          "pointsAgainst": 112
+          "pct": 0.33333334,
+          "differential": 1,
+          "pointsFor": 144,
+          "pointsAgainst": 143
         },
         {
           "team": "TEN",
