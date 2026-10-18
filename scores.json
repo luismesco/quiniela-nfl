@@ -4,7 +4,7 @@
   "season": 2026,
   "week": 6,
   "source": "ESPN",
-  "fetchedAt": "2026-10-18T17:47:52.809Z",
+  "fetchedAt": "2026-10-18T17:53:08.488Z",
   "matched": 14,
   "games": [
     {
@@ -18,7 +18,7 @@
       "phaseName": "STATUS_FINAL",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401872995",
       "start": "2026-10-16T00:15Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_HOU_JAX",
@@ -31,7 +31,7 @@
       "phaseName": "STATUS_FINAL",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401872996",
       "start": "2026-10-18T13:30Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_CHI_ATL",
@@ -39,12 +39,12 @@
       "awayScore": 14,
       "homeScore": 0,
       "eventId": "401872999",
-      "clock": "11:43",
+      "clock": "9:25",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401872999",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_BAL_CLE",
@@ -52,12 +52,12 @@
       "awayScore": 10,
       "homeScore": 0,
       "eventId": "401872997",
-      "clock": "12:34",
+      "clock": "10:56",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401872997",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_TEN_IND",
@@ -65,12 +65,12 @@
       "awayScore": 0,
       "homeScore": 7,
       "eventId": "401873003",
-      "clock": "11:07",
+      "clock": "9:41",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873003",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_NYJ_NE",
@@ -78,12 +78,12 @@
       "awayScore": 3,
       "homeScore": 7,
       "eventId": "401873001",
-      "clock": "13:05",
+      "clock": "11:50",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873001",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_NO_NYG",
@@ -91,12 +91,12 @@
       "awayScore": 0,
       "homeScore": 7,
       "eventId": "401873000",
-      "clock": "11:10",
+      "clock": "9:21",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873000",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_CAR_PHI",
@@ -104,12 +104,12 @@
       "awayScore": 3,
       "homeScore": 0,
       "eventId": "401872998",
-      "clock": "0:00",
-      "period": 1,
-      "phaseName": "STATUS_END_PERIOD",
+      "clock": "13:47",
+      "period": 2,
+      "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401872998",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_PIT_TB",
@@ -117,12 +117,12 @@
       "awayScore": 0,
       "homeScore": 10,
       "eventId": "401873002",
-      "clock": "14:52",
+      "clock": "13:02",
       "period": 2,
       "phaseName": "STATUS_IN_PROGRESS",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873002",
       "start": "2026-10-18T17:00Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_ARI_LA",
@@ -135,7 +135,7 @@
       "phaseName": "STATUS_SCHEDULED",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873004",
       "start": "2026-10-18T20:05Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_LAC_KC",
@@ -148,7 +148,7 @@
       "phaseName": "STATUS_SCHEDULED",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873006",
       "start": "2026-10-18T20:25Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_BUF_LV",
@@ -161,7 +161,7 @@
       "phaseName": "STATUS_SCHEDULED",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873005",
       "start": "2026-10-18T20:25Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_DAL_GB",
@@ -174,7 +174,7 @@
       "phaseName": "STATUS_SCHEDULED",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873007",
       "start": "2026-10-19T00:20Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     },
     {
       "id": "2026_06_WAS_SF",
@@ -187,7 +187,7 @@
       "phaseName": "STATUS_SCHEDULED",
       "sourceUrl": "https://www.espn.com/nfl/game/_/gameId/401873008",
       "start": "2026-10-20T00:15Z",
-      "checkedAt": "2026-10-18T17:47:52.809Z"
+      "checkedAt": "2026-10-18T17:53:08.488Z"
     }
   ]
 }
