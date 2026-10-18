@@ -1279,7 +1279,7 @@
       "timeTbd": false,
       "venue": "Gillette Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 19,
       "homeScore": 26
     },
@@ -1296,7 +1296,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 34,
-      "homeScore": 24
+      "homeScore": 27
     },
     {
       "id": "2026_06_CAR_PHI",
