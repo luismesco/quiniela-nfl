@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-18T20:44:03.059Z",
+  "fetchedAt": "2026-10-18T20:50:04.391Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-18T20:44:03.059Z",
+  "standingsUpdatedAt": "2026-10-18T20:50:04.391Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4969,14 +4969,14 @@
         },
         {
           "team": "PIT",
-          "sourceOrder": 8,
-          "wins": 3,
+          "sourceOrder": 7,
+          "wins": 4,
           "losses": 2,
           "ties": 0,
-          "pct": 0.6,
-          "differential": 2,
-          "pointsFor": 111,
-          "pointsAgainst": 109
+          "pct": 0.6666667,
+          "differential": 9,
+          "pointsFor": 137,
+          "pointsAgainst": 128
         },
         {
           "team": "CIN",
@@ -5069,7 +5069,7 @@
         },
         {
           "team": "LV",
-          "sourceOrder": 7,
+          "sourceOrder": 8,
           "wins": 3,
           "losses": 2,
           "ties": 0,
