@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-19T01:45:46.054Z",
+  "fetchedAt": "2026-10-19T01:48:17.715Z",
   "calendarUpdatedAt": "2026-10-18T12:33:47.001Z",
-  "standingsUpdatedAt": "2026-10-19T01:45:46.054Z",
+  "standingsUpdatedAt": "2026-10-19T01:48:17.715Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1386,7 +1386,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 16
+      "homeScore": 17
     },
     {
       "id": "2026_06_WAS_SF",
