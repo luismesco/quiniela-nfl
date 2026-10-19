@@ -1384,9 +1384,9 @@
       "timeTbd": false,
       "venue": "Lambeau Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_06_WAS_SF",
