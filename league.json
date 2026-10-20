@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-20T02:21:50.117Z",
+  "fetchedAt": "2026-10-20T02:23:50.750Z",
   "calendarUpdatedAt": "2026-10-19T17:29:38.737Z",
-  "standingsUpdatedAt": "2026-10-20T02:21:50.117Z",
+  "standingsUpdatedAt": "2026-10-20T02:23:50.750Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1400,7 +1400,7 @@
       "venue": "Levi's Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 9,
+      "awayScore": 10,
       "homeScore": 23
     },
     {
