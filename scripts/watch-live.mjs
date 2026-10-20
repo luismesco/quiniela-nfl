@@ -17,7 +17,7 @@ while(once||Date.now()<until&&inMonitoringWindow({games:league.games})){
   const snapshot=normalizeFeed(round,d,new Date().toISOString());
   league=mergeLeagueScoreboard(league,current,snapshot.fetchedAt);
   const key=JSON.stringify([snapshot.games,league.games].map(games=>games.map(g=>[g.id,g.status,g.awayScore,g.homeScore,g.start])));
-  if(key!==lastKey||Date.now()-lastSaved>=300000){const result=await persist(snapshot,league,{heartbeat:true});if(result.wrote){api('actions/workflows/publicar.yml/dispatches','POST',{ref:'main'});console.log(JSON.stringify({at:snapshot.fetchedAt,...result}));}lastKey=key;lastSaved=Date.now();}
+  if(key!==lastKey||Date.now()-lastSaved>=300000){const result=await persist(snapshot,null,{heartbeat:true,leagueScoreboard:current});if(result.wrote){api('actions/workflows/publicar.yml/dispatches','POST',{ref:'main'});console.log(JSON.stringify({at:snapshot.fetchedAt,...result}));}lastKey=key;lastSaved=Date.now();}
   failures=0;
   for(const g of league.games){const u=snapshot.games.find(x=>x.id===g.id);if(u)Object.assign(g,u);}
  }catch(e){failures++;console.error(String(e));if(once||failures>=5)throw e;}
