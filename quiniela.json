@@ -6,7 +6,7 @@
   "fee": 50,
   "currency": "MXN",
   "deadline": "2026-10-23T00:00:00+00:00",
-  "updatedAt": "2026-10-20T22:36:51.601175+00:00",
+  "updatedAt": "2026-10-20T23:04:21.307591+00:00",
   "demo": false,
   "teams": {
     "DET": {
@@ -402,7 +402,22 @@
       "id": "foto-2",
       "name": "Leo",
       "paid": null,
-      "choices": {}
+      "choices": {
+        "2026_07_NE_CHI": "CHI",
+        "2026_07_PIT_NO": "PIT",
+        "2026_07_SF_ATL": "SF",
+        "2026_07_CIN_BAL": "BAL",
+        "2026_07_TB_CAR": "TB",
+        "2026_07_NYG_HOU": "HOU",
+        "2026_07_IND_MIN": "MIN",
+        "2026_07_MIA_NYJ": "MIA",
+        "2026_07_CLE_TEN": "CLE",
+        "2026_07_DEN_ARI": "DEN",
+        "2026_07_GB_DET": "DET",
+        "2026_07_LA_LV": "LA",
+        "2026_07_KC_SEA": "KC",
+        "2026_07_DAL_PHI": "PHI"
+      }
     },
     {
       "id": "foto-3",
