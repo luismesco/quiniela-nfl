@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.railway/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.sqlite3*
+*.db*
+.venv/
+portal/private/
+portal/test-results/
