@@ -6,7 +6,7 @@
   "fee": 50,
   "currency": "MXN",
   "deadline": "2026-10-23T00:00:00+00:00",
-  "updatedAt": "2026-10-20T19:21:32.152266+00:00",
+  "updatedAt": "2026-10-20T19:58:50.541846+00:00",
   "demo": false,
   "teams": {
     "DET": {
@@ -429,7 +429,22 @@
       "id": "foto-6",
       "name": "Goku",
       "paid": null,
-      "choices": {},
+      "choices": {
+        "2026_07_NE_CHI": "NE",
+        "2026_07_PIT_NO": "NO",
+        "2026_07_SF_ATL": "SF",
+        "2026_07_CIN_BAL": "BAL",
+        "2026_07_TB_CAR": "TB",
+        "2026_07_NYG_HOU": "HOU",
+        "2026_07_IND_MIN": "MIN",
+        "2026_07_MIA_NYJ": "NYJ",
+        "2026_07_CLE_TEN": "TEN",
+        "2026_07_DEN_ARI": "DEN",
+        "2026_07_GB_DET": "GB",
+        "2026_07_LA_LV": "LA",
+        "2026_07_KC_SEA": "KC",
+        "2026_07_DAL_PHI": "PHI"
+      },
       "aliases": [
         "Lalo"
       ]
