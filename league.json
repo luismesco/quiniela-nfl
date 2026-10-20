@@ -1399,9 +1399,9 @@
       "timeTbd": false,
       "venue": "Levi's Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_NE_CHI",
