@@ -6,7 +6,7 @@
   <meta name="description" content="La Quiniela Fiscalizada: elecciones, marcadores, calendario y posiciones de la NFL.">
   <meta name="theme-color" content="#102a31"><title>LA QUINIELA FISCALIZADA · NFL 2026</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="theme.css?v=20261016-3"><script type="module" src="app.mjs?v=20261016-3"></script>
+  <link rel="stylesheet" href="theme.css?v=20261020-7"><script type="module" src="app.mjs?v=20261020-7"></script>
 </head>
 <body>
   <a href="#content" class="skip">Ir al contenido</a>
@@ -21,16 +21,17 @@
       <button data-view="standings" class="nav"><span data-icon="chart"></span><span>Posiciones NFL</span></button>
       <button data-view="rules" class="nav"><span data-icon="info"></span><span>Reglas</span></button>
     </nav>
-    <div class="side-card"><span class="tiny">CIERRE DE ESTA JORNADA</span><p>Jueves 15<br><em>18:00 h.</em></p><span>Hora de Ciudad de México.</span><div class="field-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="side-card"><span class="tiny">CIERRE DE ESTA JORNADA</span><p>Jueves 22<br><em>18:00 h.</em></p><span>Hora de Ciudad de México.</span><div class="field-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></div>
     <div class="side-bottom"><span class="avatar">LM</span><div>Luis Montañez Escobar<small>Organización de la quiniela</small></div></div>
   </aside>
   <div class="shell">
     <header class="topbar"><a class="mobile-brand" href="./"><span>LA QUINIELA</span><b>FISCALIZADA</b></a><div class="desktop-breadcrumb"><span class="breadcrumb">NFL / TEMPORADA 2026</span><strong id="view-label">La quiniela</strong></div><div class="top-actions"><button id="share" class="icon-button" aria-label="Copiar enlace"><span data-icon="arrow"></span></button></div></header>
     <main id="content" tabindex="-1">
       <section class="week-hero" aria-labelledby="page-title">
-        <div class="hero-copy"><div class="eyebrow"><span class="accent-dot"></span> LA JORNADA, AL DÍA</div><h1 id="page-title">Semana <span>06.</span></h1><p>Tus elecciones. Los resultados. La emoción de acertar.</p><div class="hero-meta"><span>15 — 19 OCTUBRE 2026</span><span id="week-status">Preparando jornada</span></div></div>
+        <div class="hero-copy"><div class="eyebrow"><span class="accent-dot"></span> LA JORNADA, AL DÍA</div><h1 id="page-title">Semana <span>07.</span></h1><p>Tus elecciones. Los resultados. La emoción de acertar.</p><div class="hero-meta"><span>22 — 26 OCTUBRE 2026</span><span id="week-status">Preparando jornada</span></div></div>
         <div class="pot"><span class="pot-caption">POZO PREVISTO <span>MXN</span></span><div id="pot-amount" class="pot-amount">—</div><p id="pot-detail">Registros completos × $50 MXN</p><div class="pot-bottom"><span>POR PARTICIPANTE</span><strong>$50</strong></div></div>
       </section>
+      <div class="week-picker"><label for="week-select">JORNADA</label><select id="week-select" aria-label="Consultar semana de la quiniela"><option value="7">Semana 7 · actual</option><option value="6">Semana 6 · finalizada</option></select><span id="week-picker-note">Consulta también el cierre de semanas anteriores.</span></div>
       <section class="scoreboard-section" aria-label="Marcadores de la jornada"><div class="scoreboard-heading"><div class="sync"><span id="sync-dot" class="sync-dot"></span><span id="sync-status">Consultando marcadores…</span><time id="sync-time"></time></div><button id="refresh" class="text-button"><span data-icon="refresh"></span><span>Actualizar</span></button></div><div id="scoreboard" class="scoreboard"><div class="loading">Cargando partidos</div></div><p id="sync-note" class="sync-note">Los aciertos se asignan únicamente al confirmarse el marcador final.</p></section>
       <div class="stats" id="stats"></div>
       <div id="race"></div>

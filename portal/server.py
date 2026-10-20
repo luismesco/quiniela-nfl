@@ -141,23 +141,30 @@ def create_app(config=None):
             league = json.loads((ROOT / 'league.json').read_text())
             scores = json.loads((ROOT / 'scores.json').read_text())
             history = json.loads((ROOT / 'race-history.json').read_text())
+            archived = [json.loads(p.read_text()) for p in sorted((ROOT / 'archivo').glob('*/semana-*/quiniela.json'))]
+            seed_rounds = archived + [seed]
             cache_set(conn, 'teams', seed['teams'])
             cache_set(conn, 'league', league)
             import_games(conn, league)
             users = {u['id']: u for u in json.loads(app.config['BOOTSTRAP_USERS_JSON'])}
-            for p in seed['participants']:
+            seed_people = {p['id']: p for record in seed_rounds for p in record['participants']}
+            for p in seed_people.values():
                 account = users.get(p['id'], {})
                 conn.execute('INSERT OR IGNORE INTO users VALUES(?,?,?,?,?,?,?,?,?)',
                              (p['id'], account.get('username', p['name'].lower().replace(' ', '-')),
                               p['name'], json.dumps(p.get('aliases', [])), account.get('password_hash'),
                               'admin' if p['id'] == 'luis' else 'participant', 1, 1, stamp()))
-            rid = round_id(seed['season'], 'REG', seed['week'])
-            for p in seed['participants']:
-                conn.execute('INSERT OR IGNORE INTO participations VALUES(?,?,?)', (rid, p['id'], p['paid']))
-                for game, choice in p['choices'].items():
-                    if not conn.execute('SELECT id FROM games WHERE id=?', (game,)).fetchone():
-                        raise ValueError('Elección sin partido en el calendario')
-                    conn.execute('INSERT OR IGNORE INTO picks VALUES(?,?,?,?)', (p['id'], game, choice, seed['updatedAt']))
+            for record in seed_rounds:
+                rid = round_id(record['season'], 'REG', record['week'])
+                for p in record['participants']:
+                    conn.execute('INSERT OR IGNORE INTO participations VALUES(?,?,?)', (rid, p['id'], p['paid']))
+                    for game, choice in p['choices'].items():
+                        if not conn.execute('SELECT id FROM games WHERE id=?', (game,)).fetchone():
+                            raise ValueError('Elección sin partido en el calendario')
+                        conn.execute('INSERT OR IGNORE INTO picks VALUES(?,?,?,?)', (p['id'], game, choice, record['updatedAt']))
+            for path in sorted((ROOT / 'archivo').glob('*/semana-*/scores.json')):
+                for s in json.loads(path.read_text())['games']:
+                    apply_score(conn, s)
             for s in scores['games']:
                 apply_score(conn, s)
             ingest_history(conn, history)

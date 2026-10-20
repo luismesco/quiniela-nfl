@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "author": "Luis Montañez Escobar",
+  "season": 2026,
+  "currentWeek": 7,
+  "rounds": [
+    {
+      "week": 6,
+      "path": "archivo/2026/semana-06/",
+      "closed": true
+    },
+    {
+      "week": 7,
+      "path": "",
+      "closed": false
+    }
+  ]
+}

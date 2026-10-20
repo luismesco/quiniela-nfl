@@ -7,4 +7,5 @@ COPY portal /app/portal
 COPY assets /app/assets
 COPY core.mjs race.mjs league.mjs icons.mjs theme.css /app/
 COPY quiniela.json scores.json league.json race-history.json /app/
+COPY archivo /app/archivo
 CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8080} --workers 1 --threads 8 --timeout 120 --access-logfile - --error-logfile - portal.server:app"]
