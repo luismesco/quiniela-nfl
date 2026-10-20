@@ -6,7 +6,7 @@
   "fee": 50,
   "currency": "MXN",
   "deadline": "2026-10-23T00:00:00+00:00",
-  "updatedAt": "2026-10-20T20:01:06.706514+00:00",
+  "updatedAt": "2026-10-20T20:05:26.405526+00:00",
   "demo": false,
   "teams": {
     "DET": {
@@ -453,7 +453,22 @@
       "id": "foto-7",
       "name": "Acuayte",
       "paid": null,
-      "choices": {},
+      "choices": {
+        "2026_07_NE_CHI": "CHI",
+        "2026_07_PIT_NO": "PIT",
+        "2026_07_SF_ATL": "SF",
+        "2026_07_CIN_BAL": "CIN",
+        "2026_07_TB_CAR": "TB",
+        "2026_07_NYG_HOU": "HOU",
+        "2026_07_IND_MIN": "IND",
+        "2026_07_MIA_NYJ": "MIA",
+        "2026_07_CLE_TEN": "CLE",
+        "2026_07_DEN_ARI": "ARI",
+        "2026_07_GB_DET": "GB",
+        "2026_07_LA_LV": "LA",
+        "2026_07_KC_SEA": "KC",
+        "2026_07_DAL_PHI": "PHI"
+      },
       "aliases": [
         "Gerardo"
       ]
