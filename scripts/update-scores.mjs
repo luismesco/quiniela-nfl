@@ -14,7 +14,7 @@ async function get(url){const r=await fetch(url,{signal:AbortSignal.timeout(2500
 const [payload,current]=await Promise.all([get(feedUrl(d)),get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?limit=100')]);const at=new Date().toISOString();
 const snapshot=normalizeFeed(payload,d,at);
 await fs.writeFile(path.join(root,'scores.json'),JSON.stringify(snapshot,null,2)+'\n');
-const league=await buildLeague(d,Number(current.season?.year)===d.season?current:payload,previous,get,at);
+const league=await buildLeague(d,Number(current.season?.year)===d.season?current:payload,previous,get,at,{refreshCalendar:daily||forced});
 await fs.writeFile(path.join(root,'league.json'),JSON.stringify(league,null,2)+'\n');
 console.log(JSON.stringify({season:d.season,week:d.week,matched:snapshot.matched,statuses:snapshot.games.map(g=>g.status),calendarGames:league.games.length,standingsTeams:league.standings.reduce((n,g)=>n+g.teams.length,0),fetchedAt:at}));
 

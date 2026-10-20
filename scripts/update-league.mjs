@@ -17,20 +17,49 @@ export function normalizeStandings(raw,season){
   }
   if(new Set(groups.flatMap(g=>g.teams.map(t=>t.team))).size!==32)throw Error('Posiciones sin los 32 equipos');return groups;
 }
-function eventGames(payload,phase,season){if(Number(payload.season?.year)!==season)return [];const result=[];for(const e of payload.events||[]){const c=e.competitions?.[0],a=c?.competitors?.find(x=>x.homeAway==='away'),h=c?.competitors?.find(x=>x.homeAway==='home');if(!a||!h)continue;const away=abbr(a.team?.abbreviation),home=abbr(h.team?.abbreviation);if(!Object.values(divisions).some(div=>Object.values(div).flat().includes(away))||!Object.values(divisions).some(div=>Object.values(div).flat().includes(home)))continue;const type=(c.status||e.status)?.type||{},done=type.state==='post'&&type.completed===true&&type.name?.startsWith('STATUS_FINAL');result.push({id:phase+'_'+e.id,phase,week:Number(e.week?.number||payload.week?.number),away,home,start:e.date,date:e.date,timeTbd:c.timeValid===false,venue:c.venue?.fullName||null,neutral:Boolean(c.neutralSite),status:done?'final':type.state==='in'?'live':'scheduled',awayScore:done||type.state==='in'?Number(a.score):null,homeScore:done||type.state==='in'?Number(h.score):null});}return result;}
-export async function buildLeague(d,scoreboard,previous,get,at){
+function eventGames(payload,phase,season){
+  if(Number(payload.season?.year)!==season)return [];
+  const result=[];
+  for(const e of payload.events||[]){
+    const c=e.competitions?.[0],a=c?.competitors?.find(x=>x.homeAway==='away'),h=c?.competitors?.find(x=>x.homeAway==='home');if(!a||!h)continue;
+    const away=abbr(a.team?.abbreviation),home=abbr(h.team?.abbreviation);
+    if(!Object.values(divisions).some(div=>Object.values(div).flat().includes(away))||!Object.values(divisions).some(div=>Object.values(div).flat().includes(home)))continue;
+    const type=(c.status||e.status)?.type||{},name=type.name||'',done=type.state==='post'&&type.completed===true&&name.startsWith('STATUS_FINAL');
+    const status=/CANCELED|CANCELLED/.test(name)?'canceled':name.includes('POSTPONED')?'postponed':name.includes('SUSPENDED')?'suspended':done?'final':type.state==='in'?'live':type.state==='pre'?'scheduled':null;
+    if(!status)continue;
+    const scored=['final','live','suspended'].includes(status);
+    if(scored&&![a.score,h.score].every(v=>typeof v==='number'&&Number.isFinite(v)||typeof v==='string'&&/^\d{1,3}$/.test(v)))throw Error('Marcador de calendario ausente');
+    result.push({id:phase+'_'+e.id,phase,week:Number(e.week?.number||payload.week?.number),away,home,start:e.date,date:e.date,timeTbd:c.timeValid===false,venue:c.venue?.fullName||null,neutral:Boolean(c.neutralSite),status,awayScore:scored?Number(a.score):null,homeScore:scored?Number(h.score):null});
+  }
+  return result;
+}
+export function mergeLeagueScoreboard(league,scoreboard,at){
+  if(Number(scoreboard.season?.year)!==league.season)throw Error('Calendario de otra temporada');
+  const phase={1:'PRE',2:'REG',3:'POST'}[Number(scoreboard.season?.type)];
+  if(!phase)throw Error('Fase de calendario inválida');
+  const next=structuredClone(league);
+  for(const update of eventGames(scoreboard,phase,league.season)){
+    if(!Number.isFinite(Date.parse(update.start))||!Number.isInteger(update.week)||update.week<1)throw Error('Fecha o semana inválida');
+    if(['live','final','suspended'].includes(update.status)&&![update.awayScore,update.homeScore].every(n=>Number.isInteger(n)&&n>=0&&n<200))throw Error('Marcador de calendario inválido');
+    const game=next.games.find(g=>g.phase===phase&&g.week===update.week&&g.away===update.away&&g.home===update.home);
+    if(!game){next.games.push(update);continue;}
+    if(game.status==='final'&&update.status!=='final')continue;
+    if(['live','suspended'].includes(game.status)&&update.status==='scheduled')continue;
+    Object.assign(game,{...update,id:game.id});
+  }
+  next.fetchedAt=at;
+  return next;
+}
+export async function buildLeague(d,scoreboard,previous,get,at,{refreshCalendar=false}={}){
   const rawStandings=await get(`https://site.api.espn.com/apis/v2/sports/football/nfl/standings?season=${d.season}&seasontype=2`);
   const standings=normalizeStandings(rawStandings,d.season);
   let games=previous?.season===d.season?previous.games:[],slots=previous?.slots||[],calendarUpdatedAt=previous?.calendarUpdatedAt;
-  if(!games.length||!calendarUpdatedAt||Date.parse(at)-Date.parse(calendarUpdatedAt)>86400000){
+  if(refreshCalendar||!games.length||!calendarUpdatedAt||Date.parse(at)-Date.parse(calendarUpdatedAt)>86400000){
     const response=await fetch('https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv',{signal:AbortSignal.timeout(25000)});if(!response.ok)throw Error('Calendario no disponible');games=csvCalendar(await response.text(),d.season);if(games.length!==272)throw Error('Calendario regular sin los 272 encuentros');
     const calendar=scoreboard.leagues?.[0]?.calendar||[];slots=[];
     const stages=calendar.filter(s=>['1','3'].includes(String(s.value)));
     for(const stage of stages){const phase=String(stage.value)==='1'?'PRE':'POST';for(const entry of stage.entries||[]){const week=Number(entry.value);slots.push({phase,week,label:phase==='POST'?({1:'Comodines',2:'Ronda divisional',3:'Finales de conferencia',4:'Super Bowl LXI'}[week]||entry.label):week===1?'Salón de la Fama':`Pretemporada · Semana ${week-1}`,start:entry.startDate,end:entry.endDate,displayDate:phase==='POST'?'Fechas y cruces de la ronda por confirmar':entry.detail});}}
     const extra=await Promise.all(slots.map(async s=>{const type=s.phase==='PRE'?1:3;try{return eventGames(await get(`https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?dates=${d.season}&seasontype=${type}&week=${s.week}&limit=100`),s.phase,d.season);}catch{return [];}}));games.push(...extra.flat());calendarUpdatedAt=at;
   }
-  const currentPhase={1:'PRE',2:'REG',3:'POST'}[Number(scoreboard.season?.type)]||'REG';
-  for(const e of scoreboard.events||[]){const c=e.competitions?.[0],a=c?.competitors?.find(x=>x.homeAway==='away'),h=c?.competitors?.find(x=>x.homeAway==='home');const g=games.find(g=>g.phase===currentPhase&&g.week===Number(scoreboard.week?.number)&&g.away===abbr(a?.team?.abbreviation)&&g.home===abbr(h?.team?.abbreviation));if(!g)continue;const type=(c.status||e.status)?.type||{},done=type.state==='post'&&type.completed===true&&type.name?.startsWith('STATUS_FINAL');if(done||type.state==='in'){g.status=done?'final':'live';g.awayScore=Number(a.score);g.homeScore=Number(h.score);}g.start=e.date;}
-  for(const e of eventGames(scoreboard,currentPhase,d.season)){if(!games.some(g=>g.phase===e.phase&&g.week===e.week&&g.away===e.away&&g.home===e.home))games.push(e);}
-  return {schema:1,author:'Luis Montañez Escobar',season:d.season,fetchedAt:at,calendarUpdatedAt,standingsUpdatedAt:at,standingsSource:'ESPN',calendarSource:'nflverse / ESPN',games,slots,standings};
+  return mergeLeagueScoreboard({schema:1,author:'Luis Montañez Escobar',season:d.season,fetchedAt:at,calendarUpdatedAt,standingsUpdatedAt:at,standingsSource:'ESPN',calendarSource:'nflverse / ESPN',games,slots,standings},scoreboard,at);
 }
