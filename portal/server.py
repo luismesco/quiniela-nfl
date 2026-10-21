@@ -121,6 +121,8 @@ def create_app(config=None):
             PRIMARY KEY(round_id,user_id));
         CREATE TABLE IF NOT EXISTS picks(user_id TEXT REFERENCES users(id),game_id TEXT REFERENCES games(id),choice TEXT NOT NULL,
             updated_at TEXT NOT NULL,PRIMARY KEY(user_id,game_id));
+        CREATE TABLE IF NOT EXISTS sandbox_picks(user_id TEXT REFERENCES users(id),game_id TEXT REFERENCES games(id),choice TEXT NOT NULL,
+            updated_at TEXT NOT NULL,PRIMARY KEY(user_id,game_id));
         CREATE TABLE IF NOT EXISTS feedback(id INTEGER PRIMARY KEY AUTOINCREMENT,user_id TEXT REFERENCES users(id),title TEXT,
             body TEXT,created_at TEXT,status TEXT DEFAULT 'new',reply TEXT,read_at TEXT);
         CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY AUTOINCREMENT,actor TEXT,action TEXT,detail TEXT,created_at TEXT);
@@ -329,7 +331,7 @@ def create_app(config=None):
             game['locked'] = bool(game.get('timeTbd')) or row['status'] != 'scheduled' or not epoch(row['start']) or app.config['NOW']() >= epoch(row['start'])
             games.append(game)
         participants = []
-        for user in conn.execute('SELECT * FROM users WHERE active=1 ORDER BY name COLLATE NOCASE'):
+        for user in conn.execute("SELECT * FROM users WHERE active=1 AND role!='test' ORDER BY name COLLATE NOCASE"):
             paid = conn.execute('SELECT paid FROM participations WHERE round_id=? AND user_id=?', (r['id'], user['id'])).fetchone()
             choices = {v['game_id']: v['choice'] for v in conn.execute('''SELECT p.game_id,p.choice FROM picks p JOIN games g ON g.id=p.game_id
                           WHERE p.user_id=? AND g.round_id=?''', (user['id'], r['id']))}
@@ -372,9 +374,17 @@ def create_app(config=None):
     def get_state():
         with db() as conn:
             data = state(conn, request.args.get('round'))
+            sandbox = g.user['role'] == 'test'
+            if sandbox:
+                choices = {r['game_id']: r['choice'] for r in conn.execute('''SELECT p.game_id,p.choice FROM sandbox_picks p
+                    JOIN games g ON g.id=p.game_id WHERE p.user_id=? AND g.round_id=?''', (g.user['id'], data['roundId']))}
+                data.update(testMode=True, fee=0, participants=[{'id':g.user['id'],'name':g.user['name'],
+                    'aliases':[],'paid':None,'choices':choices}])
             rounds = [dict(r) for r in conn.execute("SELECT r.*, (SELECT min(start) FROM games g WHERE g.round_id=r.id) firstGame FROM rounds r WHERE phase IN ('REG','POST') ORDER BY season,CASE phase WHEN 'REG' THEN 0 ELSE 1 END,week")]
             unread = conn.execute("SELECT count(*) FROM feedback WHERE status='new'").fetchone()[0] if g.user['role']=='admin' else 0
             history = {'schema':1,'author':AUTHOR,'events':[json.loads(r[0]) for r in conn.execute('SELECT payload FROM observations WHERE season=? AND week=? ORDER BY observed_at DESC LIMIT 10', (data['season'],data['week'] if data['phase']=='REG' else data['week']+100))][::-1]}
+            if sandbox:
+                history['events'] = []
             return jsonify(data=data, rounds=rounds, league=cache_get(conn,'league'), history=history,
                            user=user_json(g.user), csrf=g.session['csrf'], unread=unread, serverTime=stamp())
 
@@ -386,21 +396,24 @@ def create_app(config=None):
         with db() as conn:
             conn.execute('BEGIN IMMEDIATE')
             selected_round(conn,rid)
+            sandbox = g.user['role'] == 'test'
+            picks_table = 'sandbox_picks' if sandbox else 'picks'
             changes=[]
             for gid,choice in choices.items():
                 game=conn.execute('SELECT * FROM games WHERE id=? AND round_id=?',(gid,rid)).fetchone()
                 if not game or choice not in (game['away'],game['home'],'TIE'):
                     abort(400,'Elección o partido inválido.')
-                old=conn.execute('SELECT choice FROM picks WHERE user_id=? AND game_id=?',(g.user['id'],gid)).fetchone()
+                old=conn.execute(f'SELECT choice FROM {picks_table} WHERE user_id=? AND game_id=?',(g.user['id'],gid)).fetchone()
                 if old and old[0]==choice:
                     continue
                 if json.loads(game['payload']).get('timeTbd') or game['status']!='scheduled' or not epoch(game['start']) or app.config['NOW']()>=epoch(game['start']):
                     abort(409,'Ese partido ya cerró sus elecciones. Actualiza la jornada.')
-                conn.execute('INSERT INTO picks VALUES(?,?,?,?) ON CONFLICT(user_id,game_id) DO UPDATE SET choice=excluded.choice,updated_at=excluded.updated_at',
+                conn.execute(f'INSERT INTO {picks_table} VALUES(?,?,?,?) ON CONFLICT(user_id,game_id) DO UPDATE SET choice=excluded.choice,updated_at=excluded.updated_at',
                              (g.user['id'],gid,choice,stamp()));changes.append({'game':gid,'before':old[0] if old else None,'after':choice})
-            conn.execute('INSERT OR IGNORE INTO participations VALUES(?,?,NULL)',(rid,g.user['id']))
-            audit(conn,g.user['id'],'picks_saved',{'round':rid,'changes':changes})
-            record_state(conn,state(conn,rid))
+            audit(conn,g.user['id'],'sandbox_picks_saved' if sandbox else 'picks_saved',{'round':rid,'changes':changes})
+            if not sandbox:
+                conn.execute('INSERT OR IGNORE INTO participations VALUES(?,?,NULL)',(rid,g.user['id']))
+                record_state(conn,state(conn,rid))
         return jsonify(ok=True,changed=len(changes),savedAt=stamp())
 
     @app.route('/api/feedback',methods=['GET','POST'])
@@ -421,7 +434,7 @@ def create_app(config=None):
     @admin
     def admin_home():
         with db() as conn:
-            users=[{'id':r['id'],'name':r['name'],'username':r['username'],'role':r['role'],'mustChange':bool(r['must_change'])} for r in conn.execute('SELECT * FROM users WHERE active=1 ORDER BY name')]
+            users=[{'id':r['id'],'name':r['name'],'username':r['username'],'role':r['role'],'mustChange':bool(r['must_change'])} for r in conn.execute("SELECT * FROM users WHERE active=1 AND role!='test' ORDER BY name")]
             items=[dict(r) for r in conn.execute('SELECT f.*,u.name FROM feedback f JOIN users u ON u.id=f.user_id ORDER BY f.id DESC')]
             latest=cache_get(conn,'monitor_status',{})
             return jsonify(users=users,feedback=items,monitor=latest)

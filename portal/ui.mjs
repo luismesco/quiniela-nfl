@@ -44,7 +44,7 @@ async function enter(){
  $('#entry').hidden=true;$('#portal').hidden=false;await load(true);
 }
 function nav(){
- const links=[['picks','ball','Mi quiniela'],['board','grid','El grupo'],['ranking','trophy','Clasificación'],['calendar','calendar','Calendario NFL'],['standings','chart','Posiciones NFL'],['feedback','info','Sugerencias y comentarios']];
+ const links=[['picks','ball','Mi quiniela'],['board','grid','El grupo'],['ranking','trophy','Clasificación'],['calendar','calendar','Calendario NFL'],['standings','chart','Posiciones NFL'],['feedback','info','Sugerencias y comentarios']].filter(x=>user().role!=='test'||['picks','calendar','standings'].includes(x[0]));
  if(user().role==='admin')links.push(['admin','grid','Administración']);
  $('#desktop-nav').innerHTML=links.map(([v,i,text])=>`<button class="nav ${view===v?'active':''}" data-view="${v}">${icon(i)}<span>${text}</span>${v==='admin'&&bundle.unread?`<b class="count">${bundle.unread}</b>`:''}</button>`).join('');
  $('#mobile-nav').innerHTML=links.filter(x=>['picks','board','ranking','calendar','feedback'].includes(x[0])).map(([v,i,text])=>`<button class="${view===v?'active':''}" data-view="${v}" aria-current="${view===v?'page':'false'}">${icon(i)}<span>${{picks:'Mi quiniela',board:'El grupo',ranking:'Ranking',calendar:'Calendario',feedback:'Comentarios'}[v]}</span></button>`).join('');
@@ -63,6 +63,7 @@ function header(){
  $('#pot-amount').innerHTML=`${money(s.expectedPot)}<small>MXN</small>`;$('#pot-detail').textContent=`${s.complete} quiniela${s.complete===1?' completa':'s completas'} × $${data.fee}`;
  const monitor=bundle.league?.fetchedAt;$('#source-time').textContent=monitor?`Liga · ${hour(monitor)} CDMX`:'Últimos datos disponibles';
  $('#live-dot').className='sync-dot '+(s.live?'ok':'');
+ if(data.testMode){$('#hero-text').textContent='Cuenta de prueba. Tus elecciones se guardan por separado y no participan en la bolsa.';$('#pot-detail').textContent='Sin aportación · fuera de competencia';$('#my-name').innerHTML=`${esc(user().name)}<small>Cuenta de prueba</small>`;}
 }
 async function load(force=false){
  if(requesting||dirty&&!force)return;requesting=true;
@@ -90,7 +91,7 @@ function rulesView(){return heading('LA DINÁMICA DEL GRUPO','Así jugamos','Una
 async function render(){
  nav();let content;
  if(view==='picks')content=picksView();else if(view==='board')content=boardView();else if(view==='ranking')content=rankingView();else if(view==='calendar')content=gamesView();else if(view==='standings')content=standingsView(bundle.league,conference,data.teams);else if(view==='feedback')content=await feedbackView();else if(view==='admin'&&user().role==='admin')content=await adminView();else if(view==='rules')content=rulesView();else content=accountView();
- $('#workspace').innerHTML=content;hydrateIcons();
+ $('#workspace').innerHTML=(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Puedes seleccionar y guardar. Estas elecciones no afectan al grupo, la clasificación ni la bolsa.</div>':'')+content;hydrateIcons();
  $('#picks-form')?.addEventListener('submit',savePicks);
  $('#account-password')?.addEventListener('submit',e=>changePassword(e));
  $('#account-logout')?.addEventListener('click',logout);
