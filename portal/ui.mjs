@@ -48,7 +48,7 @@ function nav(){
  if(user().role==='admin')links.push(['admin','grid','Administración']);
  $('#desktop-nav').innerHTML=links.map(([v,i,text])=>`<button class="nav ${view===v?'active':''}" data-view="${v}">${icon(i)}<span>${text}</span>${v==='admin'&&bundle.unread?`<b class="count">${bundle.unread}</b>`:''}</button>`).join('');
  $('#mobile-nav').innerHTML=links.filter(x=>['picks','board','ranking','calendar','feedback'].includes(x[0])).map(([v,i,text])=>`<button class="${view===v?'active':''}" data-view="${v}" aria-current="${view===v?'page':'false'}">${icon(i)}<span>${{picks:'Mi quiniela',board:'El grupo',ranking:'Ranking',calendar:'Calendario',feedback:'Comentarios'}[v]}</span></button>`).join('');
- $('#account-link').innerHTML=esc(user().name)+(user().role==='admin'&&bundle.unread?` · ${bundle.unread} ✉`:'');$('#my-avatar').textContent=initials(user().name);$('#my-name').innerHTML=`${esc(user().name)}<small>${user().role==='admin'?'Administración y participante':'Participante'}</small>`;
+ $('#account-link').innerHTML=esc(user().name)+(user().role==='admin'&&bundle.unread?` · ${bundle.unread} ✉`:'');$('#my-avatar').textContent=initials(user().name);$('#my-name').innerHTML=`${esc(user().name)}<small>${user().role==='admin'?'Administración y participante':user().role==='test'?'Cuenta de prueba':'Participante'}</small>`;
  $('#view-label').textContent=links.find(x=>x[0]===view)?.[2]||'Mi cuenta';
 }
 function roundTitle(r){return `${r.phase==='POST'?'Playoffs · ronda':'Semana'} ${r.week} · ${r.season}`;}
@@ -61,6 +61,7 @@ function header(){
  $('#round-dates').textContent=dates.length?`${fmt(dates[0],{day:'numeric',month:'short'})} — ${fmt(dates.at(-1),{day:'numeric',month:'short'})} · CDMX`:'';
  $('#round-status').textContent=s.settled?'JORNADA FINALIZADA':s.live?'EN JUEGO':`${own.submitted}/${data.games.length} ELECCIONES GUARDADAS`;
  $('#pot-amount').innerHTML=`${money(s.expectedPot)}<small>MXN</small>`;$('#pot-detail').textContent=`${s.complete} quiniela${s.complete===1?' completa':'s completas'} × $${data.fee}`;
+ $('.pot-bottom strong').textContent=money(data.fee);
  const monitor=bundle.league?.fetchedAt;$('#source-time').textContent=monitor?`Liga · ${hour(monitor)} CDMX`:'Últimos datos disponibles';
  $('#live-dot').className='sync-dot '+(s.live?'ok':'');
  if(data.testMode){$('#hero-text').textContent='Cuenta de prueba. Tus elecciones se guardan por separado y no participan en la bolsa.';$('#pot-detail').textContent='Sin aportación · fuera de competencia';$('#my-name').innerHTML=`${esc(user().name)}<small>Cuenta de prueba</small>`;}
