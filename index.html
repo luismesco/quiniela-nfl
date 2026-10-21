@@ -5,6 +5,11 @@
   <meta name="author" content="Luis Montañez Escobar">
   <meta name="description" content="La Quiniela Fiscalizada: elecciones, marcadores, calendario y posiciones de la NFL.">
   <meta name="theme-color" content="#102a31"><title>LA QUINIELA FISCALIZADA · NFL 2026</title>
+  <script>
+    if (new URLSearchParams(location.search).get('semana') !== '6') {
+      location.replace('https://quiniela-fiscalizada.up.railway.app/');
+    }
+  </script>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="theme.css?v=20261020-7"><script type="module" src="app.mjs?v=20261020-7"></script>
 </head>
