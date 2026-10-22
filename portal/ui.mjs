@@ -9,7 +9,7 @@ const initials=n=>n.split(/\s+/).slice(0,2).map(s=>s[0]).join('').toUpperCase();
 const fmt=(s,opt={})=>s?new Date(s).toLocaleString('es-MX',{timeZone:'America/Mexico_City',...opt}):'Por confirmar';
 const day=s=>fmt(s,{weekday:'long',day:'numeric',month:'long'});
 const hour=s=>fmt(s,{hour:'2-digit',minute:'2-digit',hour12:false});
-let auth=null,csrf='',bundle=null,data=null,view='picks',round=null,draft={},dirty=false,timer=null,requesting=false,conference='all',calendar={phase:'REG',week:'all',team:'all'},toastTimer=null;
+let auth=null,csrf='',bundle=null,data=null,view='picks',round=null,draft={},dirty=false,timer=null,requesting=false,conference='all',calendar={phase:'REG',week:'all',team:'all'},toastTimer=null,deadlineTimer=null,serverClock=null;
 const user=()=>auth?.user||bundle?.user;
 const me=()=>data.participants.find(p=>p.id===user().id);
 const logo=t=>t==='TIE'?'/assets/empate.svg':`/assets/teams/${encodeURIComponent(t)}.svg`;
@@ -39,7 +39,7 @@ async function changePassword(e,first=false){
  try{if(values.password!==values.repeat)throw Error('Las contraseñas nuevas no coinciden.');f.querySelector('button').disabled=true;const result=await api('/api/password',{method:'POST',body:JSON.stringify(values)});csrf=result.csrf;auth=await api('/api/me');auth.user.mustChange=false;toast('Tu contraseña personal está lista.');if(first)await enter();else f.reset();}
  catch(exc){error.hidden=false;error.textContent=exc.message;}finally{f.querySelector('button').disabled=false;}
 }
-async function logout(){if(dirty&&!confirm('Tienes elecciones sin guardar. ¿Quieres cerrar sesión?'))return;try{await api('/api/logout',{method:'POST',body:'{}'});}catch{}auth=null;csrf='';dirty=false;bundle=null;showLogin();}
+async function logout(){if(dirty&&!confirm('Tienes elecciones sin guardar. ¿Quieres cerrar sesión?'))return;try{await api('/api/logout',{method:'POST',body:'{}'});}catch{}auth=null;csrf='';dirty=false;bundle=null;serverClock=null;clearTimeout(deadlineTimer);showLogin();}
 async function enter(){
  $('#entry').hidden=true;$('#portal').hidden=false;await load(true);
 }
@@ -68,14 +68,38 @@ function header(){
 }
 async function load(force=false){
  if(requesting||dirty&&!force)return;requesting=true;
- try{bundle=await api('/api/state'+(round?'?round='+encodeURIComponent(round):''));data=bundle.data;auth.user=bundle.user;csrf=bundle.csrf;round=data.roundId;calendar.week=calendar.week==='all'?String(data.week):calendar.week;if(!dirty)draft={...me().choices};nav();header();await render();}
+ try{bundle=await api('/api/state'+(round?'?round='+encodeURIComponent(round):''));data=bundle.data;serverClock={epoch:Date.parse(bundle.serverTime),tick:performance.now()};scheduleCaptureClose();auth.user=bundle.user;csrf=bundle.csrf;round=data.roundId;calendar.week=calendar.week==='all'?String(data.week):calendar.week;if(!dirty)draft={...me().choices};nav();header();await render();}
  catch(e){toast(e.message);}finally{requesting=false;clearTimeout(timer);if(auth?.user&&!auth.user.mustChange)timer=setTimeout(()=>load(),data?.games.some(g=>g.status==='live')?30000:300000);}
 }
 function heading(kicker,title,text,action=''){return `<div class="section-heading"><div><span class="section-kicker">${kicker}</span><h2>${title}</h2><p>${text}</p></div>${action}</div>`;}
 function progress(){const total=Object.keys(draft).length;return `<div class="picks-progress"><strong id="pick-count">${total}/${data.games.length} elecciones</strong><div class="progress" aria-hidden="true"><i id="pick-progress" style="width:${total/Math.max(1,data.games.length)*100}%"></i></div><span>Visitante, local o empate.</span></div>`;}
+function captureIsClosed(){
+ const deadline=Date.parse(data?.deadline||'');
+ const now=serverClock?serverClock.epoch+performance.now()-serverClock.tick:NaN;
+ return !!data?.captureClosed||!Number.isFinite(deadline)||!Number.isFinite(now)||now>=deadline;
+}
+function captureNotice(){
+ if(data.testMode)return '';
+ if(!data.deadline)return '<p class="capture-deadline">La captura de esta jornada aún no está habilitada.</p>';
+ const closes=`<time datetime="${esc(data.deadline)}">${esc(fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false}))} · CDMX</time>`;
+ if(captureIsClosed())return `<p class="capture-deadline" role="status">El plazo de esta jornada ya cerró: ${closes}. Tus elecciones guardadas se conservan.</p>`;
+ const saved=data.games.filter(g=>Object.hasOwn(me().choices,g.id)).length,missing=Math.max(0,data.games.length-saved);
+ if(!missing)return `<p class="capture-deadline">Quiniela registrada. Cierre: ${closes}.</p>`;
+ const art=hour(data.deadline)==='18:00'?'/assets/mascotas/ajolote-reloj-1800.png':'/assets/mascotas/ajolote.png';
+ const title=saved===0?'Aún no has registrado tu quiniela':`Te ${missing===1?'falta 1 elección':'faltan '+missing+' elecciones'}`;
+ return `<section class="capture-reminder" aria-labelledby="capture-reminder-title"><img src="${art}" width="160" height="180" alt="" aria-hidden="true"><div><span class="section-kicker">TU QUINIELA, A TIEMPO</span><h3 id="capture-reminder-title">${title}</h3><p>Guarda tus elecciones antes del cierre: ${closes}.</p><a class="capture-reminder-link" href="#picks-form">${saved?'Completar mi quiniela':'Elegir y guardar mi quiniela'}</a></div></section>`;
+}
+function scheduleCaptureClose(){
+ clearTimeout(deadlineTimer);
+ if(data.testMode||data.captureClosed||!data.deadline||!serverClock)return;
+ const delay=Date.parse(data.deadline)-(serverClock.epoch+performance.now()-serverClock.tick);
+ if(!Number.isFinite(delay))return;
+ deadlineTimer=setTimeout(()=>{if(captureIsClosed()){data.captureClosed=true;data.games.forEach(g=>g.locked=true);header();if(view==='picks')render();}else scheduleCaptureClose();},Math.min(2147483647,Math.max(0,delay)));
+}
 function picksView(){
+ const closed=!data.testMode&&captureIsClosed();if(closed)data.games.forEach(g=>g.locked=true);
  let previous='';const cards=data.games.map(g=>{const date=day(g.start),dateHeading=date!==previous?`<h3 class="day-heading">${esc(date)}</h3>`:'';previous=date;return `${dateHeading}<article class="choose-game ${g.locked?'locked':''}"><div class="choose-meta"><span>${esc(hour(g.start))} CDMX · ${esc(g.venue||'Sede por confirmar')}</span><span>${g.status==='final'?'FINAL':g.locked?'CERRADO':'POR JUGAR'}</span></div><fieldset ${g.locked?'disabled':''}><legend>${esc(g.away)} <span aria-label="contra">vs</span> ${esc(g.home)}</legend><div class="choose-options">${[g.away,'TIE',g.home].map(t=>`<label class="choose-option ${t==='TIE'?'tie-option':''}"><input type="radio" name="${esc(g.id)}" value="${t}" ${draft[g.id]===t?'checked':''} ${g.locked?'disabled':''}>${t==='TIE'?'<span class="tie-glyph" aria-hidden="true">=</span>':img(t)}<strong>${t==='TIE'?'Empate':esc(data.teams[t]?.nick||t)}</strong>${t==='TIE'?'':`<small>${t===g.away?'VISITANTE':'LOCAL'}</small>`}</label>`).join('')}</div></fieldset><div class="choose-foot"><span>${g.status==='final'?`Marcador ${g.awayScore} – ${g.homeScore}`:g.locked?'Elección cerrada':`Cierra ${hour(g.closesAt)} · CDMX`}</span><span>${draft[g.id]?'Elegiste '+esc(name(draft[g.id])):'Por elegir'}</span></div></article>`;}).join('');
- return heading('TU LUGAR EN EL JUEGO','Mi quiniela',`Selecciona una opción en cada partido y guarda. ${data.testMode?'Prueba aislada: cierre por inicio de cada partido; no participa en competencia.':data.deadline?'El cierre es '+fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' · CDMX.':'La captura de esta jornada aún no está habilitada.'} Si un partido comienza antes, su elección cierra al iniciar.`)+progress()+`<form id="picks-form"><div class="choose-grid">${cards}</div><div class="save-bar"><div><p id="save-label">${dirty?'Tienes cambios sin guardar':'Tus elecciones guardadas están al día'}</p><small id="save-detail">${data.games.some(g=>!g.locked)?'Puedes guardar aunque todavía te falten partidos.':'Las elecciones de esta jornada están cerradas.'}</small></div><button id="save-picks" type="submit" ${dirty?'':'disabled'}>Guardar elecciones</button></div><p class="source-status">Los partidos sin elección quedan fuera del registro completo. El reloj de cierre se valida al guardar.</p></form>`;
+ return heading('TU LUGAR EN EL JUEGO','Mi quiniela',`Selecciona una opción en cada partido y guarda. ${data.testMode?'Prueba aislada: cierre por inicio de cada partido; no participa en competencia.':data.deadline?'El cierre es '+fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' · CDMX.':'La captura de esta jornada aún no está habilitada.'} Si un partido comienza antes, su elección cierra al iniciar.`)+captureNotice()+progress()+`<form id="picks-form"><div class="choose-grid">${cards}</div><div class="save-bar"><div><p id="save-label">${dirty?'Tienes cambios sin guardar':'Tus elecciones guardadas están al día'}</p><small id="save-detail">${data.games.some(g=>!g.locked)?'Puedes guardar aunque todavía te falten partidos.':'Las elecciones de esta jornada están cerradas.'}</small></div><button id="save-picks" type="submit" ${dirty&&!closed?'':'disabled'}>${closed?'Captura cerrada':'Guardar elecciones'}</button></div><p class="source-status">Los partidos sin elección quedan fuera del registro completo. El reloj de cierre se valida al guardar.</p></form>`;
 }
 function pickTag(p,g){const selected=p.choices[g.id],status=outcome(p,g);return `<span class="portal-pick ${status}" title="${esc(g.away+' vs '+g.home+': '+(selected?name(selected):'Sin elección'))}">${selected?img(selected):'—'}${status==='hit'?'<b>✓</b>':status==='miss'?'<b>×</b>':''}</span>`;}
 function boardView(){return heading('LA JORNADA, ENTRE TODOS','El grupo','Abre un nombre para ver sus elecciones y sus aciertos.')+`<div class="portal-board">${standings(data).map(p=>`<button class="portal-person" data-person="${esc(p.id)}"><span class="portal-person-top"><span class="avatar">${esc(initials(p.name))}</span><span class="person-names"><strong>${esc(p.name)} ${paid(p)}</strong><small>${p.submitted}/${data.games.length} elecciones · ${p.complete?'Completa':'Por completar'}</small></span><span class="score-number">${p.correct}<small> aciertos</small></span></span><span class="portal-picks">${data.games.map(g=>pickTag(p,g)).join('')}</span></button>`).join('')}</div>`;}
@@ -101,7 +125,7 @@ async function render(){
 }
 async function savePicks(e){
  e.preventDefault();const b=$('#save-picks');b.disabled=true;
- try{const changes=Object.fromEntries(Object.entries(draft).filter(([id,t])=>me().choices[id]!==t));if(!Object.keys(changes).length)return;await api('/api/picks',{method:'PUT',body:JSON.stringify({round:data.roundId,choices:changes})});dirty=false;toast('Tus elecciones quedaron guardadas.');await load(true);}catch(exc){toast(exc.message);}finally{if($('#save-picks'))$('#save-picks').disabled=!dirty;}
+ try{const changes=Object.fromEntries(Object.entries(draft).filter(([id,t])=>me().choices[id]!==t));if(!Object.keys(changes).length)return;await api('/api/picks',{method:'PUT',body:JSON.stringify({round:data.roundId,choices:changes})});dirty=false;toast('Tus elecciones quedaron guardadas.');await load(true);}catch(exc){toast(exc.message);}finally{if($('#save-picks'))$('#save-picks').disabled=!dirty||(!data.testMode&&captureIsClosed());}
 }
 function detail(id){const p=data.participants.find(p=>p.id===id);if(!p)return;$('#detail-body').innerHTML=`<h2>${esc(p.name)} ${paid(p)}</h2><p>${score(p,data.games).correct} aciertos · ${Object.keys(p.choices).length}/${data.games.length} elecciones</p><div class="detail-games">${data.games.map(g=>`<div class="detail-game"><span>${esc(g.away)} vs ${esc(g.home)}</span><b>${p.choices[g.id]?img(p.choices[g.id])+esc(name(p.choices[g.id])):'Sin elección'}</b><span>${{hit:'✓ Acierto',miss:'× Fallo',pending:'Por jugar',empty:'—'}[outcome(p,g)]}</span></div>`).join('')}</div>`;$('#detail').showModal();}
 document.addEventListener('click',async e=>{
