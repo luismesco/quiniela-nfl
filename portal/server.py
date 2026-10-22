@@ -176,6 +176,29 @@ def create_app(config=None):
             conn.execute('UPDATE users SET password_hash=?,username=? WHERE id=? AND password_hash IS NULL',
                          (u['password_hash'], u['username'], u['id']))
 
+    # Persist only the published capture deadline; future calendar rounds stay closed
+    # until their own weekly controller supplies one. Never re-import participant data.
+    with db() as conn:
+        controllers = sorted((ROOT / 'archivo').glob('*/semana-*/quiniela.json')) + [ROOT / 'quiniela.json']
+        for path in controllers:
+            record = json.loads(path.read_text())
+            deadline = record.get('deadline')
+            if not epoch(deadline):
+                raise ValueError('La jornada publicada necesita una hora de cierre válida')
+            rid = round_id(record['season'], record.get('phase', 'REG'), record['week'])
+            key = 'round_deadline:' + rid
+            if cache_get(conn, key) is None:
+                cache_set(conn, key, deadline)
+
+    def capture_deadline(conn, rid):
+        return cache_get(conn, 'round_deadline:' + rid)
+
+    def game_closes_at(start, deadline, sandbox=False):
+        times = (epoch(start),) if sandbox else (epoch(start), epoch(deadline))
+        if any(value is None for value in times):
+            return None
+        return datetime.fromtimestamp(min(times), timezone.utc).isoformat()
+
     def user_json(user):
         return {'id': user['id'], 'name': user['name'], 'username': user['username'],
                 'role': user['role'], 'mustChange': bool(user['must_change'])}
@@ -321,14 +344,17 @@ def create_app(config=None):
         row = conn.execute("SELECT * FROM rounds WHERE phase='REG' ORDER BY season DESC,week DESC LIMIT 1").fetchone()
         return dict(row)
 
-    def state(conn, rid):
+    def state(conn, rid, sandbox=False):
         r = selected_round(conn, rid)
+        deadline = capture_deadline(conn, r['id'])
+        now = app.config['NOW']()
         games = []
         for row in conn.execute('SELECT * FROM games WHERE round_id=? ORDER BY start,id', (r['id'],)):
             game = json.loads(row['payload'])
             game.update(id=row['id'], away=row['away'], home=row['home'], start=row['start'], venue=row['venue'],
                         neutral=bool(row['neutral']), status=row['status'], awayScore=row['away_score'], homeScore=row['home_score'], checkedAt=row['checked_at'])
-            game['locked'] = bool(game.get('timeTbd')) or row['status'] != 'scheduled' or not epoch(row['start']) or app.config['NOW']() >= epoch(row['start'])
+            game['closesAt'] = game_closes_at(row['start'], deadline, sandbox)
+            game['locked'] = bool(game.get('timeTbd')) or row['status'] != 'scheduled' or not game['closesAt'] or now >= epoch(game['closesAt'])
             games.append(game)
         participants = []
         for user in conn.execute("SELECT * FROM users WHERE active=1 AND role!='test' ORDER BY name COLLATE NOCASE"):
@@ -339,6 +365,8 @@ def create_app(config=None):
                                  'paid': None if not paid or paid['paid'] is None else bool(paid['paid']), 'choices': choices})
         return {'schema': 1, 'author': AUTHOR, 'roundId': r['id'], 'season': r['season'], 'phase': r['phase'], 'week': r['week'],
                 'fee': r['fee'], 'currency': 'MXN', 'updatedAt': stamp(), 'teams': cache_get(conn, 'teams'),
+                'deadline': deadline, 'captureRule': 'per-game' if sandbox else 'weekly',
+                'captureClosed': all(game['locked'] for game in games) if sandbox else not epoch(deadline) or now >= epoch(deadline),
                 'games': games, 'participants': participants, 'demo': False}
 
     def record_state(conn, data):
@@ -373,8 +401,8 @@ def create_app(config=None):
     @app.get('/api/state')
     def get_state():
         with db() as conn:
-            data = state(conn, request.args.get('round'))
             sandbox = g.user['role'] == 'test'
+            data = state(conn, request.args.get('round'), sandbox)
             if sandbox:
                 choices = {r['game_id']: r['choice'] for r in conn.execute('''SELECT p.game_id,p.choice FROM sandbox_picks p
                     JOIN games g ON g.id=p.game_id WHERE p.user_id=? AND g.round_id=?''', (g.user['id'], data['roundId']))}
@@ -396,6 +424,8 @@ def create_app(config=None):
         with db() as conn:
             conn.execute('BEGIN IMMEDIATE')
             selected_round(conn,rid)
+            deadline = capture_deadline(conn, rid)
+            now = app.config['NOW']()
             sandbox = g.user['role'] == 'test'
             picks_table = 'sandbox_picks' if sandbox else 'picks'
             changes=[]
@@ -406,7 +436,10 @@ def create_app(config=None):
                 old=conn.execute(f'SELECT choice FROM {picks_table} WHERE user_id=? AND game_id=?',(g.user['id'],gid)).fetchone()
                 if old and old[0]==choice:
                     continue
-                if json.loads(game['payload']).get('timeTbd') or game['status']!='scheduled' or not epoch(game['start']) or app.config['NOW']()>=epoch(game['start']):
+                closes_at = game_closes_at(game['start'], deadline, sandbox)
+                if not sandbox and (not epoch(deadline) or now >= epoch(deadline)):
+                    abort(409,'Esta jornada cerró sus elecciones. Actualiza la jornada.')
+                if json.loads(game['payload']).get('timeTbd') or game['status']!='scheduled' or not closes_at or now>=epoch(closes_at):
                     abort(409,'Ese partido ya cerró sus elecciones. Actualiza la jornada.')
                 conn.execute(f'INSERT INTO {picks_table} VALUES(?,?,?,?) ON CONFLICT(user_id,game_id) DO UPDATE SET choice=excluded.choice,updated_at=excluded.updated_at',
                              (g.user['id'],gid,choice,stamp()));changes.append({'game':gid,'before':old[0] if old else None,'after':choice})
