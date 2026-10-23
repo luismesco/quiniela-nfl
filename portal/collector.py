@@ -73,7 +73,7 @@ def collect(db,cache_get,cache_set,import_games,state,record_state):
         monitor['calendarCheckedAt']=stamp
     with db() as conn:
         all_games=[dict(r) for r in conn.execute('SELECT * FROM games')]
-    active=[g for g in all_games if g['status'] not in ('final','canceled') and at(g['start']) and -3600<=now-at(g['start'])<=28800]
+    active=[g for g in all_games if g['status'] != 'canceled' and at(g['start']) and -3600<=now-at(g['start'])<=28800]
     # Outside games, refresh the next published week and standings periodically, without continuous polling.
     due=bool(active) or not monitor.get('lastSourceCheck') or now-(at(monitor['lastSourceCheck']) or 0)>6*3600
     updates=[]
