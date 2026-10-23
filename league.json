@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-23T00:11:40.781Z",
+  "fetchedAt": "2026-10-23T00:16:17.847Z",
   "calendarUpdatedAt": "2026-10-23T00:11:40.781Z",
   "standingsUpdatedAt": "2026-10-23T00:11:40.781Z",
   "standingsSource": "ESPN",
@@ -1414,9 +1414,9 @@
       "timeTbd": false,
       "venue": "Soldier Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_PIT_NO",
