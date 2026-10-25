@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T23:22:32.394Z",
-  "calendarUpdatedAt": "2026-10-25T23:20:19.807Z",
-  "standingsUpdatedAt": "2026-10-25T23:20:19.807Z",
+  "fetchedAt": "2026-10-25T23:22:48.406Z",
+  "calendarUpdatedAt": "2026-10-25T23:22:48.406Z",
+  "standingsUpdatedAt": "2026-10-25T23:22:48.406Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1581,7 +1581,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 35,
-      "homeScore": 18
+      "homeScore": 21
     },
     {
       "id": "2026_07_KC_SEA",
