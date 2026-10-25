@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:08:20.340Z",
-  "calendarUpdatedAt": "2026-10-25T20:06:35.381Z",
-  "standingsUpdatedAt": "2026-10-25T20:06:35.381Z",
+  "fetchedAt": "2026-10-25T20:08:34.419Z",
+  "calendarUpdatedAt": "2026-10-25T20:08:34.419Z",
+  "standingsUpdatedAt": "2026-10-25T20:08:34.419Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1534,7 +1534,7 @@
       "timeTbd": false,
       "venue": "Nissan Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 27,
       "homeScore": 24
     },
@@ -4946,8 +4946,19 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "PIT",
+          "team": "CLE",
           "sourceOrder": 2,
+          "wins": 5,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.71428573,
+          "differential": -13,
+          "pointsFor": 133,
+          "pointsAgainst": 146
+        },
+        {
+          "team": "PIT",
+          "sourceOrder": 3,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -4955,17 +4966,6 @@
           "differential": 15,
           "pointsFor": 153,
           "pointsAgainst": 138
-        },
-        {
-          "team": "CLE",
-          "sourceOrder": 5,
-          "wins": 4,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.6666667,
-          "differential": -16,
-          "pointsFor": 106,
-          "pointsAgainst": 122
         },
         {
           "team": "CIN",
@@ -4997,7 +4997,7 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 3,
+          "sourceOrder": 4,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -5032,12 +5032,12 @@
           "team": "TEN",
           "sourceOrder": 14,
           "wins": 1,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.16666667,
-          "differential": -45,
-          "pointsFor": 84,
-          "pointsAgainst": 129
+          "pct": 0.14285715,
+          "differential": -48,
+          "pointsFor": 108,
+          "pointsAgainst": 156
         }
       ]
     },
@@ -5058,7 +5058,7 @@
         },
         {
           "team": "DEN",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 4,
           "losses": 2,
           "ties": 0,
