@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:15:50.385Z",
-  "calendarUpdatedAt": "2026-10-25T20:10:37.221Z",
-  "standingsUpdatedAt": "2026-10-25T20:10:37.221Z",
+  "fetchedAt": "2026-10-25T20:16:05.642Z",
+  "calendarUpdatedAt": "2026-10-25T20:16:05.642Z",
+  "standingsUpdatedAt": "2026-10-25T20:16:05.642Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5209,13 +5209,13 @@
         {
           "team": "ATL",
           "sourceOrder": 8,
-          "wins": 2,
+          "wins": 3,
           "losses": 4,
           "ties": 0,
-          "pct": 0.33333334,
-          "differential": -11,
-          "pointsFor": 142,
-          "pointsAgainst": 153
+          "pct": 0.42857143,
+          "differential": -2,
+          "pointsFor": 171,
+          "pointsAgainst": 173
         },
         {
           "team": "TB",
@@ -5249,12 +5249,12 @@
           "team": "SF",
           "sourceOrder": 1,
           "wins": 6,
-          "losses": 0,
+          "losses": 1,
           "ties": 0,
-          "pct": 1,
-          "differential": 67,
-          "pointsFor": 177,
-          "pointsAgainst": 110
+          "pct": 0.85714287,
+          "differential": 58,
+          "pointsFor": 197,
+          "pointsAgainst": 139
         },
         {
           "team": "SEA",
