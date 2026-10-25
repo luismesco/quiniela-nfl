@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T19:04:34.279Z",
+  "fetchedAt": "2026-10-25T19:07:19.236Z",
   "calendarUpdatedAt": "2026-10-25T19:04:34.279Z",
   "standingsUpdatedAt": "2026-10-25T19:04:34.279Z",
   "standingsSource": "ESPN",
@@ -1506,7 +1506,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 6
+      "homeScore": 12
     },
     {
       "id": "2026_07_MIA_NYJ",
