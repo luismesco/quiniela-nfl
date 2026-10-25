@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:03:16.897Z",
+  "fetchedAt": "2026-10-25T17:03:46.907Z",
   "calendarUpdatedAt": "2026-10-25T17:03:03.560Z",
   "standingsUpdatedAt": "2026-10-25T17:03:03.560Z",
   "standingsSource": "ESPN",
@@ -1519,9 +1519,9 @@
       "timeTbd": false,
       "venue": "MetLife Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_CLE_TEN",
@@ -1534,9 +1534,9 @@
       "timeTbd": false,
       "venue": "Nissan Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_DEN_ARI",
