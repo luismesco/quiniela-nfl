@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:07:31.271Z",
+  "fetchedAt": "2026-10-25T17:08:16.931Z",
   "calendarUpdatedAt": "2026-10-25T17:07:31.271Z",
   "standingsUpdatedAt": "2026-10-25T17:07:31.271Z",
   "standingsSource": "ESPN",
@@ -1536,7 +1536,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 0
+      "homeScore": 7
     },
     {
       "id": "2026_07_DEN_ARI",
