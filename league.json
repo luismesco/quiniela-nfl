@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T16:57:31.159Z",
+  "fetchedAt": "2026-10-25T17:02:46.989Z",
   "calendarUpdatedAt": "2026-10-25T16:57:31.159Z",
   "standingsUpdatedAt": "2026-10-25T16:57:31.159Z",
   "standingsSource": "ESPN",
@@ -1504,9 +1504,9 @@
       "timeTbd": false,
       "venue": "U.S. Bank Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_MIA_NYJ",
