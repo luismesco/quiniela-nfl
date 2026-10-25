@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:50:15.748Z",
+  "fetchedAt": "2026-10-25T20:53:59.798Z",
   "calendarUpdatedAt": "2026-10-25T20:50:15.748Z",
   "standingsUpdatedAt": "2026-10-25T20:50:15.748Z",
   "standingsSource": "ESPN",
@@ -1565,7 +1565,7 @@
       "venue": "Ford Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 6,
       "homeScore": 7
     },
     {
