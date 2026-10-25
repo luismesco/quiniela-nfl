@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:02:46.989Z",
-  "calendarUpdatedAt": "2026-10-25T16:57:31.159Z",
-  "standingsUpdatedAt": "2026-10-25T16:57:31.159Z",
+  "fetchedAt": "2026-10-25T17:03:03.560Z",
+  "calendarUpdatedAt": "2026-10-25T17:03:03.560Z",
+  "standingsUpdatedAt": "2026-10-25T17:03:03.560Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1444,9 +1444,9 @@
       "timeTbd": false,
       "venue": "Mercedes-Benz Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_CIN_BAL",
@@ -1459,9 +1459,9 @@
       "timeTbd": false,
       "venue": "M&T Bank Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_TB_CAR",
