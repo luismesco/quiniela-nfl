@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T19:57:50.063Z",
-  "calendarUpdatedAt": "2026-10-25T19:55:05.811Z",
-  "standingsUpdatedAt": "2026-10-25T19:55:05.811Z",
+  "fetchedAt": "2026-10-25T19:58:05.519Z",
+  "calendarUpdatedAt": "2026-10-25T19:58:05.519Z",
+  "standingsUpdatedAt": "2026-10-25T19:58:05.519Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4908,7 +4908,7 @@
         },
         {
           "team": "NE",
-          "sourceOrder": 8,
+          "sourceOrder": 7,
           "wins": 4,
           "losses": 3,
           "ties": 0,
@@ -4968,26 +4968,26 @@
           "pointsAgainst": 122
         },
         {
-          "team": "BAL",
+          "team": "CIN",
           "sourceOrder": 6,
           "wins": 4,
           "losses": 2,
           "ties": 0,
           "pct": 0.6666667,
-          "differential": 24,
-          "pointsFor": 156,
-          "pointsAgainst": 132
+          "differential": 41,
+          "pointsFor": 163,
+          "pointsAgainst": 122
         },
         {
-          "team": "CIN",
-          "sourceOrder": 7,
-          "wins": 3,
-          "losses": 2,
+          "team": "BAL",
+          "sourceOrder": 8,
+          "wins": 4,
+          "losses": 3,
           "ties": 0,
-          "pct": 0.6,
-          "differential": 19,
-          "pointsFor": 128,
-          "pointsAgainst": 109
+          "pct": 0.5714286,
+          "differential": 2,
+          "pointsFor": 169,
+          "pointsAgainst": 167
         }
       ]
     },
