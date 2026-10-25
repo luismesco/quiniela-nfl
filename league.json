@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:06:35.381Z",
+  "fetchedAt": "2026-10-25T20:08:20.340Z",
   "calendarUpdatedAt": "2026-10-25T20:06:35.381Z",
   "standingsUpdatedAt": "2026-10-25T20:06:35.381Z",
   "standingsSource": "ESPN",
@@ -1535,7 +1535,7 @@
       "venue": "Nissan Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 24,
+      "awayScore": 27,
       "homeScore": 24
     },
     {
