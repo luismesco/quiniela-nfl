@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T18:12:33.565Z",
+  "fetchedAt": "2026-10-25T18:15:48.199Z",
   "calendarUpdatedAt": "2026-10-25T18:12:33.565Z",
   "standingsUpdatedAt": "2026-10-25T18:12:33.565Z",
   "standingsSource": "ESPN",
@@ -1461,7 +1461,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 10
+      "homeScore": 13
     },
     {
       "id": "2026_07_TB_CAR",
