@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:36:35.363Z",
+  "fetchedAt": "2026-10-25T17:40:17.577Z",
   "calendarUpdatedAt": "2026-10-25T17:36:35.363Z",
   "standingsUpdatedAt": "2026-10-25T17:36:35.363Z",
   "standingsSource": "ESPN",
@@ -1445,7 +1445,7 @@
       "venue": "Mercedes-Benz Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 7,
+      "awayScore": 13,
       "homeScore": 3
     },
     {
