@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:05:50.254Z",
-  "calendarUpdatedAt": "2026-10-25T20:05:36.862Z",
-  "standingsUpdatedAt": "2026-10-25T20:05:36.862Z",
+  "fetchedAt": "2026-10-25T20:06:04.854Z",
+  "calendarUpdatedAt": "2026-10-25T20:06:04.854Z",
+  "standingsUpdatedAt": "2026-10-25T20:06:04.854Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1549,9 +1549,9 @@
       "timeTbd": false,
       "venue": "State Farm Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_GB_DET",
