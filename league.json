@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T23:31:02.478Z",
-  "calendarUpdatedAt": "2026-10-25T23:28:47.478Z",
-  "standingsUpdatedAt": "2026-10-25T23:28:47.478Z",
+  "fetchedAt": "2026-10-25T23:31:19.115Z",
+  "calendarUpdatedAt": "2026-10-25T23:31:19.115Z",
+  "standingsUpdatedAt": "2026-10-25T23:31:19.115Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1566,7 +1566,7 @@
       "neutral": false,
       "status": "final",
       "awayScore": 17,
-      "homeScore": 17
+      "homeScore": 20
     },
     {
       "id": "2026_07_LA_LV",
@@ -5168,26 +5168,26 @@
           "pointsAgainst": 143
         },
         {
-          "team": "GB",
+          "team": "DET",
           "sourceOrder": 3,
           "wins": 4,
           "losses": 2,
           "ties": 0,
           "pct": 0.6666667,
-          "differential": 2,
-          "pointsFor": 127,
-          "pointsAgainst": 125
+          "differential": 19,
+          "pointsFor": 184,
+          "pointsAgainst": 165
         },
         {
-          "team": "DET",
+          "team": "GB",
           "sourceOrder": 5,
-          "wins": 3,
-          "losses": 2,
+          "wins": 4,
+          "losses": 3,
           "ties": 0,
-          "pct": 0.6,
-          "differential": 16,
-          "pointsFor": 164,
-          "pointsAgainst": 148
+          "pct": 0.5714286,
+          "differential": -1,
+          "pointsFor": 144,
+          "pointsAgainst": 145
         }
       ]
     },
