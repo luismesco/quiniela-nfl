@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T18:18:28.588Z",
+  "fetchedAt": "2026-10-25T18:19:48.272Z",
   "calendarUpdatedAt": "2026-10-25T18:18:28.588Z",
   "standingsUpdatedAt": "2026-10-25T18:18:28.588Z",
   "standingsSource": "ESPN",
@@ -1505,7 +1505,7 @@
       "venue": "U.S. Bank Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 7,
+      "awayScore": 10,
       "homeScore": 6
     },
     {
