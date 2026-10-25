@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-24T14:34:41.736Z",
-  "calendarUpdatedAt": "2026-10-24T14:34:41.736Z",
-  "standingsUpdatedAt": "2026-10-24T14:34:41.736Z",
+  "fetchedAt": "2026-10-25T14:58:00.118Z",
+  "calendarUpdatedAt": "2026-10-25T14:58:00.118Z",
+  "standingsUpdatedAt": "2026-10-25T14:58:00.118Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1429,9 +1429,9 @@
       "timeTbd": false,
       "venue": "Stade de France",
       "neutral": true,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 10,
+      "homeScore": 10
     },
     {
       "id": "2026_07_SF_ATL",
