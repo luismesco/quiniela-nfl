@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:03:03.560Z",
+  "fetchedAt": "2026-10-25T17:03:16.897Z",
   "calendarUpdatedAt": "2026-10-25T17:03:03.560Z",
   "standingsUpdatedAt": "2026-10-25T17:03:03.560Z",
   "standingsSource": "ESPN",
@@ -1474,9 +1474,9 @@
       "timeTbd": false,
       "venue": "Bank of America Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_NYG_HOU",
@@ -1489,9 +1489,9 @@
       "timeTbd": false,
       "venue": "Reliant Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_IND_MIN",
