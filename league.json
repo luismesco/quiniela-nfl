@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T17:18:36.494Z",
+  "fetchedAt": "2026-10-25T17:18:47.477Z",
   "calendarUpdatedAt": "2026-10-25T17:18:36.494Z",
   "standingsUpdatedAt": "2026-10-25T17:18:36.494Z",
   "standingsSource": "ESPN",
@@ -1446,7 +1446,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 7,
-      "homeScore": 0
+      "homeScore": 3
     },
     {
       "id": "2026_07_CIN_BAL",
@@ -1536,7 +1536,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 7
+      "homeScore": 13
     },
     {
       "id": "2026_07_DEN_ARI",
