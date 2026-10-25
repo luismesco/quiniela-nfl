@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T23:36:32.558Z",
-  "calendarUpdatedAt": "2026-10-25T23:33:17.335Z",
-  "standingsUpdatedAt": "2026-10-25T23:33:17.335Z",
+  "fetchedAt": "2026-10-25T23:36:48.970Z",
+  "calendarUpdatedAt": "2026-10-25T23:36:48.970Z",
+  "standingsUpdatedAt": "2026-10-25T23:36:48.970Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5071,12 +5071,12 @@
           "team": "LV",
           "sourceOrder": 9,
           "wins": 3,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.5,
-          "differential": 0,
-          "pointsFor": 162,
-          "pointsAgainst": 162
+          "pct": 0.42857143,
+          "differential": -14,
+          "pointsFor": 183,
+          "pointsAgainst": 197
         },
         {
           "team": "LAC",
@@ -5270,13 +5270,13 @@
         {
           "team": "LA",
           "sourceOrder": 9,
-          "wins": 2,
+          "wins": 3,
           "losses": 4,
           "ties": 0,
-          "pct": 0.33333334,
-          "differential": -3,
-          "pointsFor": 135,
-          "pointsAgainst": 138
+          "pct": 0.42857143,
+          "differential": 11,
+          "pointsFor": 170,
+          "pointsAgainst": 159
         },
         {
           "team": "ARI",
