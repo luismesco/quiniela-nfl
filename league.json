@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T20:25:50.580Z",
-  "calendarUpdatedAt": "2026-10-25T20:22:35.536Z",
-  "standingsUpdatedAt": "2026-10-25T20:22:35.536Z",
+  "fetchedAt": "2026-10-25T20:26:05.108Z",
+  "calendarUpdatedAt": "2026-10-25T20:26:05.108Z",
+  "standingsUpdatedAt": "2026-10-25T20:26:05.108Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1579,9 +1579,9 @@
       "timeTbd": false,
       "venue": "Allegiant Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_07_KC_SEA",
