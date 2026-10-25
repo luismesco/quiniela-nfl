@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-25T16:40:46.599Z",
-  "calendarUpdatedAt": "2026-10-25T16:35:30.979Z",
-  "standingsUpdatedAt": "2026-10-25T16:35:30.979Z",
+  "fetchedAt": "2026-10-25T16:41:03.667Z",
+  "calendarUpdatedAt": "2026-10-25T16:41:03.667Z",
+  "standingsUpdatedAt": "2026-10-25T16:41:03.667Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5108,7 +5108,7 @@
         },
         {
           "team": "PHI",
-          "sourceOrder": 10,
+          "sourceOrder": 9,
           "wins": 2,
           "losses": 4,
           "ties": 0,
@@ -5119,7 +5119,7 @@
         },
         {
           "team": "DAL",
-          "sourceOrder": 11,
+          "sourceOrder": 10,
           "wins": 2,
           "losses": 4,
           "ties": 0,
@@ -5219,14 +5219,14 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 9,
+          "sourceOrder": 13,
           "wins": 2,
-          "losses": 4,
+          "losses": 5,
           "ties": 0,
-          "pct": 0.33333334,
-          "differential": -26,
-          "pointsFor": 152,
-          "pointsAgainst": 178
+          "pct": 0.2857143,
+          "differential": -32,
+          "pointsFor": 162,
+          "pointsAgainst": 194
         },
         {
           "team": "TB",
@@ -5269,7 +5269,7 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 2,
           "losses": 4,
           "ties": 0,
@@ -5280,7 +5280,7 @@
         },
         {
           "team": "LA",
-          "sourceOrder": 13,
+          "sourceOrder": 12,
           "wins": 2,
           "losses": 4,
           "ties": 0,
