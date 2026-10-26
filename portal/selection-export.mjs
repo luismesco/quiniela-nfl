@@ -32,7 +32,7 @@ export async function selectionCanvas(model,format='jpg'){
  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad=100,gap=55,colW=(W-pad*2-gap)/2;
  const codes=[...new Set(model.games.flatMap(g=>[g.away,g.home]))];
  const entries=await Promise.all(codes.map(async t=>[t,await loadImage(`/assets/teams/${encodeURIComponent(t)}.svg`)]));
- const images=Object.fromEntries(entries),mascot=await loadImage('/assets/mascotas/ajolote-investigador.png');
+ const images=Object.fromEntries(entries),mascot=await loadImage('/assets/mascotas/ajolote-fotografo.png');
  ctx.fillStyle='#f7f7ed';ctx.fillRect(0,0,W,H);ctx.fillStyle='#142b30';ctx.fillRect(0,0,W,420);
  ctx.fillStyle='#d8ed88';text(ctx,'LA QUINIELA FISCALIZADA',pad,125,W-450,66,true);
  ctx.fillStyle='#ffffff';text(ctx,model.name,pad,240,W-500,86,true);

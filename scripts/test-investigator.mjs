@@ -17,6 +17,10 @@ assert.equal(investigate({...d,testMode:true},'me').eligible,false);
 assert.throws(()=>investigate(d,'me',{'1':'1A'}),/final/);
 assert.throws(()=>investigate(d,'me',{'2':'3A'}),/resultado/);
 assert.equal(JSON.stringify(d),original);
+const whyGames=[game('f1','final',10,0),game('f2','final',10,0),game('p1'),game('p2')];
+const why={games:whyGames,participants:[p('Leo',{f1:'f1A',f2:'f2A',p1:'p1A',p2:'p2H'}),p('Alex',{f1:'f1H',f2:'f2A',p1:'p1A',p2:'p2H'}),p('Habad',{f1:'f1H',f2:'f2H',p1:'p1H',p2:'p2H'})]};
+let denied=investigate(why,'Alex');assert.equal(denied.canLead,false);assert.equal(denied.blockers[0].name,'Leo');assert.equal(denied.blockers[0].baseGap,1);assert.equal(denied.blockers[0].differentGames.length,0);assert.equal(denied.blockers[0].minimumGap,1);
+denied=investigate(why,'Habad');assert.equal(denied.canLead,false);assert.equal(denied.blockers[0].baseGap,2);assert.equal(denied.blockers[0].differentGames.length,1);assert.equal(denied.blockers[0].minimumGap,1);
 // An independent exhaustive oracle checks mathematical feasibility and every condition.
 for(let seed=1;seed<=70;seed++){
  let rand=seed;const next=n=>(rand=(rand*1664525+1013904223)>>>0)%n;

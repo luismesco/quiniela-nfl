@@ -29,9 +29,16 @@ export function investigate(data,userId,assumptions={}){
   return {gameId:g.id,lead,solo};
  });
  const current=score(person,games).correct;
+ const free=pending.filter(g=>!Object.hasOwn(assumptions,g.id));
+ const basePoints=p=>games.reduce((n,g)=>n+Number(p.choices[g.id]===(winner(g)||assumptions[g.id])),0);
+ const blockers=witness.rows.filter(p=>p.correct>witness.correct).map(row=>{
+  const rival=people.find(p=>p.id===row.id);
+  return {id:rival.id,name:rival.name,baseGap:basePoints(rival)-basePoints(person),minimumGap:row.correct-witness.correct,
+   differentGames:free.filter(g=>rival.choices[g.id]!==person.choices[g.id]).map(g=>g.id)};
+ });
  return {eligible:true,current,finished:games.length-pending.length,pending:pending.map(g=>g.id),
   remaining:pending.filter(g=>!Object.hasOwn(assumptions,g.id)).length,canLead:witness.lead,canWinSolo:witness.solo,
-  routes,witness:{...witness,results},completeSimulation:pending.every(g=>Object.hasOwn(assumptions,g.id))};
+  routes,blockers,witness:{...witness,results},completeSimulation:pending.every(g=>Object.hasOwn(assumptions,g.id))};
 }
 
 // Universal guarantees use the WORST possible difference against each rival.
@@ -74,4 +81,12 @@ export function roundVerdict(data){
  const status=data.captureClosed===false?'capture-open':!pending.length?'final':guaranteedSolo.length?'solo-secured':allWinnersFixed?'group-secured':guaranteedFirst.length?'shared-secured':pending.length===1?'last-game':'undecided';
  return {status,finished:games.length-pending.length,total:games.length,pending,guaranteedFirst,guaranteedSolo,possibleFirst,possibleSolo,
   currentLeaders:people.filter(p=>p.correct===people[0].correct).map(person),allWinnersFixed,lastGameCanChangeLeaders,combinations};
+}
+
+export function explainElimination(report,subject=null){
+ const blocker=report.blockers?.[0];if(report.canLead||!blocker)return '';
+ const point=n=>n+' acierto'+(n===1?'':'s');
+ if(!report.remaining)return `${blocker.name} termina ${point(blocker.minimumGap)} arriba de ${subject||'ti'}.`;
+ if(!blocker.differentGames.length)return `${blocker.name} lleva ${point(blocker.baseGap)} más y eligió lo mismo que ${subject||'tú'} en todos los partidos aún libres. Sumarán los mismos aciertos; ${subject?'no puede':'no puedes'} alcanzarlo.`;
+ return `${blocker.name} tiene ${point(blocker.baseGap)} de ventaja y sólo ${blocker.differentGames.length===1?'hay un partido pendiente':'hay '+blocker.differentGames.length+' partidos pendientes'} en que eligieron distinto. Aunque todos esos resultados ${subject?'favorezcan a '+subject:'te favorezcan'}, seguirá al menos ${point(blocker.minimumGap)} arriba de ${subject||'ti'}.`;
 }

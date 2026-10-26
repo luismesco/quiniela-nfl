@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {roundVerdict} from '../portal/investigator.mjs';
 import {roundOutlookView} from '../portal/round-outlook.mjs';
+import {companionActions} from '../portal/companion.mjs';
 const g=(id,status='scheduled',a=null,h=null)=>({id,away:id+'A',home:id+'H',status,awayScore:a,homeScore:h});
 const p=(id,choices)=>({id,name:id,choices});
 const ids=xs=>xs.map(p=>p.id).sort();
@@ -21,6 +22,10 @@ const irrelevant={captureClosed:true,games:[g('0'),g('1')],participants:[p('a',{
 assert.equal(roundVerdict(irrelevant).lastGameCanChangeLeaders,false);assert.equal(roundVerdict(irrelevant).allWinnersFixed,false);
 assert(roundOutlookView(undecided,{detail:true}).includes('El último partido define al ganador'));
 assert(roundOutlookView(irrelevant,{detail:true}).includes('La definición depende de los otros partidos pendientes.'));
+assert(roundOutlookView(data,{detail:true}).includes('data-round-person="Leo"'));
+assert(roundOutlookView(data,{detail:true}).includes('Resultados finales utilizados'));
+assert(companionActions(data).includes('selection-share-card'));
+assert(companionActions(data).includes('/assets/mascotas/ajolote-fotografo.png'));
 const unsafe=structuredClone(data);unsafe.participants[0].name='<img src=x onerror=alert(1)>';assert(!roundOutlookView(unsafe,{detail:true}).includes('<img src=x'));assert(roundOutlookView(unsafe,{detail:true}).includes('&lt;img'));
 // Independent enumeration validates universal guarantees against every possible result.
 for(let seed=1;seed<=150;seed++){
