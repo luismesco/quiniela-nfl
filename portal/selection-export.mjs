@@ -1,10 +1,18 @@
 const AUTHOR='Luis Montañez Escobar';
-export function selectionModel(data,userId){
+export const SHARE_MASCOTS=Object.freeze([
+ '/assets/mascotas/ajolote-fotografo.png',
+ '/assets/mascotas/ajolote-fotografo-instantanea.png',
+ '/assets/mascotas/ajolote-fotografo-retrato.png',
+ '/assets/mascotas/ajolote-fotografo-selfie.png'
+]);
+export const chooseShareMascot=()=>SHARE_MASCOTS[Math.floor(Math.random()*SHARE_MASCOTS.length)];
+export function selectionModel(data,userId,mascot=SHARE_MASCOTS[0]){
  const person=data.participants.find(p=>p.id===userId);if(!person)throw Error('No se encontró al participante.');
  const games=data.games.map(g=>({id:g.id,away:g.away,home:g.home,start:g.start,
   choice:[g.away,g.home,'TIE'].includes(person.choices[g.id])?person.choices[g.id]:null}));
  return {name:person.name,season:data.season,week:data.week,phase:data.phase,roundId:data.roundId,testMode:!!data.testMode,
-  complete:games.length>0&&games.every(g=>g.choice),games,teams:structuredClone(data.teams||{})};
+  complete:games.length>0&&games.every(g=>g.choice),games,teams:structuredClone(data.teams||{}),
+  mascot:SHARE_MASCOTS.includes(mascot)?mascot:SHARE_MASCOTS[0]};
 }
 const utf16=s=>'FEFF'+Array.from(s).map(c=>c.charCodeAt(0).toString(16).padStart(4,'0')).join('').toUpperCase();
 export function jpegPdf(jpeg,width,height){
@@ -32,7 +40,7 @@ export async function selectionCanvas(model,format='jpg'){
  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,pad=100,gap=55,colW=(W-pad*2-gap)/2;
  const codes=[...new Set(model.games.flatMap(g=>[g.away,g.home]))];
  const entries=await Promise.all(codes.map(async t=>[t,await loadImage(`/assets/teams/${encodeURIComponent(t)}.svg`)]));
- const images=Object.fromEntries(entries),mascot=await loadImage('/assets/mascotas/ajolote-fotografo.png');
+ const images=Object.fromEntries(entries),mascot=await loadImage(model.mascot||SHARE_MASCOTS[0]);
  ctx.fillStyle='#f7f7ed';ctx.fillRect(0,0,W,H);ctx.fillStyle='#142b30';ctx.fillRect(0,0,W,420);
  ctx.fillStyle='#d8ed88';text(ctx,'LA QUINIELA FISCALIZADA',pad,125,W-450,66,true);
  ctx.fillStyle='#ffffff';text(ctx,model.name,pad,240,W-500,86,true);
