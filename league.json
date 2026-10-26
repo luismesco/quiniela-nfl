@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-26T03:17:07.859Z",
-  "calendarUpdatedAt": "2026-10-26T03:17:07.859Z",
-  "standingsUpdatedAt": "2026-10-26T03:17:07.859Z",
+  "fetchedAt": "2026-10-26T17:24:04.683Z",
+  "calendarUpdatedAt": "2026-10-26T17:24:04.683Z",
+  "standingsUpdatedAt": "2026-10-26T17:24:04.683Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5197,7 +5197,7 @@
       "teams": [
         {
           "team": "CAR",
-          "sourceOrder": 6,
+          "sourceOrder": 7,
           "wins": 3,
           "losses": 3,
           "ties": 0,
@@ -5258,14 +5258,14 @@
         },
         {
           "team": "SEA",
-          "sourceOrder": 7,
-          "wins": 3,
+          "sourceOrder": 6,
+          "wins": 4,
           "losses": 3,
           "ties": 0,
-          "pct": 0.5,
-          "differential": 26,
-          "pointsFor": 148,
-          "pointsAgainst": 122
+          "pct": 0.5714286,
+          "differential": 43,
+          "pointsFor": 168,
+          "pointsAgainst": 125
         },
         {
           "team": "LA",
