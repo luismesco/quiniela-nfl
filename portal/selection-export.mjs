@@ -3,7 +3,13 @@ export const SHARE_MASCOTS=Object.freeze([
  '/assets/mascotas/ajolote-fotografo.png',
  '/assets/mascotas/ajolote-fotografo-instantanea.png',
  '/assets/mascotas/ajolote-fotografo-retrato.png',
- '/assets/mascotas/ajolote-fotografo-selfie.png'
+ '/assets/mascotas/ajolote-fotografo-selfie.png',
+ '/assets/mascotas/ajolote-fotografo-cowboys.png',
+ '/assets/mascotas/ajolote-fotografo-steelers.png',
+ '/assets/mascotas/ajolote-fotografo-49ers.png',
+ '/assets/mascotas/ajolote-fotografo-chiefs.png',
+ '/assets/mascotas/ajolote-fotografo-seahawks.png',
+ '/assets/mascotas/ajolote-fotografo-packers.png'
 ]);
 export const chooseShareMascot=()=>SHARE_MASCOTS[Math.floor(Math.random()*SHARE_MASCOTS.length)];
 export function selectionModel(data,userId,mascot=SHARE_MASCOTS[0]){
