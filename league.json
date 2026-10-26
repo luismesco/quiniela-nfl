@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-26T03:16:49.190Z",
-  "calendarUpdatedAt": "2026-10-26T03:12:06.255Z",
-  "standingsUpdatedAt": "2026-10-26T03:12:06.255Z",
+  "fetchedAt": "2026-10-26T03:17:07.859Z",
+  "calendarUpdatedAt": "2026-10-26T03:17:07.859Z",
+  "standingsUpdatedAt": "2026-10-26T03:17:07.859Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5049,12 +5049,12 @@
           "team": "KC",
           "sourceOrder": 0,
           "wins": 5,
-          "losses": 0,
+          "losses": 1,
           "ties": 0,
-          "pct": 1,
-          "differential": 57,
-          "pointsFor": 140,
-          "pointsAgainst": 83
+          "pct": 0.8333333,
+          "differential": 40,
+          "pointsFor": 143,
+          "pointsAgainst": 103
         },
         {
           "team": "DEN",
