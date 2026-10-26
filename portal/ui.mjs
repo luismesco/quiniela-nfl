@@ -139,7 +139,7 @@ function rulesView(){return heading('LA DINÁMICA DEL GRUPO','Así jugamos','Una
 async function render(){
  nav();let content;
  if(view==='picks')content=picksView();else if(view==='board')content=boardView();else if(view==='ranking')content=rankingView();else if(view==='calendar')content=gamesView();else if(view==='standings')content=standingsView(bundle.league,conference,data.teams);else if(view==='feedback')content=await feedbackView();else if(view==='admin'&&user().role==='admin')content=await adminView();else if(view==='rules')content=rulesView();else content=accountView();
- $('#workspace').innerHTML=(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?companionActions(data.testMode):'')+content;hydrateIcons();
+ $('#workspace').innerHTML=(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?companionActions(data):'')+content;hydrateIcons();
  $('#picks-form')?.addEventListener('submit',savePicks);
  $('#account-password')?.addEventListener('submit',e=>changePassword(e));
  $('#account-logout')?.addEventListener('click',logout);

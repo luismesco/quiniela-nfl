@@ -573,7 +573,7 @@ def create_app(config=None):
 
     @app.get('/portal/<path:filename>')
     def portal_assets(filename):
-        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs'):abort(404)
+        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs'):abort(404)
         return send_from_directory(ROOT/'portal',filename)
 
     @app.get('/<filename>')
