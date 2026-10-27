@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "startedAt": "2026-10-15T17:05:09.651Z",
-  "updatedAt": "2026-10-27T02:26:55.295Z",
+  "updatedAt": "2026-10-27T02:47:30.985Z",
   "events": [
     {
       "id": "2026-6-2026-10-15T17:05:09.651Z",
@@ -103491,6 +103491,285 @@
           "away": "DAL",
           "home": "PHI",
           "awayScore": 28,
+          "homeScore": 21
+        }
+      ]
+    },
+    {
+      "id": "2026-7-2026-10-27T02:47:30.985Z",
+      "stateKey": "9dfce67a842c809bf09090cd7f330c0a1c1f06a660965cd7be66567e86381521",
+      "observedAt": "2026-10-27T02:47:30.985Z",
+      "source": "ESPN",
+      "season": 2026,
+      "week": 7,
+      "finished": 13,
+      "total": 14,
+      "live": 1,
+      "settled": false,
+      "unresolved": false,
+      "pot": 500,
+      "rows": [
+        {
+          "id": "foto-2",
+          "name": "Leo",
+          "correct": 9,
+          "projected": 9,
+          "complete": true,
+          "rank": 1,
+          "projectedRank": 1
+        },
+        {
+          "id": "habad",
+          "name": "Habad",
+          "correct": 8,
+          "projected": 8,
+          "complete": true,
+          "rank": 2,
+          "projectedRank": 2
+        },
+        {
+          "id": "foto-3",
+          "name": "Chava",
+          "correct": 7,
+          "projected": 8,
+          "complete": true,
+          "rank": 3,
+          "projectedRank": 2
+        },
+        {
+          "id": "foto-7",
+          "name": "Acuayte",
+          "correct": 7,
+          "projected": 7,
+          "complete": true,
+          "rank": 3,
+          "projectedRank": 4
+        },
+        {
+          "id": "yessi",
+          "name": "Yessi",
+          "correct": 7,
+          "projected": 7,
+          "complete": true,
+          "rank": 3,
+          "projectedRank": 4
+        },
+        {
+          "id": "foto-5",
+          "name": "Jorge",
+          "correct": 6,
+          "projected": 7,
+          "complete": true,
+          "rank": 6,
+          "projectedRank": 4
+        },
+        {
+          "id": "rox",
+          "name": "Rox",
+          "correct": 6,
+          "projected": 7,
+          "complete": true,
+          "rank": 6,
+          "projectedRank": 4
+        },
+        {
+          "id": "juan-carlos",
+          "name": "Juan Carlos",
+          "correct": 4,
+          "projected": 5,
+          "complete": true,
+          "rank": 8,
+          "projectedRank": 8
+        },
+        {
+          "id": "foto-4",
+          "name": "Eli",
+          "correct": 4,
+          "projected": 4,
+          "complete": true,
+          "rank": 8,
+          "projectedRank": 9
+        },
+        {
+          "id": "foto-6",
+          "name": "Goku",
+          "correct": 4,
+          "projected": 4,
+          "complete": true,
+          "rank": 8,
+          "projectedRank": 9
+        },
+        {
+          "id": "alex",
+          "name": "Alex",
+          "correct": 0,
+          "projected": 0,
+          "complete": false,
+          "rank": null,
+          "projectedRank": null
+        },
+        {
+          "id": "foto-1",
+          "name": "Eve",
+          "correct": 0,
+          "projected": 0,
+          "complete": false,
+          "rank": null,
+          "projectedRank": null
+        },
+        {
+          "id": "luis",
+          "name": "Luis",
+          "correct": 0,
+          "projected": 0,
+          "complete": false,
+          "rank": null,
+          "projectedRank": null
+        },
+        {
+          "id": "yvon",
+          "name": "Yvon",
+          "correct": 0,
+          "projected": 0,
+          "complete": false,
+          "rank": null,
+          "projectedRank": null
+        }
+      ],
+      "leaders": [
+        "foto-2"
+      ],
+      "projectedLeaders": [
+        "foto-2"
+      ],
+      "winners": [],
+      "best": 9,
+      "bestProjected": 9,
+      "games": [
+        {
+          "id": "2026_07_NE_CHI",
+          "start": "2026-10-23T00:15Z",
+          "status": "final",
+          "away": "NE",
+          "home": "CHI",
+          "awayScore": 24,
+          "homeScore": 30
+        },
+        {
+          "id": "2026_07_PIT_NO",
+          "start": "2026-10-25T13:30Z",
+          "status": "final",
+          "away": "PIT",
+          "home": "NO",
+          "awayScore": 16,
+          "homeScore": 10
+        },
+        {
+          "id": "2026_07_SF_ATL",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "SF",
+          "home": "ATL",
+          "awayScore": 20,
+          "homeScore": 29
+        },
+        {
+          "id": "2026_07_CIN_BAL",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "CIN",
+          "home": "BAL",
+          "awayScore": 35,
+          "homeScore": 13
+        },
+        {
+          "id": "2026_07_TB_CAR",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "TB",
+          "home": "CAR",
+          "awayScore": 43,
+          "homeScore": 13
+        },
+        {
+          "id": "2026_07_NYG_HOU",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "NYG",
+          "home": "HOU",
+          "awayScore": 27,
+          "homeScore": 21
+        },
+        {
+          "id": "2026_07_IND_MIN",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "IND",
+          "home": "MIN",
+          "awayScore": 10,
+          "homeScore": 16
+        },
+        {
+          "id": "2026_07_MIA_NYJ",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "MIA",
+          "home": "NYJ",
+          "awayScore": 28,
+          "homeScore": 25
+        },
+        {
+          "id": "2026_07_CLE_TEN",
+          "start": "2026-10-25T17:00Z",
+          "status": "final",
+          "away": "CLE",
+          "home": "TEN",
+          "awayScore": 27,
+          "homeScore": 24
+        },
+        {
+          "id": "2026_07_DEN_ARI",
+          "start": "2026-10-25T20:05Z",
+          "status": "final",
+          "away": "DEN",
+          "home": "ARI",
+          "awayScore": 30,
+          "homeScore": 16
+        },
+        {
+          "id": "2026_07_GB_DET",
+          "start": "2026-10-25T20:25Z",
+          "status": "final",
+          "away": "GB",
+          "home": "DET",
+          "awayScore": 17,
+          "homeScore": 20
+        },
+        {
+          "id": "2026_07_LA_LV",
+          "start": "2026-10-25T20:25Z",
+          "status": "final",
+          "away": "LA",
+          "home": "LV",
+          "awayScore": 35,
+          "homeScore": 21
+        },
+        {
+          "id": "2026_07_KC_SEA",
+          "start": "2026-10-26T00:20Z",
+          "status": "final",
+          "away": "KC",
+          "home": "SEA",
+          "awayScore": 3,
+          "homeScore": 20
+        },
+        {
+          "id": "2026_07_DAL_PHI",
+          "start": "2026-10-27T00:15Z",
+          "status": "live",
+          "away": "DAL",
+          "home": "PHI",
+          "awayScore": 31,
           "homeScore": 21
         }
       ]
