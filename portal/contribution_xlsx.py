@@ -17,6 +17,7 @@ from openpyxl.worksheet.cell_range import CellRange
 from openpyxl.workbook.properties import CalcProperties
 
 AUTHOR = 'Luis Montañez Escobar'
+FONT_FAMILY = 'Montserrat'
 
 
 class PublicArchive(zipfile.ZipFile):
@@ -37,6 +38,20 @@ class PublicArchive(zipfile.ZipFile):
 def literal(cell, value):
     cell.value = value
     cell.data_type = 's'
+
+
+def configure_typography(sheet, end=27):
+    for row in sheet.iter_rows(min_row=1, max_row=end + 5, min_col=1, max_col=6):
+        for cell in row:
+            font = copy(cell.font)
+            font.name = FONT_FAMILY
+            font.scheme = None
+            cell.font = font
+    for rules in sheet.conditional_formatting._cf_rules.values():
+        for rule in rules:
+            if rule.dxf is not None and rule.dxf.font is not None:
+                rule.dxf.font.name = FONT_FAMILY
+                rule.dxf.font.scheme = None
 
 
 def configure_print_layout(sheet, end=27, count=16):
@@ -152,10 +167,11 @@ def export_workbook(data, blank=False):
     validation.add(marks)
     sheet.conditional_formatting._cf_rules.clear()
     sheet.conditional_formatting.add(marks, FormulaRule(formula=['C12="✓"'],
-        fill=PatternFill('solid', fgColor='E4EEDC'), font=Font(name='Arial', color='25543C', bold=True)))
+        fill=PatternFill('solid', fgColor='E4EEDC'), font=Font(name=FONT_FAMILY, color='25543C', bold=True)))
     sheet.conditional_formatting.add(marks, FormulaRule(formula=['C12="✗"'],
-        fill=PatternFill('solid', fgColor='F7E9E7'), font=Font(name='Arial', color='8F453B', bold=True)))
+        fill=PatternFill('solid', fgColor='F7E9E7'), font=Font(name=FONT_FAMILY, color='8F453B', bold=True)))
     configure_print_layout(sheet, end, count)
+    configure_typography(sheet, end)
     book.calculation = CalcProperties(fullCalcOnLoad=True, forceFullCalc=True, calcMode='auto')
     result = io.BytesIO()
     # La biblioteca reconstruye hojas, relaciones y propiedades en una sola escritura.
