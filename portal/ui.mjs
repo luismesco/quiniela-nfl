@@ -1,3 +1,4 @@
+import {treasurerCard,openTreasurer,closeTreasurer} from './treasurer.mjs';
 import {summary,standings,score,outcome,winner} from '/core.mjs';
 import {raceView} from '/race.mjs';
 import {calendarView,standingsView} from '/league.mjs';
@@ -27,7 +28,7 @@ async function api(path,options={}){
  if(!response.ok)throw Error(result.error||'No pudimos completar la solicitud.');return result;
 }
 function showLogin(message=''){
- closeCompanion();
+ closeCompanion();closeTreasurer();
  clearTimeout(timer);$('#portal').hidden=true;$('#entry').hidden=false;
  $('#entry-body').innerHTML=`<span class="section-kicker">TU ACCESO AL GRUPO</span><h2>Vamos a la jornada.</h2><p>Usa los datos de tu tarjeta para entrar.</p><form id="login-form"><label for="username">Usuario<input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="80"></label><label for="password">Contraseña<input type="password" id="password" name="password" autocomplete="current-password" required maxlength="72"></label><button class="primary-button full" type="submit">Entrar a mi quiniela <span aria-hidden="true">↗</span></button><p class="form-error" id="login-error" role="alert" ${message?'':'hidden'}>${esc(message)}</p></form><small>Si necesitas recuperar tu acceso, pide a Luis una contraseña temporal nueva.</small>`;
  $('#username').value=new URL(location.href).searchParams.get('usuario')||'';
@@ -139,7 +140,7 @@ function rulesView(){return heading('LA DINÁMICA DEL GRUPO','Así jugamos','Una
 async function render(){
  nav();let content;
  if(view==='picks')content=picksView();else if(view==='board')content=boardView();else if(view==='ranking')content=rankingView();else if(view==='calendar')content=gamesView();else if(view==='standings')content=standingsView(bundle.league,conference,data.teams);else if(view==='feedback')content=await feedbackView();else if(view==='admin'&&user().role==='admin')content=await adminView();else if(view==='rules')content=rulesView();else content=accountView();
- $('#workspace').innerHTML=(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?companionActions(data):'')+content;hydrateIcons();
+ $('#workspace').innerHTML=(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?treasurerCard(data)+companionActions(data):'')+content;hydrateIcons();
  $('#picks-form')?.addEventListener('submit',savePicks);
  $('#account-password')?.addEventListener('submit',e=>changePassword(e));
  $('#account-logout')?.addEventListener('click',logout);
@@ -152,6 +153,7 @@ async function savePicks(e){
 }
 function detail(id){activeGame=null;const p=data.participants.find(p=>p.id===id);if(!p)return;$('#detail-body').innerHTML=`<h2 id="detail-title">${esc(p.name)} ${paid(p)}</h2><p>${score(p,data.games).correct} aciertos · ${Object.keys(p.choices).length}/${data.games.length} elecciones</p><div class="detail-games">${data.games.map(g=>`<div class="detail-game"><span>${esc(g.away)} vs ${esc(g.home)}</span><b>${p.choices[g.id]?img(p.choices[g.id])+esc(name(p.choices[g.id])):'Sin elección'}</b><span>${{hit:'✓ Acierto',miss:'× Fallo',pending:'Por jugar',empty:'—'}[outcome(p,g)]}</span></div>`).join('')}</div>`;if(!$('#detail').open)$('#detail').showModal();}
 document.addEventListener('click',async e=>{
+ const treasury=e.target.closest('[data-treasurer]');if(treasury){closeCompanion();await openTreasurer({api,roundId:data.roundId,isAdmin:user().role==='admin',toast,onUpdate:d=>{data.treasurer=d;render();}});return;}
  const companion=e.target.closest('[data-companion]');if(companion){await openCompanion(companion.dataset.companion,{api,userId:user().id,roundId:data.roundId,dirty,toast});return;}
  const layout=e.target.closest('[data-board-layout]');if(layout&&view==='board'&&!data.testMode){boardLayout=layout.dataset.boardLayout==='matrix'?'matrix':'cards';await render();document.querySelector(`[data-board-layout="${boardLayout}"]`)?.focus();return;}
  const n=e.target.closest('[data-view]');if(n){if(dirty&&n.dataset.view!=='picks'&&!confirm('Tienes cambios sin guardar. ¿Quieres salir de Mi quiniela?'))return;if(dirty&&n.dataset.view!=='picks'){dirty=false;draft={...me().choices};}view=n.dataset.view;await render();return;}

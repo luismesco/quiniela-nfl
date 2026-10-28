@@ -57,16 +57,34 @@ export async function selectionCanvas(model,format='jpg'){
  const top=485,bottom=H-235,rows=Math.ceil(model.games.length/2),rowH=Math.min(180,(bottom-top)/Math.max(1,rows));
  for(let i=0;i<model.games.length;i++){
   const g=model.games[i],col=i>=rows?1:0,index=i%rows,x=pad+col*(colW+gap),y=top+index*rowH;
-  ctx.fillStyle=i%2?'#edf1df':'#ffffff';ctx.fillRect(x,y,colW,rowH-12);
-  ctx.fillStyle='#59705e';text(ctx,String(i+1).padStart(2,'0'),x+20,y+38,50,25,true);
-  const logo=58;ctx.drawImage(images[g.away],x+86,y+17,logo,logo);ctx.drawImage(images[g.home],x+colW-85,y+17,logo,logo);
-  ctx.fillStyle='#142b30';text(ctx,`${g.away}  vs  ${g.home}`,x+160,y+55,colW-260,36,true);
-  const chosen=g.choice==='TIE'?'EMPATE · TIE':g.choice?`${model.teams[g.choice]?.name||g.choice} · ${g.choice===g.away?'Visitante':'Local'}`:'SIN ELECCIÓN';
-  ctx.fillStyle=g.choice?'#25543c':'#8a493b';text(ctx,chosen,x+25,y+rowH-34,colW-50,30,true);
+  ctx.fillStyle='#ffffff';ctx.fillRect(x,y,colW,rowH-12);
+  ctx.strokeStyle='#d6ded3';ctx.lineWidth=2;ctx.strokeRect(x,y,colW,rowH-12);
+  ctx.fillStyle='#657068';text(ctx,String(i+1).padStart(2,'0'),x+14,y+27,40,21,true);
+  const half=(colW-90)/2,teamTop=y+33,teamArea=rowH-91;
+  for(const [side,code] of [['away',g.away],['home',g.home]]){
+   const selected=g.choice===code,tx=x+58+(side==='home'?half+28:0);
+   ctx.fillStyle=selected?'#25543c':'#767676';
+   text(ctx,side==='away'?'VISITANTE':'LOCAL',tx,y+25,half-15,18,true);
+   const logo=selected?Math.min(86,teamArea):Math.min(54,teamArea),ly=teamTop+(teamArea-logo)/2;
+   const img=images[code],scale=logo/Math.max(img.width,img.height);
+   ctx.save();ctx.filter=selected?'none':'grayscale(1)';
+   ctx.drawImage(img,tx+(86-img.width*scale)/2,ly+(logo-img.height*scale)/2,img.width*scale,img.height*scale);ctx.restore();
+   ctx.fillStyle=selected?'#142b30':'#767676';
+   text(ctx,code,tx+102,teamTop+teamArea/2+15,half-115,selected?48:32,selected);
+   if(selected){
+    ctx.strokeStyle='#25543c';ctx.lineWidth=5;ctx.beginPath();
+    ctx.moveTo(tx+230,teamTop+teamArea/2);ctx.lineTo(tx+240,teamTop+teamArea/2+10);ctx.lineTo(tx+257,teamTop+teamArea/2-11);ctx.stroke();
+   }
+  }
+  ctx.fillStyle='#767676';text(ctx,'VS',x+colW/2-13,teamTop+teamArea/2+8,30,21,true);
+  const chosen=g.choice==='TIE'?'Elección: Empate (TIE)':g.choice?`Elección: ${model.teams[g.choice]?.name||g.choice}`:'Sin elección guardada';
+  ctx.fillStyle=g.choice?'#e4eedc':'#eceeec';ctx.fillRect(x+12,y+rowH-54,colW-24,42);
+  ctx.fillStyle=g.choice?'#25543c':'#606760';text(ctx,chosen,x+26,y+rowH-24,colW-52,32,true);
  }
  ctx.fillStyle='#142b30';ctx.fillRect(pad,H-180,W-pad*2,3);
- text(ctx,'Visitante, local o TIE. Ganan las quinielas completas con más aciertos.',pad,H-125,W-pad*2,27);
- ctx.fillStyle='#59705e';text(ctx,'quiniela-fiscalizada.up.railway.app',pad,H-72,W-pad*2,29,true);
+ text(ctx,'Tu equipo elegido aparece más grande y en color; el otro, en blanco y negro.',pad,H-130,W-pad*2,28,true);
+ ctx.fillStyle='#59705e';text(ctx,'La franja inferior indica tu elección guardada. TIE significa empate.',pad,H-89,W-pad*2,25);
+ ctx.fillStyle='#59705e';text(ctx,'quiniela-fiscalizada.up.railway.app',pad,H-45,W-pad*2,27,true);
  return canvas;
 }
 const blobFrom=(canvas,type)=>new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('No se pudo preparar la descarga.')),type,.94));

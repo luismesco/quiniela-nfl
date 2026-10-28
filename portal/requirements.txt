@@ -3,3 +3,4 @@ gunicorn==26.0.0
 bcrypt==4.2.0
 requests==2.32.5
 certifi==2026.2.25
+Pillow==12.2.0

@@ -1,6 +1,7 @@
 FROM python:3.12-slim
 WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 DATA_DIR=/data RUN_COLLECTOR=1
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
 COPY portal/requirements.txt /app/portal/requirements.txt
 RUN pip install --no-cache-dir -r /app/portal/requirements.txt
 COPY portal /app/portal

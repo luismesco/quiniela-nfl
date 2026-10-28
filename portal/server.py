@@ -398,11 +398,16 @@ def create_app(config=None):
               'winners':[p['id'] for p in rows if p['rank']==1] if settled else [],'games':games}
         ingest_history(conn, {'schema':1,'events':[event]})
 
+    from portal.treasurer import register_treasurer
+    treasurer_state = register_treasurer(app, db, selected_round, cache_get, audit, admin)
+
     @app.get('/api/state')
     def get_state():
         with db() as conn:
             sandbox = g.user['role'] == 'test'
             data = state(conn, request.args.get('round'), sandbox)
+            if not sandbox:
+                data['treasurer'] = treasurer_state(conn, data['roundId'])
             if sandbox:
                 choices = {r['game_id']: r['choice'] for r in conn.execute('''SELECT p.game_id,p.choice FROM sandbox_picks p
                     JOIN games g ON g.id=p.game_id WHERE p.user_id=? AND g.round_id=?''', (g.user['id'], data['roundId']))}
@@ -518,6 +523,8 @@ def create_app(config=None):
         output=io.BytesIO()
         with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as z:
             z.writestr('quiniela.sqlite3',raw)
+            for media in sorted((directory/'treasurer').glob('*/draw.mp4')) + sorted((directory/'treasurer').glob('*/poster.png')):
+                z.write(media, str(media.relative_to(directory)))
             z.writestr('respaldo.json',json.dumps({'author':AUTHOR,'createdAt':stamp(),'format':'SQLite','includes':'Cuentas, elecciones, aportaciones, comentarios e historial'},ensure_ascii=False))
         output.seek(0)
         return send_file(output,mimetype='application/zip',as_attachment=True,download_name=f'quiniela-{utcnow():%Y%m%dT%H%M%SZ}.zip')
@@ -573,7 +580,7 @@ def create_app(config=None):
 
     @app.get('/portal/<path:filename>')
     def portal_assets(filename):
-        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs'):abort(404)
+        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs'):abort(404)
         return send_from_directory(ROOT/'portal',filename)
 
     @app.get('/<filename>')
