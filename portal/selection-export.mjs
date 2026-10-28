@@ -77,9 +77,9 @@ export async function selectionCanvas(model,format='jpg'){
    }
   }
   ctx.fillStyle='#767676';text(ctx,'VS',x+colW/2-13,teamTop+teamArea/2+8,30,21,true);
-  const chosen=g.choice==='TIE'?'Elección: Empate (TIE)':g.choice?`Elección: ${model.teams[g.choice]?.name||g.choice}`:'Sin elección guardada';
-  ctx.fillStyle=g.choice?'#e4eedc':'#eceeec';ctx.fillRect(x+12,y+rowH-54,colW-24,42);
-  ctx.fillStyle=g.choice?'#25543c':'#606760';text(ctx,chosen,x+26,y+rowH-24,colW-52,32,true);
+  const tied=g.choice==='TIE',chosen=tied?'ELECCIÓN: EMPATE (TIE)':g.choice?`Elección: ${model.teams[g.choice]?.name||g.choice}`:'Sin elección guardada';
+  ctx.fillStyle=g.choice&&!tied?'#e4eedc':'#eceeec';ctx.fillRect(x+12,y+rowH-54,colW-24,42);
+  ctx.save();ctx.globalAlpha=tied?.8:1;ctx.fillStyle=g.choice&&!tied?'#25543c':'#606760';text(ctx,chosen,x+26,y+rowH-24,colW-52,32,true);ctx.restore();
  }
  ctx.fillStyle='#142b30';ctx.fillRect(pad,H-180,W-pad*2,3);
  text(ctx,'Tu equipo elegido aparece más grande y en color; el otro, en blanco y negro.',pad,H-130,W-pad*2,28,true);
