@@ -63,7 +63,7 @@ export async function selectionCanvas(model,format='jpg'){
   const half=(colW-90)/2,teamTop=y+33,teamArea=rowH-91,tied=g.choice==='TIE';
   if(tied){
    ctx.save();ctx.beginPath();ctx.rect(x+12,teamTop,colW-24,teamArea);ctx.clip();
-   ctx.font=`700 ${teamArea*1.25}px Condensed`;ctx.fillStyle='#606760';ctx.globalAlpha=.36;
+   ctx.font=`700 ${teamArea*1.25}px Condensed`;ctx.fillStyle='#606760';ctx.globalAlpha=.18;
    ctx.textAlign='center';ctx.textBaseline='middle';
    ctx.translate(x+colW/2,teamTop+teamArea/2);ctx.scale((colW-40)/ctx.measureText('EMPATE').width,1);
    ctx.fillText('EMPATE',0,0);ctx.restore();
@@ -72,8 +72,12 @@ export async function selectionCanvas(model,format='jpg'){
    const selected=g.choice===code,tx=x+58+(side==='home'?half+62:0);
    ctx.fillStyle=selected?'#25543c':'#767676';
    text(ctx,side==='away'?'VISITANTE':'LOCAL',tx,y+25,half-15,18,true);
-   const logo=selected?Math.min(86,teamArea):Math.min(54,teamArea),ly=teamTop+(teamArea-logo)/2;
+   const logo=selected||tied?Math.min(86,teamArea):Math.min(54,teamArea),ly=teamTop+(teamArea-logo)/2;
    const img=images[code],scale=logo/Math.max(img.width,img.height);
+   if(tied){
+    ctx.save();ctx.fillStyle='#ffffff';ctx.beginPath();
+    ctx.arc(tx+43,teamTop+teamArea/2,logo/2+5,0,Math.PI*2);ctx.fill();ctx.restore();
+   }
    ctx.save();ctx.filter=selected?'none':'grayscale(1)';
    ctx.drawImage(img,tx+(86-img.width*scale)/2,ly+(logo-img.height*scale)/2,img.width*scale,img.height*scale);ctx.restore();
    ctx.fillStyle=selected?'#142b30':'#767676';
