@@ -8,12 +8,28 @@ from zoneinfo import ZoneInfo
 from xml.etree import ElementTree as ET
 
 from openpyxl import load_workbook
+from openpyxl.writer.excel import ExcelWriter
 from openpyxl.formatting.rule import FormulaRule
 from openpyxl.styles import Font, PatternFill
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.workbook.properties import CalcProperties
 
 AUTHOR = 'Luis Montañez Escobar'
+
+
+class PublicArchive(zipfile.ZipFile):
+    """Escribir las propiedades públicas durante la reconstrucción del libro."""
+    def writestr(self, entry, data, *args, **kwargs):
+        name = entry.filename if isinstance(entry, zipfile.ZipInfo) else entry
+        if name == 'docProps/app.xml':
+            xml = ET.fromstring(data)
+            for node in xml:
+                if node.tag.rsplit('}', 1)[-1] == 'Application':
+                    node.text = 'Microsoft Excel'
+                elif node.tag.rsplit('}', 1)[-1] == 'AppVersion':
+                    node.text = '16.0'
+            data = ET.tostring(xml, encoding='utf-8', xml_declaration=True)
+        return super().writestr(entry, data, *args, **kwargs)
 
 
 def literal(cell, value):
@@ -76,20 +92,7 @@ def export_workbook(data):
     sheet.page_setup.fitToWidth = 1
     sheet.page_setup.fitToHeight = 0
     book.calculation = CalcProperties(fullCalcOnLoad=True, forceFullCalc=True, calcMode='auto')
-    raw = io.BytesIO()
-    book.save(raw)
-    # Limpiar propiedades de aplicación sin alterar datos, fórmulas ni relaciones.
     result = io.BytesIO()
-    with zipfile.ZipFile(io.BytesIO(raw.getvalue())) as source, zipfile.ZipFile(result, 'w', zipfile.ZIP_DEFLATED) as target:
-        for entry in source.infolist():
-            content = source.read(entry.filename)
-            if entry.filename == 'docProps/app.xml':
-                xml = ET.fromstring(content)
-                for node in xml:
-                    if node.tag.rsplit('}', 1)[-1] == 'Application':
-                        node.text = 'Microsoft Excel'
-                    elif node.tag.rsplit('}', 1)[-1] == 'AppVersion':
-                        node.text = '16.0'
-                content = ET.tostring(xml, encoding='utf-8', xml_declaration=True)
-            target.writestr(entry, content)
+    # La biblioteca reconstruye hojas, relaciones y propiedades en una sola escritura.
+    ExcelWriter(book, PublicArchive(result, 'w', zipfile.ZIP_DEFLATED, allowZip64=True)).save()
     return result.getvalue()
