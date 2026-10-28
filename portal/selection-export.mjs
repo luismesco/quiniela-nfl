@@ -73,7 +73,7 @@ export async function selectionCanvas(model,format='jpg'){
    text(ctx,code,tx+102,teamTop+teamArea/2+15,half-115,selected?48:32,selected);
    if(selected){
     ctx.strokeStyle='#25543c';ctx.lineWidth=5;ctx.beginPath();
-    ctx.moveTo(tx+230,teamTop+teamArea/2);ctx.lineTo(tx+240,teamTop+teamArea/2+10);ctx.lineTo(tx+257,teamTop+teamArea/2-11);ctx.stroke();
+    ctx.moveTo(tx-36,teamTop+teamArea/2);ctx.lineTo(tx-26,teamTop+teamArea/2+10);ctx.lineTo(tx-9,teamTop+teamArea/2-11);ctx.stroke();
    }
   }
   ctx.fillStyle='#767676';text(ctx,'VS',x+colW/2-13,teamTop+teamArea/2+8,30,21,true);
