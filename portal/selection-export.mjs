@@ -62,7 +62,7 @@ export async function selectionCanvas(model,format='jpg'){
   ctx.fillStyle='#657068';text(ctx,String(i+1).padStart(2,'0'),x+14,y+27,40,21,true);
   const half=(colW-90)/2,teamTop=y+33,teamArea=rowH-91;
   for(const [side,code] of [['away',g.away],['home',g.home]]){
-   const selected=g.choice===code,tx=x+58+(side==='home'?half+28:0);
+   const selected=g.choice===code,tx=x+58+(side==='home'?half+62:0);
    ctx.fillStyle=selected?'#25543c':'#767676';
    text(ctx,side==='away'?'VISITANTE':'LOCAL',tx,y+25,half-15,18,true);
    const logo=selected?Math.min(86,teamArea):Math.min(54,teamArea),ly=teamTop+(teamArea-logo)/2;
