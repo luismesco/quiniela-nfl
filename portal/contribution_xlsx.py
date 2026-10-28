@@ -45,9 +45,10 @@ def configure_print_layout(sheet, end=27, count=16):
     sheet.auto_filter.ref = f'A11:F{end}'
     sheet.print_area = f'A1:F{end + 5}'
     sheet.print_title_rows = '1:11'
-    sheet.sheet_properties.pageSetUpPr.fitToPage = True
-    sheet.page_setup.orientation = 'portrait'
+    sheet.sheet_properties.pageSetUpPr.fitToPage = False
+    sheet.page_setup.orientation = 'landscape'
     sheet.page_setup.paperSize = sheet.PAPERSIZE_LETTER
+    sheet.page_setup.scale = 100
     sheet.page_setup.fitToWidth = 1
     sheet.page_setup.fitToHeight = 1 if count <= 20 else 0
     sheet.page_margins = PageMargins(left=0.3, right=0.3, top=0.3, bottom=0.3, header=0.1, footer=0.1)
@@ -60,6 +61,23 @@ def configure_print_layout(sheet, end=27, count=16):
     sheet.sheet_view.topLeftCell = 'A1'
     sheet.sheet_view.selection[0].activeCell = 'C12'
     sheet.sheet_view.selection[0].sqref = 'C12'
+    # El tamaño natural también cabe en Carta horizontal en Diseño de página.
+    # Ajustar sólo la escala de impresión no cambia los saltos de esa vista.
+    for column, width in {'A':28, 'B':18, 'C':14, 'D':16, 'E':18, 'F':28}.items():
+        sheet.column_dimensions[column].width = width
+    literal(sheet['D11'], 'Importe')
+    sheet.cell(end + 4, 1).value = None
+    for row, height in enumerate([16,18,18,15,17,18,5,15,20,21,24], start=1):
+        sheet.row_dimensions[row].height = height
+    for row in range(12, end + 1):
+        sheet.row_dimensions[row].height = 18
+    for offset, height in enumerate([4,16,17,20,12], start=1):
+        sheet.row_dimensions[end + offset].height = height
+    sheet.row_breaks.brk.clear()
+    sheet.col_breaks.brk.clear()
+    for drawing in sheet._images:
+        if drawing.anchor._from.row == 1:
+            drawing.anchor.ext.cx = drawing.anchor.ext.cy = 112 * 9525
 
 
 def export_workbook(data, blank=False):
