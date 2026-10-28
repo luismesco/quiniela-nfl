@@ -60,7 +60,14 @@ export async function selectionCanvas(model,format='jpg'){
   ctx.fillStyle='#ffffff';ctx.fillRect(x,y,colW,rowH-12);
   ctx.strokeStyle='#d6ded3';ctx.lineWidth=2;ctx.strokeRect(x,y,colW,rowH-12);
   ctx.fillStyle='#657068';text(ctx,String(i+1).padStart(2,'0'),x+14,y+27,40,21,true);
-  const half=(colW-90)/2,teamTop=y+33,teamArea=rowH-91;
+  const half=(colW-90)/2,teamTop=y+33,teamArea=rowH-91,tied=g.choice==='TIE';
+  if(tied){
+   ctx.save();ctx.beginPath();ctx.rect(x+12,teamTop,colW-24,teamArea);ctx.clip();
+   ctx.font=`700 ${teamArea*1.25}px Condensed`;ctx.fillStyle='#606760';ctx.globalAlpha=.36;
+   ctx.textAlign='center';ctx.textBaseline='middle';
+   ctx.translate(x+colW/2,teamTop+teamArea/2);ctx.scale((colW-40)/ctx.measureText('EMPATE').width,1);
+   ctx.fillText('EMPATE',0,0);ctx.restore();
+  }
   for(const [side,code] of [['away',g.away],['home',g.home]]){
    const selected=g.choice===code,tx=x+58+(side==='home'?half+62:0);
    ctx.fillStyle=selected?'#25543c':'#767676';
@@ -76,8 +83,8 @@ export async function selectionCanvas(model,format='jpg'){
     ctx.moveTo(tx-36,teamTop+teamArea/2);ctx.lineTo(tx-26,teamTop+teamArea/2+10);ctx.lineTo(tx-9,teamTop+teamArea/2-11);ctx.stroke();
    }
   }
-  ctx.fillStyle='#767676';text(ctx,'VS',x+colW/2-13,teamTop+teamArea/2+8,30,21,true);
-  const tied=g.choice==='TIE',chosen=tied?'ELECCIÓN: EMPATE (TIE)':g.choice?`Elección: ${model.teams[g.choice]?.name||g.choice}`:'Sin elección guardada';
+  if(!tied){ctx.fillStyle='#767676';text(ctx,'VS',x+colW/2-13,teamTop+teamArea/2+8,30,21,true);}
+  const chosen=tied?'ELECCIÓN: EMPATE (TIE)':g.choice?`Elección: ${model.teams[g.choice]?.name||g.choice}`:'Sin elección guardada';
   ctx.fillStyle=g.choice&&!tied?'#e4eedc':'#eceeec';ctx.fillRect(x+12,y+rowH-54,colW-24,42);
   ctx.save();ctx.globalAlpha=tied?.8:1;ctx.fillStyle=g.choice&&!tied?'#25543c':'#606760';text(ctx,chosen,x+26,y+rowH-24,colW-52,32,true);ctx.restore();
  }
