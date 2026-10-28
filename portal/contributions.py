@@ -120,12 +120,15 @@ def register_contributions(app, db, selected_round, cache_get, audit):
     @app.get('/api/treasurer/contributions.xlsx')
     def contribution_export():
         from portal.contribution_xlsx import export_workbook
+        blank = request.args.get('blank', '0')
+        if blank not in ('0', '1'):
+            abort(400, 'Formato de descarga inválido.')
         with db() as conn:
             conn.execute('BEGIN')
             rid = selected_round(conn, request.args.get('round'))['id']
             data = read(conn, rid)
-        return send_file(io.BytesIO(export_workbook(data)), as_attachment=True,
+        return send_file(io.BytesIO(export_workbook(data, blank=blank == '1')), as_attachment=True,
                          mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                         download_name=f'aportaciones-{"PRUEBA-" if data["sandbox"] else ""}{rid}.xlsx')
+                         download_name=f'aportaciones-{"PRUEBA-" if data["sandbox"] else ""}{rid}{"-en-blanco" if blank == "1" else ""}.xlsx')
 
     return access, update
