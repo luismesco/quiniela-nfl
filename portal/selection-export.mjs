@@ -16,7 +16,7 @@ export function selectionModel(data,userId,mascot=SHARE_MASCOTS[0]){
  const person=data.participants.find(p=>p.id===userId);if(!person)throw Error('No se encontró al participante.');
  const games=data.games.map(g=>({id:g.id,away:g.away,home:g.home,start:g.start,
   choice:[g.away,g.home,'TIE'].includes(person.choices[g.id])?person.choices[g.id]:null}));
- return {name:person.name,season:data.season,week:data.week,phase:data.phase,roundId:data.roundId,testMode:!!data.testMode,
+ return {name:person.name,season:data.season,week:data.week,phase:data.phase,roundId:data.roundId,testMode:!!(data.testMode||data.adminSandbox),
   complete:games.length>0&&games.every(g=>g.choice),games,teams:structuredClone(data.teams||{}),
   mascot:SHARE_MASCOTS.includes(mascot)?mascot:SHARE_MASCOTS[0]};
 }

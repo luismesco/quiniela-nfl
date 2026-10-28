@@ -59,51 +59,60 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
         return target, source, candidates, None
 
     def files(rid):
-        folder = root / rid
+        media_root = Path(app.config['DATA_DIR']) / 'pruebas-admin' / 'treasurer' if getattr(g, 'admin_sandbox', False) else root
+        folder = media_root / rid
         return folder, folder / 'draw.mp4'
 
     def read(conn, rid):
         row = conn.execute('SELECT * FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
         if row:
             data = json.loads(row['payload'])
-            data.update(status=row['status'], videoUrl='/api/treasurer/video?round=' + quote(rid) if row['status'] == 'ready' else None,
-                        posterUrl='/api/treasurer/poster?round=' + quote(rid) if row['status'] == 'ready' else None)
+            mode = '&mode=prueba' if getattr(g, 'admin_sandbox', False) else ''
+            data.update(status=row['status'], videoUrl='/api/treasurer/video?round=' + quote(rid) + mode if row['status'] == 'ready' else None,
+                        posterUrl='/api/treasurer/poster?round=' + quote(rid) + mode if row['status'] == 'ready' else None)
             return data
         target, source, candidates, reason = eligibility(conn, rid)
         return {'roundId': target['id'], 'week': target['week'], 'season': target['season'],
                 'sourceRound': source, 'candidates': candidates, 'winner': None,
-                'status': 'unavailable' if reason else 'pending', 'reason': reason, 'videoUrl': None, 'posterUrl': None}
+                'status': 'unavailable' if reason else 'pending', 'reason': reason, 'videoUrl': None, 'posterUrl': None,
+                'sandbox': bool(getattr(g, 'admin_sandbox', False))}
 
     def start_video(rid):
+        sandbox = getattr(g, 'admin_sandbox', False)
+        key = (sandbox, rid)
         with lock:
-            if rid in running:
+            if key in running:
                 return
-            running.add(rid)
+            running.add(key)
 
         def work():
+            context = app.app_context()
+            context.push()
+            g.admin_sandbox = sandbox
             try:
-                with app.app_context(), db() as conn:
+                with db() as conn:
                     row = conn.execute('SELECT * FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
                     if not row or row['status'] == 'ready':
                         return
                     draw = json.loads(row['payload'])
                     conn.execute("UPDATE treasurer_draws SET status='rendering',updated_at=? WHERE round_id=?", (now(), rid))
                 folder, video = files(rid)
-                folder.mkdir(exist_ok=True, mode=0o700)
+                folder.mkdir(parents=True, exist_ok=True, mode=0o700)
                 temporary = folder / 'draw.part.mp4'
                 app.config.get('TREASURER_RENDERER', render_video)(draw, temporary)
                 temporary.chmod(0o600)
                 temporary.replace(video)
                 sha = hashlib.sha256(video.read_bytes()).hexdigest()
-                with app.app_context(), db() as conn:
+                with db() as conn:
                     conn.execute("UPDATE treasurer_draws SET status='ready',video_sha256=?,updated_at=? WHERE round_id=?", (sha, now(), rid))
             except Exception:
                 app.logger.exception('No se pudo preparar el video del tesorero: %s', rid)
-                with app.app_context(), db() as conn:
+                with db() as conn:
                     conn.execute("UPDATE treasurer_draws SET status='error',updated_at=? WHERE round_id=?", (now(), rid))
             finally:
                 with lock:
-                    running.discard(rid)
+                    running.discard(key)
+                context.pop()
         threading.Thread(target=work, daemon=True, name='treasurer-video').start()
 
     @app.get('/api/treasurer')
@@ -160,7 +169,7 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
         if not path.is_file():
             abort(404, 'El archivo del sorteo no está disponible.')
         response = send_file(path, mimetype='video/mp4' if kind == 'video' else 'image/png', conditional=True,
-                             download_name=f'tesorero-{rid}.mp4' if kind == 'video' else f'tesorero-{rid}.png')
+                             download_name=f'{"PRUEBA-" if getattr(g, "admin_sandbox", False) else ""}tesorero-{rid}.mp4' if kind == 'video' else f'{"PRUEBA-" if getattr(g, "admin_sandbox", False) else ""}tesorero-{rid}.png')
         response.headers['Cache-Control'] = 'private, max-age=3600'
         return response
 

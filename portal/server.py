@@ -19,7 +19,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import bcrypt
-from flask import Flask, abort, g, jsonify, redirect, request, send_file, send_from_directory
+from flask import Flask, abort, g, has_app_context, jsonify, redirect, request, send_file, send_from_directory
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,10 +62,15 @@ def create_app(config=None):
     directory = Path(app.config['DATA_DIR'])
     directory.mkdir(parents=True, exist_ok=True, mode=0o700)
     app.config['DB'] = str(directory / 'quiniela.sqlite3')
+    sandbox_directory = directory / 'pruebas-admin'
+
+    def database_path(real=False):
+        testing = not real and has_app_context() and getattr(g, 'admin_sandbox', False)
+        return sandbox_directory / 'quiniela.sqlite3' if testing else Path(app.config['DB'])
 
     @contextmanager
-    def db():
-        conn = sqlite3.connect(app.config['DB'], timeout=25)
+    def db(real=False):
+        conn = sqlite3.connect(database_path(real), timeout=25)
         conn.row_factory = sqlite3.Row
         conn.execute('PRAGMA foreign_keys=ON')
         conn.execute('PRAGMA busy_timeout=25000')
@@ -207,9 +212,10 @@ def create_app(config=None):
     def identity():
         g.user = None
         g.session = None
+        g.admin_sandbox = False
         token = request.cookies.get('qf_session', '')
         if token:
-            with db() as conn:
+            with db(real=True) as conn:
                 row = conn.execute('SELECT * FROM sessions WHERE token_hash=? AND expires_at>?',
                                    (digest(token), app.config['NOW']())).fetchone()
                 if row:
@@ -228,6 +234,19 @@ def create_app(config=None):
             if request.path != '/api/login':
                 if not g.session or not hmac.compare_digest(request.headers.get('X-CSRF-Token', ''), g.session['csrf']):
                     abort(403, 'Tu sesión cambió. Recarga la página.')
+        requested_sandbox = request.headers.get('X-QF-Mode') == 'prueba' or request.args.get('mode') == 'prueba'
+        if requested_sandbox and request.path.startswith('/api/'):
+            if not g.user or g.user['role'] != 'admin':
+                abort(403, 'El modo de prueba general es sólo para Luis.')
+            if request.path != '/api/admin/sandbox':
+                if not (sandbox_directory / 'quiniela.sqlite3').is_file():
+                    abort(409, 'Inicia el modo de prueba desde el botón Probar funciones.')
+                g.admin_sandbox = True
+                with db() as conn:
+                    clone = conn.execute('SELECT * FROM users WHERE id=?', (g.user['id'],)).fetchone()
+                    if not clone or clone['role'] != 'admin':
+                        abort(409, 'Reinicia el modo de prueba para continuar.')
+                    g.user = dict(clone)
 
     @app.after_request
     def headers(response):
@@ -263,6 +282,8 @@ def create_app(config=None):
         return data
 
     def session_start(conn, user_id):
+        if getattr(g, 'admin_sandbox', False):
+            return request.cookies.get('qf_session', ''), g.session['csrf']
         token, csrf = secrets.token_urlsafe(40), secrets.token_urlsafe(28)
         conn.execute('DELETE FROM sessions WHERE expires_at<?', (app.config['NOW'](),))
         conn.execute('INSERT INTO sessions VALUES(?,?,?,?,?)',
@@ -270,6 +291,8 @@ def create_app(config=None):
         return token, csrf
 
     def cookie(response, token):
+        if getattr(g, 'admin_sandbox', False):
+            return response
         response.set_cookie('qf_session', token, max_age=7*86400, secure=app.config['SECURE_COOKIES'],
                             httponly=True, samesite='Lax', path='/')
         return response
@@ -306,6 +329,8 @@ def create_app(config=None):
 
     @app.post('/api/logout')
     def logout():
+        if g.admin_sandbox:
+            return jsonify(ok=True, sandbox=True)
         with db() as conn:
             conn.execute('DELETE FROM sessions WHERE token_hash=?', (g.session['token_hash'],))
         response = jsonify(ok=True)
@@ -331,6 +356,10 @@ def create_app(config=None):
         return cookie(jsonify(ok=True, csrf=csrf), token)
 
     def selected_round(conn, requested=None):
+        if not requested and has_app_context() and getattr(g, 'admin_sandbox', False):
+            pinned = conn.execute("SELECT value FROM metadata WHERE key='admin_sandbox_round'").fetchone()
+            if pinned:
+                requested = pinned[0]
         if requested:
             row = conn.execute('SELECT * FROM rounds WHERE id=?', (requested,)).fetchone()
             if not row:
@@ -400,6 +429,10 @@ def create_app(config=None):
 
     from portal.treasurer import register_treasurer
     treasurer_state = register_treasurer(app, db, selected_round, cache_get, audit, admin)
+    from portal.contributions import register_contributions
+    contribution_access, update_contribution = register_contributions(app, db, selected_round, cache_get, audit)
+    from portal.admin_sandbox import register_admin_sandbox
+    register_admin_sandbox(app, db, directory, selected_round, cache_set, audit, admin)
 
     @app.get('/api/state')
     def get_state():
@@ -408,6 +441,8 @@ def create_app(config=None):
             data = state(conn, request.args.get('round'), sandbox)
             if not sandbox:
                 data['treasurer'] = treasurer_state(conn, data['roundId'])
+                data['contributionAccess'] = contribution_access(conn, data['roundId'])
+            data['adminSandbox'] = g.admin_sandbox
             if sandbox:
                 choices = {r['game_id']: r['choice'] for r in conn.execute('''SELECT p.game_id,p.choice FROM sandbox_picks p
                     JOIN games g ON g.id=p.game_id WHERE p.user_id=? AND g.round_id=?''', (g.user['id'], data['roundId']))}
@@ -493,12 +528,10 @@ def create_app(config=None):
     def payment():
         data=body();paid=data.get('paid')
         if paid is not None and type(paid) is not bool:abort(400,'Estado de aportación inválido.')
+        if not isinstance(data.get('round'), str):abort(400,'Indica la jornada de la aportación.')
         with db() as conn:
-            selected_round(conn,data.get('round'))
-            if not conn.execute('SELECT id FROM users WHERE id=?',(data.get('user'),)).fetchone():abort(404)
-            conn.execute('INSERT INTO participations VALUES(?,?,?) ON CONFLICT(round_id,user_id) DO UPDATE SET paid=excluded.paid',
-                         (data['round'],data['user'],paid))
-            audit(conn,g.user['id'],'payment_updated',data)
+            conn.execute('BEGIN IMMEDIATE')
+            update_contribution(conn,data['round'],data.get('user'),paid,g.user['id'])
         return jsonify(ok=True)
 
     @app.post('/api/admin/reset-password')
@@ -516,18 +549,19 @@ def create_app(config=None):
 
     def backup_response():
         temp=directory/f'backup-{secrets.token_hex(8)}.sqlite3'
-        source=sqlite3.connect(app.config['DB']);target=sqlite3.connect(temp)
+        source=sqlite3.connect(database_path());target=sqlite3.connect(temp)
         try:source.backup(target)
         finally:source.close();target.close()
         raw=temp.read_bytes();temp.unlink()
         output=io.BytesIO()
         with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as z:
             z.writestr('quiniela.sqlite3',raw)
-            for media in sorted((directory/'treasurer').glob('*/draw.mp4')) + sorted((directory/'treasurer').glob('*/poster.png')):
-                z.write(media, str(media.relative_to(directory)))
-            z.writestr('respaldo.json',json.dumps({'author':AUTHOR,'createdAt':stamp(),'format':'SQLite','includes':'Cuentas, elecciones, aportaciones, comentarios e historial'},ensure_ascii=False))
+            media_directory = sandbox_directory if getattr(g, 'admin_sandbox', False) else directory
+            for media in sorted((media_directory/'treasurer').glob('*/draw.mp4')) + sorted((media_directory/'treasurer').glob('*/poster.png')):
+                z.write(media, str(media.relative_to(media_directory)))
+            z.writestr('respaldo.json',json.dumps({'author':AUTHOR,'createdAt':stamp(),'format':'SQLite','sandbox':getattr(g,'admin_sandbox',False),'includes':'Cuentas, elecciones, aportaciones, comentarios e historial'},ensure_ascii=False))
         output.seek(0)
-        return send_file(output,mimetype='application/zip',as_attachment=True,download_name=f'quiniela-{utcnow():%Y%m%dT%H%M%SZ}.zip')
+        return send_file(output,mimetype='application/zip',as_attachment=True,download_name=f'{"PRUEBA-" if getattr(g,"admin_sandbox",False) else ""}quiniela-{utcnow():%Y%m%dT%H%M%SZ}.zip')
 
     @app.get('/api/admin/backup')
     @admin
@@ -580,7 +614,7 @@ def create_app(config=None):
 
     @app.get('/portal/<path:filename>')
     def portal_assets(filename):
-        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs'):abort(404)
+        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs','contributions.mjs','team-stats.mjs'):abort(404)
         return send_from_directory(ROOT/'portal',filename)
 
     @app.get('/<filename>')

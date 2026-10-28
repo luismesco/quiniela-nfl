@@ -3,11 +3,11 @@ const percent=n=>new Intl.NumberFormat('es-MX',{maximumFractionDigits:2}).format
 const colors=['#e8bd67','#db8584','#a8c4ad','#85abb4','#c1b0cc','#dbab81'];
 let opened;
 export function closeTreasurer(){opened?.close();}
-export function treasurerCard(data){
+export function treasurerCard(data,action=''){
  if(data.testMode)return '';
  const draw=data.treasurer;if(!draw)return '';
  const chosen=draw.winner,ready=draw.status==='ready';
- return `<section class="treasurer-card" aria-label="Tesorero de la semana"><img src="/assets/mascotas/ajolote-tesorero.png" width="155" height="170" alt="Ajolote tesorero con lentes y calculadora"><div><span class="section-kicker">LA ORGANIZACIÓN TAMBIÉN SE COMPARTE</span><h2>${chosen?`${esc(chosen.name)}<small>Tesorero de la semana ${data.week}</small>`:'¿Quién será el tesorero esta semana?'}</h2><p>${chosen?'El puesto corresponde al ganador de la ruleta entre quienes ganaron la jornada anterior.':'El puesto se rifa entre el ganador o los ganadores de la quiniela anterior.'} <strong>La misma probabilidad para todos.</strong></p><button type="button" class="small-button" data-treasurer aria-haspopup="dialog">${ready?'Ver video del sorteo':'Conocer la ruleta del tesorero'} <span aria-hidden="true">↗</span></button></div>${chosen?'<span class="treasurer-seal" aria-hidden="true">TESORERO<br>DE LA SEMANA</span>':''}</section>`;
+ return `<section class="treasurer-card" aria-label="Tesorero de la semana"><img src="/assets/mascotas/ajolote-tesorero.png" width="155" height="170" alt="Ajolote tesorero con lentes y calculadora"><div><span class="section-kicker">LA ORGANIZACIÓN TAMBIÉN SE COMPARTE</span><h2>${chosen?`${esc(chosen.name)}<small>Tesorero de la semana ${data.week}</small>`:'¿Quién será el tesorero esta semana?'}</h2><p>${chosen?'El puesto corresponde al ganador de la ruleta entre quienes ganaron la jornada anterior.':'El puesto se rifa entre el ganador o los ganadores de la quiniela anterior.'} <strong>La misma probabilidad para todos.</strong></p><div class="treasurer-controls"><button type="button" class="small-button" data-treasurer aria-haspopup="dialog">${ready?'Ver video del sorteo':'Conocer la ruleta del tesorero'} <span aria-hidden="true">↗</span></button>${action}</div></div>${chosen?'<span class="treasurer-seal" aria-hidden="true">TESORERO<br>DE LA SEMANA</span>':''}</section>`;
 }
 function wheel(candidates,spinning=false){
  const n=candidates.length;if(!n)return '';

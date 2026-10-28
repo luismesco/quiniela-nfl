@@ -34,7 +34,10 @@ def frame(draw, t):
     textfont = lambda n: face('regular', n)
     def text(x, y, text, face, fill='#142b30', anchor='mm'):
         pen.text((x, y), text, font=face, fill=fill, anchor=anchor)
-    text(360, 30, 'LA QUINIELA FISCALIZADA', font(24))
+    if draw.get('sandbox'):
+        pen.rounded_rectangle((10, 5, 155, 43), radius=8, fill='#b94737')
+        text(82, 24, 'PRUEBA', font(26), fill='#ffffff')
+    text(435 if draw.get('sandbox') else 360, 30, 'LA QUINIELA FISCALIZADA', font(24))
     text(360, 75, f'TESORERO · SEMANA {draw["week"]}', font(38))
     candidates, index = draw['candidates'], draw['winnerIndex']
     n = len(candidates)
@@ -73,7 +76,7 @@ def render_video(draw, path):
                '-pix_fmt', 'rgb24', '-s', f'{SIZE}x{SIZE}', '-r', str(FPS), '-i', '-', '-an',
                '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', '-pix_fmt', 'yuv420p',
                '-movflags', '+faststart', '-fflags', '+bitexact', '-flags:v', '+bitexact', '-metadata', 'encoder=', '-metadata', 'artist=Luis Montañez Escobar',
-               '-metadata', f'title=Tesorero de la semana {draw["week"]}', str(path)]
+               '-metadata', f'title={"PRUEBA - " if draw.get("sandbox") else ""}Tesorero de la semana {draw["week"]}', str(path)]
     # Se conservan los fotogramas de esta misma ejecución, sin captura de pantalla ajena.
     process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
     try:
