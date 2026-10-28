@@ -74,11 +74,8 @@ export async function selectionCanvas(model,format='jpg'){
    text(ctx,side==='away'?'VISITANTE':'LOCAL',tx,y+25,half-15,18,true);
    const logo=selected||tied?Math.min(86,teamArea):Math.min(54,teamArea),ly=teamTop+(teamArea-logo)/2;
    const img=images[code],scale=logo/Math.max(img.width,img.height);
-   if(tied){
-    ctx.save();ctx.fillStyle='#ffffff';ctx.beginPath();
-    ctx.arc(tx+43,teamTop+teamArea/2,logo/2+5,0,Math.PI*2);ctx.fill();ctx.restore();
-   }
    ctx.save();ctx.filter=selected?'none':'grayscale(1)';
+   if(tied){ctx.shadowColor='rgba(20,43,48,.38)';ctx.shadowBlur=7;ctx.shadowOffsetY=2;}
    ctx.drawImage(img,tx+(86-img.width*scale)/2,ly+(logo-img.height*scale)/2,img.width*scale,img.height*scale);ctx.restore();
    ctx.fillStyle=selected?'#142b30':'#767676';
    text(ctx,code,tx+102,teamTop+teamArea/2+15,half-115,selected?48:32,selected);
