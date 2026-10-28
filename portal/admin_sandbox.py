@@ -43,7 +43,9 @@ def register_admin_sandbox(app, db, directory, selected_round, cache_set, audit,
                 return jsonify(ok=True, sandbox=True, created=False)
             if path.is_file():
                 with sqlite3.connect(path) as check:
-                    if check.execute("SELECT 1 FROM treasurer_draws WHERE status='rendering'").fetchone():
+                    jobs = check.execute("SELECT value FROM cache WHERE key LIKE 'treasurer_media_job:%'").fetchall()
+                    if (check.execute("SELECT 1 FROM treasurer_draws WHERE status='rendering'").fetchone()
+                            or any(json.loads(job[0]).get('status') == 'rendering' for job in jobs)):
                         abort(409, 'Espera a que termine el video de prueba antes de reiniciarla.')
             folder.mkdir(mode=0o700, exist_ok=True)
             temporary = folder / ('preparar-' + secrets.token_hex(8) + '.sqlite3')
@@ -59,6 +61,8 @@ def register_admin_sandbox(app, db, directory, selected_round, cache_set, audit,
                     target.execute('DELETE FROM sessions')
                     target.execute('DELETE FROM login_attempts')
                     target.execute('DELETE FROM treasurer_draws WHERE round_id=?', (rid,))
+                    target.execute('DELETE FROM cache WHERE key IN (?,?)',
+                                   ('treasurer_media_style:' + rid, 'treasurer_media_job:' + rid))
                     # Las elecciones de demostración se crean sólo en esta copia.
                     games = target.execute('SELECT id,away,home FROM games WHERE round_id=? ORDER BY start,id', (rid,)).fetchall()
                     people = target.execute("SELECT id FROM users WHERE active=1 AND role!='test' ORDER BY name,id").fetchall()

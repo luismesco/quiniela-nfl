@@ -3,6 +3,7 @@ import hashlib
 import json
 import secrets
 import threading
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
@@ -10,8 +11,8 @@ from urllib.parse import quote
 from flask import abort, g, jsonify, request, send_file
 
 
-def register_treasurer(app, db, selected_round, cache_get, audit, admin):
-    from portal.treasurer_video import render_video
+def register_treasurer(app, db, selected_round, cache_get, audit, admin, cache_set):
+    from portal.treasurer_video import render_video, DURATION, VIDEO_STYLE
 
     root = Path(app.config['DATA_DIR']) / 'treasurer'
     root.mkdir(exist_ok=True, mode=0o700)
@@ -58,18 +59,29 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
         candidates = [{'id': w['participant_id'], 'name': w['name'], 'correct': w['correct'], 'probability': 1 / count} for w in winners]
         return target, source, candidates, None
 
-    def files(rid):
+    def files(rid, style=None):
         media_root = Path(app.config['DATA_DIR']) / 'pruebas-admin' / 'treasurer' if getattr(g, 'admin_sandbox', False) else root
         folder = media_root / rid
+        if style == VIDEO_STYLE:
+            folder = folder / style
         return folder, folder / 'draw.mp4'
+
+    def active_files(conn, rid):
+        return files(rid, cache_get(conn, 'treasurer_media_style:' + rid))
 
     def read(conn, rid):
         row = conn.execute('SELECT * FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
         if row:
             data = json.loads(row['payload'])
             mode = '&mode=prueba' if getattr(g, 'admin_sandbox', False) else ''
-            data.update(status=row['status'], videoUrl='/api/treasurer/video?round=' + quote(rid) + mode if row['status'] == 'ready' else None,
-                        posterUrl='/api/treasurer/poster?round=' + quote(rid) + mode if row['status'] == 'ready' else None)
+            version = '&v=' + row['video_sha256'][:12] if row['video_sha256'] else ''
+            job = cache_get(conn, 'treasurer_media_job:' + rid, {})
+            style = cache_get(conn, 'treasurer_media_style:' + rid, data.get('mediaStyle', 'wheel-v1'))
+            data.update(status=row['status'], sandbox=bool(getattr(g, 'admin_sandbox', False)),
+                        videoStyle=style, videoDuration=DURATION if style == VIDEO_STYLE else data.get('duration', 10),
+                        videoRefreshStatus=job.get('status'),
+                        videoUrl='/api/treasurer/video?round=' + quote(rid) + mode + version if row['status'] == 'ready' else None,
+                        posterUrl='/api/treasurer/poster?round=' + quote(rid) + mode + version if row['status'] == 'ready' else None)
             return data
         target, source, candidates, reason = eligibility(conn, rid)
         return {'roundId': target['id'], 'week': target['week'], 'season': target['season'],
@@ -115,6 +127,60 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
                 context.pop()
         threading.Thread(target=work, daemon=True, name='treasurer-video').start()
 
+    def refresh_video(rid):
+        sandbox = bool(getattr(g, 'admin_sandbox', False))
+        key = (sandbox, rid)
+        with lock:
+            if key in running:
+                return
+            running.add(key)
+
+        def work():
+            with app.app_context():
+                g.admin_sandbox = sandbox
+                try:
+                    with db() as conn:
+                        row = conn.execute('SELECT * FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
+                        job = cache_get(conn, 'treasurer_media_job:' + rid, {})
+                        if not row or row['status'] != 'ready' or job.get('status') != 'rendering':
+                            return
+                        draw = json.loads(row['payload'])
+                        old_sha = row['video_sha256']
+                        requested_by = job.get('requestedBy', draw.get('drawnBy', 'luis'))
+                    draw['sandbox'] = sandbox
+                    original, _ = files(rid)
+                    original.mkdir(parents=True, exist_ok=True, mode=0o700)
+                    # El original sigue disponible hasta completar ambos archivos nuevos.
+                    with tempfile.TemporaryDirectory(prefix='.video-', dir=original) as temporary:
+                        candidate = Path(temporary) / 'draw.mp4'
+                        app.config.get('TREASURER_RENDERER', render_video)(draw, candidate)
+                        poster = Path(temporary) / 'poster.png'
+                        if not candidate.is_file() or not poster.is_file():
+                            raise RuntimeError('El video no está completo.')
+                        sha = hashlib.sha256(candidate.read_bytes()).hexdigest()
+                        candidate.chmod(0o600)
+                        poster.chmod(0o600)
+                        folder, video = files(rid, VIDEO_STYLE)
+                        folder.mkdir(parents=True, exist_ok=True, mode=0o700)
+                        candidate.replace(video)
+                        poster.replace(folder / 'poster.png')
+                    with db() as conn:
+                        conn.execute('BEGIN IMMEDIATE')
+                        cache_set(conn, 'treasurer_media_style:' + rid, VIDEO_STYLE)
+                        cache_set(conn, 'treasurer_media_job:' + rid, {'style': VIDEO_STYLE, 'status': 'ready'})
+                        conn.execute('UPDATE treasurer_draws SET video_sha256=?,updated_at=? WHERE round_id=?', (sha, now(), rid))
+                        audit(conn, requested_by, 'treasurer_video_refreshed', {'round': rid, 'style': VIDEO_STYLE,
+                              'previousVideo': old_sha, 'video': sha, 'winner': draw['winner']['id']})
+                except Exception:
+                    app.logger.exception('No se pudo renovar el video del tesorero: %s', rid)
+                    with db() as conn:
+                        cache_set(conn, 'treasurer_media_job:' + rid, {'style': VIDEO_STYLE, 'status': 'error'})
+                finally:
+                    with lock:
+                        running.discard(key)
+
+        threading.Thread(target=work, daemon=True, name='treasurer-video-refresh').start()
+
     @app.get('/api/treasurer')
     def get_treasurer():
         check_real()
@@ -124,7 +190,40 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
         # Si se interrumpe el servidor, reanudar el mismo video sin nuevo sorteo.
         if result['status'] == 'rendering':
             start_video(rid)
+        elif result.get('videoRefreshStatus') == 'rendering':
+            refresh_video(rid)
         return jsonify(result)
+
+    @app.post('/api/admin/treasurer/video')
+    @admin
+    def refresh_treasurer_video():
+        check_real()
+        payload = request.get_json(silent=True)
+        if not isinstance(payload, dict) or not isinstance(payload.get('round'), str):
+            abort(400, 'Indica la jornada del video.')
+        if payload.get('style', VIDEO_STYLE) != VIDEO_STYLE:
+            abort(400, 'El formato del video no es válido.')
+        with db() as conn:
+            conn.execute('BEGIN IMMEDIATE')
+            rid = selected_round(conn, payload['round'])['id']
+            row = conn.execute('SELECT * FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
+            if not row:
+                abort(404, 'Todavía no hay un resultado de esa jornada.')
+            if rid != selected_round(conn)['id'] or row['status'] != 'ready':
+                abort(409, 'Espera a que termine el video de la jornada vigente.')
+            folder, video = active_files(conn, rid)
+            if (read(conn, rid)['videoStyle'] == VIDEO_STYLE and video.is_file() and (folder / 'poster.png').is_file()
+                    and hashlib.sha256(video.read_bytes()).hexdigest() == row['video_sha256']):
+                return jsonify(changed=False, treasurer=read(conn, rid))
+            job = cache_get(conn, 'treasurer_media_job:' + rid, {})
+            started = job.get('status') != 'rendering'
+            if started:
+                cache_set(conn, 'treasurer_media_job:' + rid, {'style': VIDEO_STYLE, 'status': 'rendering',
+                          'startedAt': now(), 'requestedBy': g.user['id']})
+                audit(conn, g.user['id'], 'treasurer_video_refresh_requested', {'round': rid, 'style': VIDEO_STYLE})
+            result = read(conn, rid)
+        refresh_video(rid)
+        return jsonify(changed=started, treasurer=result), 202
 
     @app.post('/api/admin/treasurer/draw')
     @admin
@@ -147,7 +246,7 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
                 candidates = result['candidates']
                 index = secrets.randbelow(len(candidates))
                 result.update(winner=candidates[index], winnerIndex=index, drawnAt=now(), drawnBy=g.user['id'],
-                              turns=6, duration=10, method='uniform', status='rendering')
+                              turns=6, duration=DURATION, mediaStyle=VIDEO_STYLE, method='uniform', status='rendering')
                 # La clave única y BEGIN IMMEDIATE impiden dos resultados simultáneos.
                 conn.execute('INSERT INTO treasurer_draws VALUES(?,?,?,?,?)', (rid, json.dumps(result, ensure_ascii=False), 'rendering', None, now()))
                 audit(conn, g.user['id'], 'treasurer_drawn', {'round': rid, 'source': result['sourceRound']['id'],
@@ -162,9 +261,9 @@ def register_treasurer(app, db, selected_round, cache_get, audit, admin):
         with db() as conn:
             rid = selected_round(conn, request.args.get('round'))['id']
             row = conn.execute('SELECT status FROM treasurer_draws WHERE round_id=?', (rid,)).fetchone()
+            folder, video = active_files(conn, rid)
         if not row or row['status'] != 'ready':
             abort(404, 'El video del sorteo todavía no está disponible.')
-        folder, video = files(rid)
         path = video if kind == 'video' else folder / 'poster.png'
         if not path.is_file():
             abort(404, 'El archivo del sorteo no está disponible.')

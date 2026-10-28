@@ -428,7 +428,7 @@ def create_app(config=None):
         ingest_history(conn, {'schema':1,'events':[event]})
 
     from portal.treasurer import register_treasurer
-    treasurer_state = register_treasurer(app, db, selected_round, cache_get, audit, admin)
+    treasurer_state = register_treasurer(app, db, selected_round, cache_get, audit, admin, cache_set)
     from portal.contributions import register_contributions
     contribution_access, update_contribution = register_contributions(app, db, selected_round, cache_get, audit)
     from portal.admin_sandbox import register_admin_sandbox
@@ -557,7 +557,11 @@ def create_app(config=None):
         with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as z:
             z.writestr('quiniela.sqlite3',raw)
             media_directory = sandbox_directory if getattr(g, 'admin_sandbox', False) else directory
-            for media in sorted((media_directory/'treasurer').glob('*/draw.mp4')) + sorted((media_directory/'treasurer').glob('*/poster.png')):
+            media_root = media_directory/'treasurer'
+            media_files = {media for pattern in ('*/draw.mp4', '*/poster.png', '*/*/draw.mp4', '*/*/poster.png')
+                           for media in media_root.glob(pattern)
+                           if media.is_file() and not any(part.startswith('.') for part in media.relative_to(media_root).parts)}
+            for media in sorted(media_files):
                 z.write(media, str(media.relative_to(media_directory)))
             z.writestr('respaldo.json',json.dumps({'author':AUTHOR,'createdAt':stamp(),'format':'SQLite','sandbox':getattr(g,'admin_sandbox',False),'includes':'Cuentas, elecciones, aportaciones, comentarios e historial'},ensure_ascii=False))
         output.seek(0)
