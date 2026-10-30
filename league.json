@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-30T00:52:03.598Z",
+  "fetchedAt": "2026-10-30T00:54:10.168Z",
   "calendarUpdatedAt": "2026-10-30T00:52:03.598Z",
   "standingsUpdatedAt": "2026-10-30T00:52:03.598Z",
   "standingsSource": "ESPN",
@@ -1625,7 +1625,7 @@
       "venue": "Lambeau Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 3,
+      "awayScore": 9,
       "homeScore": 6
     },
     {
