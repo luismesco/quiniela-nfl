@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-30T03:26:44.594Z",
-  "calendarUpdatedAt": "2026-10-30T03:26:44.594Z",
-  "standingsUpdatedAt": "2026-10-30T03:26:44.594Z",
+  "fetchedAt": "2026-10-30T04:18:14.706Z",
+  "calendarUpdatedAt": "2026-10-30T04:18:14.706Z",
+  "standingsUpdatedAt": "2026-10-30T04:18:14.706Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5097,7 +5097,7 @@
       "teams": [
         {
           "team": "NYG",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 4,
           "losses": 2,
           "ties": 1,
@@ -5180,14 +5180,14 @@
         },
         {
           "team": "GB",
-          "sourceOrder": 5,
-          "wins": 4,
+          "sourceOrder": 4,
+          "wins": 5,
           "losses": 3,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": -1,
-          "pointsFor": 144,
-          "pointsAgainst": 145
+          "pct": 0.625,
+          "differential": 7,
+          "pointsFor": 171,
+          "pointsAgainst": 164
         }
       ]
     },
@@ -5199,12 +5199,12 @@
           "team": "CAR",
           "sourceOrder": 7,
           "wins": 3,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.5,
-          "differential": -7,
-          "pointsFor": 159,
-          "pointsAgainst": 166
+          "pct": 0.42857143,
+          "differential": -15,
+          "pointsFor": 178,
+          "pointsAgainst": 193
         },
         {
           "team": "ATL",
