@@ -1,4 +1,4 @@
-import {compactEnabled,compactTools,previewBar,openPreviewMenu,closePreviewMenu,openRegistrationConfirmation,closeRegistrationConfirmation} from './compact-preview.mjs';
+import {compactEnabled,previewEnabled,compactTools,previewBar,openPreviewMenu,closePreviewMenu,openRegistrationConfirmation,closeRegistrationConfirmation} from './compact-preview.mjs';
 import {contributionsAction,openContributions,closeContributions} from './contributions.mjs';
 import {teamStatsAction,openTeamStats,closeTeamStats} from './team-stats.mjs';
 import {treasurerCard,openTreasurer,closeTreasurer} from './treasurer.mjs';
@@ -23,7 +23,8 @@ function closeTools(){closeRegistrationConfirmation();closePreviewMenu();closeCo
 
 let boardLayout=matchMedia('(min-width:1100px)').matches?'matrix':'cards';
 const user=()=>auth?.user||bundle?.user;
-const compact=()=>compactEnabled(user(),location.search);
+const compact=()=>compactEnabled(user());
+const isLayoutPreview=()=>previewEnabled(user(),location.search);
 const me=()=>data.participants.find(p=>p.id===user().id);
 const logo=t=>t==='TIE'?'/assets/empate.svg':`/assets/teams/${encodeURIComponent(t)}.svg`;
 const name=t=>t==='TIE'?'Empate':data.teams[t]?.name||t;
@@ -60,7 +61,7 @@ async function changePassword(e,first=false){
 }
 async function logout(){if(dirty&&!confirm('Tienes elecciones sin guardar. ¿Quieres cerrar sesión?'))return;if(adminSandbox){await switchSandbox('exit');return;}try{await api('/api/logout',{method:'POST',body:'{}'});}catch{}auth=null;csrf='';dirty=false;bundle=null;serverClock=null;clearTimeout(deadlineTimer);showLogin();}
 async function enter(){
- $('#entry').hidden=true;$('#portal').hidden=false;if(compact()&&!adminSandbox)await switchSandbox('start');else await load(true);
+ $('#entry').hidden=true;$('#portal').hidden=false;if(isLayoutPreview()&&!adminSandbox)await switchSandbox('start');else await load(true);
 }
 function nav(){
  const links=[['picks','ball','Mi quiniela'],['board','grid','El grupo'],['ranking','trophy','Clasificación'],['calendar','calendar','Calendario NFL'],['standings','chart','Posiciones NFL'],['feedback','info','Ayuda y comentarios']].filter(x=>user().role!=='test'||['picks','calendar','standings','feedback'].includes(x[0]));
@@ -164,7 +165,7 @@ async function render(){
  if(view==='picks')content=picksView();else if(view==='board')content=boardView();else if(view==='ranking')content=rankingView();else if(view==='calendar')content=gamesView();else if(view==='standings')content=standingsView(bundle.league,conference,data.teams);else if(view==='feedback')content=await feedbackView();else if(view==='admin'&&user().role==='admin')content=await adminView();else if(view==='rules')content=rulesView();else content=accountView();
  $('#portal').classList.toggle('compact-preview',compact());
  const regular=()=>adminTestBar()+(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?(data.treasurer?treasurerCard(data,contributionsAction(data)):contributionsAction(data))+companionActions(data):'')+content;
- $('#workspace').innerHTML=compact()?previewBar(data)+(data.adminSandbox?'<details class="compact-sandbox-controls"><summary>Controles de prueba · datos separados</summary>'+adminTestBar()+'</details>':`<div class="admin-test-entry"><button type="button" class="small-button" data-sandbox="start">Probar con datos separados</button></div>`)+`<div class="compact-layout ${['picks','board','ranking'].includes(view)?'has-tools':''}"><section class="compact-primary" aria-label="${esc($('#view-label').textContent)}">${content}</section>${['picks','board','ranking'].includes(view)?compactTools(data):''}</div>`:regular();hydrateIcons();
+ $('#workspace').innerHTML=compact()?(isLayoutPreview()?previewBar(data):'')+(data.adminSandbox?'<details class="compact-sandbox-controls"><summary>Controles de prueba · datos separados</summary>'+adminTestBar()+'</details>':adminTestBar())+(data.testMode?'<div class="notice" role="status"><strong>Cuenta de prueba</strong> · Tus elecciones no participan en el grupo ni en la bolsa.</div>':'')+`<div class="compact-layout ${['picks','board','ranking'].includes(view)?'has-tools':''}"><section class="compact-primary" aria-label="${esc($('#view-label').textContent)}">${content}</section>${['picks','board','ranking'].includes(view)?compactTools(data):''}</div>`:regular();hydrateIcons();
  $('#picks-form')?.addEventListener('submit',savePicks);
  $('#account-password')?.addEventListener('submit',e=>changePassword(e));
  $('#account-logout')?.addEventListener('click',logout);
@@ -178,7 +179,7 @@ async function savePicks(e){
 function detail(id){activeGame=null;const p=data.participants.find(p=>p.id===id);if(!p)return;$('#detail-body').innerHTML=`<h2 id="detail-title">${esc(p.name)} ${paid(p)}</h2><p>${score(p,data.games).correct} aciertos · ${Object.keys(p.choices).length}/${data.games.length} elecciones</p><div class="detail-games">${data.games.map(g=>`<div class="detail-game"><span>${esc(g.away)} vs ${esc(g.home)}</span><b>${p.choices[g.id]?img(p.choices[g.id])+esc(name(p.choices[g.id])):'Sin elección'}</b><span>${{hit:'✓ Acierto',miss:'× Fallo',pending:'Por jugar',empty:'—'}[outcome(p,g)]}</span></div>`).join('')}</div>`;if(!$('#detail').open)$('#detail').showModal();}
 function adminTestBar(){
  if(user().role!=='admin')return '';
- return data.adminSandbox?`<section class="admin-test-banner" aria-label="Modo de prueba"><div><strong>MODO DE PRUEBA</strong><p>Puedes probar las funciones con datos separados. Las elecciones, aportaciones, accesos y sorteos reales se conservan.</p></div><div class="admin-test-actions"><button type="button" class="small-button" data-sandbox="scheduled">Partidos por jugar</button><button type="button" class="small-button" data-sandbox="live">Simular en juego</button><button type="button" class="small-button" data-sandbox="final">Simular finales</button><button type="button" class="small-button" data-sandbox="reset">Reiniciar prueba</button><button type="button" class="primary-button" data-sandbox="exit">Salir de prueba</button></div></section>`:`<div class="admin-test-entry">${user().id==='luis'?'<button type="button" class="small-button" data-layout-preview="on">Probar nueva vista</button>':''}<span>Prueba las funciones de la plataforma con datos separados.</span><button type="button" class="small-button" data-sandbox="start">Probar funciones</button></div>`;
+ return data.adminSandbox?`<section class="admin-test-banner" aria-label="Modo de prueba"><div><strong>MODO DE PRUEBA</strong><p>Puedes probar las funciones con datos separados. Las elecciones, aportaciones, accesos y sorteos reales se conservan.</p></div><div class="admin-test-actions"><button type="button" class="small-button" data-sandbox="scheduled">Partidos por jugar</button><button type="button" class="small-button" data-sandbox="live">Simular en juego</button><button type="button" class="small-button" data-sandbox="final">Simular finales</button><button type="button" class="small-button" data-sandbox="reset">Reiniciar prueba</button><button type="button" class="primary-button" data-sandbox="exit">Salir de prueba</button></div></section>`:`<div class="admin-test-entry">${user().id==='luis'?'<button type="button" class="small-button" data-layout-preview="on">Probar con datos separados</button>':''}<span>Prueba las funciones de la plataforma con datos separados.</span>${user().id!=='luis'?'<button type="button" class="small-button" data-sandbox="start">Probar funciones</button>':''}</div>`;
 }
 async function switchSandbox(action){
  if(modeChanging)return;
@@ -189,7 +190,7 @@ async function switchSandbox(action){
  try{
   if(loadPromise)await loadPromise;
   if(action==='start'||action==='reset'){await api('/api/admin/sandbox',{method:'POST',body:JSON.stringify({reset:action==='reset'})});adminSandbox=true;round=null;}
-  else if(action==='exit'){if(compact()){const url=new URL(location.href);url.searchParams.delete('vista');history.replaceState(null,'',url);}adminSandbox=false;round=null;}
+  else if(action==='exit'){if(isLayoutPreview()){const url=new URL(location.href);url.searchParams.delete('vista');history.replaceState(null,'',url);}adminSandbox=false;round=null;}
   else {
    // Este endpoint sólo funciona en la copia y puede llamarse durante la transición.
    const result=await fetch('/api/admin/sandbox/scenario',{method:'POST',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf,'X-QF-Mode':'prueba'},body:JSON.stringify({scenario:action})});
@@ -205,7 +206,7 @@ async function switchSandbox(action){
 document.addEventListener('click',async e=>{
  const preview=e.target.closest('[data-layout-preview]');if(preview&&user()?.role==='admin'&&user()?.id==='luis'){if(modeChanging)return;const oldUrl=location.href,url=new URL(oldUrl),opening=preview.dataset.layoutPreview==='on';if(opening)url.searchParams.set('vista','compacta');else url.searchParams.delete('vista');history.replaceState(null,'',url);if(opening&&!adminSandbox)await switchSandbox('start');else if(!opening&&adminSandbox)await switchSandbox('exit');if(adminSandbox!==opening)history.replaceState(null,'',oldUrl);await render();return;}
  if(compact()&&e.target.closest('[data-preview-tools]')){const tools=e.target.closest('.compact-tools');const open=tools.classList.toggle('is-open');e.target.closest('[data-preview-tools]').setAttribute('aria-expanded',String(open));return;}
- if(compact()&&e.target.closest('[data-preview-more]')){closeTools();openPreviewMenu();return;}
+ if(compact()&&e.target.closest('[data-preview-more]')){closeTools();openPreviewMenu(user());return;}
  const mode=e.target.closest('[data-sandbox]');if(mode){mode.disabled=true;try{await switchSandbox(mode.dataset.sandbox);}finally{mode.disabled=false;}return;}
  const stats=e.target.closest('[data-team-stats],[data-team-stats-away]');if(stats){closeTools();openTeamStats({league:bundle.league,teams:data.teams,season:data.season,away:stats.dataset.teamStatsAway,home:stats.dataset.teamStatsHome,sandbox:data.adminSandbox,toast});return;}
  const contributions=e.target.closest('[data-contributions]');if(contributions){closeTools();await openContributions({api,roundId:data.roundId,toast,onUpdate:updated=>{for(const p of updated.participants){const target=data.participants.find(x=>x.id===p.id);if(target)target.paid=p.paid;}header();render();}});return;}
