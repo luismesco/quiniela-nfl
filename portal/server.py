@@ -198,6 +198,35 @@ def create_app(config=None):
     def capture_deadline(conn, rid):
         return cache_get(conn, 'round_deadline:' + rid)
 
+    def capture_extension(conn, rid, user_id):
+        # Individual grants live only in the private database and never change the round controller.
+        value = cache_get(conn, 'capture_extension:' + rid + ':' + user_id)
+        if not isinstance(value, dict):
+            return None
+        try:
+            if any(datetime.fromisoformat(value[field].replace('Z', '+00:00')).tzinfo is None for field in ('deadline', 'authorizedAt')):
+                return None
+        except (KeyError, TypeError, ValueError, AttributeError):
+            return None
+        user = conn.execute('SELECT role,active FROM users WHERE id=?', (user_id,)).fetchone()
+        deadline, authorized = epoch(value.get('deadline')), epoch(value.get('authorizedAt'))
+        now = app.config['NOW']()
+        allowed = value.get('initialClosedGames', [])
+        if (not user or not user['active'] or user['role'] != 'participant'
+                or value.get('userId') != user_id or value.get('roundId') != rid
+                or value.get('authorizedBy') != 'luis' or not value.get('id')
+                or not deadline or not authorized or authorized > now or now >= deadline
+                or not isinstance(allowed, list) or any(not isinstance(gid, str) for gid in allowed)):
+            return None
+        game_ids = {row['id'] for row in conn.execute('SELECT id FROM games WHERE round_id=?', (rid,))}
+        if not set(allowed).issubset(game_ids):
+            return None
+        return {'id': value['id'], 'deadline': value['deadline'], 'initialClosedGames': allowed}
+
+    def initial_closed_pick(extension, game, previous):
+        return (bool(extension) and previous is None and game['id'] in extension['initialClosedGames']
+                and game['status'] in ('live', 'final'))
+
     def game_closes_at(start, deadline, sandbox=False):
         times = (epoch(start),) if sandbox else (epoch(start), epoch(deadline))
         if any(value is None for value in times):
@@ -443,6 +472,18 @@ def create_app(config=None):
                 data['treasurer'] = treasurer_state(conn, data['roundId'])
                 data['contributionAccess'] = contribution_access(conn, data['roundId'])
             data['adminSandbox'] = g.admin_sandbox
+            extension = capture_extension(conn, data['roundId'], g.user['id']) if not sandbox and not g.admin_sandbox else None
+            if extension:
+                data['regularDeadline'] = data['deadline']
+                data['deadline'] = extension['deadline']
+                data['captureExtension'] = extension
+                own = next(person for person in data['participants'] if person['id'] == g.user['id'])
+                for game in data['games']:
+                    exceptional = initial_closed_pick(extension, game, own['choices'].get(game['id']))
+                    game['closesAt'] = extension['deadline'] if exceptional else game_closes_at(game['start'], extension['deadline'])
+                    game['registrationException'] = exceptional
+                    game['locked'] = bool(game.get('timeTbd')) or (not exceptional and game['status'] != 'scheduled') or not game['closesAt'] or app.config['NOW']() >= epoch(game['closesAt'])
+                data['captureClosed'] = all(game['locked'] for game in data['games'])
             if sandbox:
                 choices = {r['game_id']: r['choice'] for r in conn.execute('''SELECT p.game_id,p.choice FROM sandbox_picks p
                     JOIN games g ON g.id=p.game_id WHERE p.user_id=? AND g.round_id=?''', (g.user['id'], data['roundId']))}
@@ -468,6 +509,9 @@ def create_app(config=None):
             now = app.config['NOW']()
             sandbox = g.user['role'] == 'test'
             picks_table = 'sandbox_picks' if sandbox else 'picks'
+            extension = capture_extension(conn, rid, g.user['id']) if not sandbox and not g.admin_sandbox else None
+            if extension:
+                deadline = extension['deadline']
             changes=[]
             for gid,choice in choices.items():
                 game=conn.execute('SELECT * FROM games WHERE id=? AND round_id=?',(gid,rid)).fetchone()
@@ -476,14 +520,15 @@ def create_app(config=None):
                 old=conn.execute(f'SELECT choice FROM {picks_table} WHERE user_id=? AND game_id=?',(g.user['id'],gid)).fetchone()
                 if old and old[0]==choice:
                     continue
-                closes_at = game_closes_at(game['start'], deadline, sandbox)
+                exceptional = initial_closed_pick(extension, game, old)
+                closes_at = deadline if exceptional else game_closes_at(game['start'], deadline, sandbox)
                 if not sandbox and (not epoch(deadline) or now >= epoch(deadline)):
                     abort(409,'Esta jornada cerró sus elecciones. Actualiza la jornada.')
-                if json.loads(game['payload']).get('timeTbd') or game['status']!='scheduled' or not closes_at or now>=epoch(closes_at):
+                if json.loads(game['payload']).get('timeTbd') or (game['status']!='scheduled' and not exceptional) or not closes_at or now>=epoch(closes_at):
                     abort(409,'Ese partido ya cerró sus elecciones. Actualiza la jornada.')
                 conn.execute(f'INSERT INTO {picks_table} VALUES(?,?,?,?) ON CONFLICT(user_id,game_id) DO UPDATE SET choice=excluded.choice,updated_at=excluded.updated_at',
                              (g.user['id'],gid,choice,stamp()));changes.append({'game':gid,'before':old[0] if old else None,'after':choice})
-            audit(conn,g.user['id'],'sandbox_picks_saved' if sandbox else 'picks_saved',{'round':rid,'changes':changes})
+            audit(conn,g.user['id'],'sandbox_picks_saved' if sandbox else 'picks_saved',{'round':rid,'changes':changes,**({'captureExtensionId':extension['id']} if extension else {})})
             if not sandbox:
                 conn.execute('INSERT OR IGNORE INTO participations VALUES(?,?,NULL)',(rid,g.user['id']))
                 record_state(conn,state(conn,rid))
