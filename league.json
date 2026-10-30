@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-30T00:13:57.967Z",
+  "fetchedAt": "2026-10-30T00:16:09.731Z",
   "calendarUpdatedAt": "2026-10-30T00:13:57.967Z",
   "standingsUpdatedAt": "2026-10-30T00:13:57.967Z",
   "standingsSource": "ESPN",
@@ -1624,9 +1624,9 @@
       "timeTbd": false,
       "venue": "Lambeau Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_08_BAL_BUF",
