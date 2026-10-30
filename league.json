@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-10-30T01:27:26.231Z",
+  "fetchedAt": "2026-10-30T01:32:40.852Z",
   "calendarUpdatedAt": "2026-10-30T01:27:26.231Z",
   "standingsUpdatedAt": "2026-10-30T01:27:26.231Z",
   "standingsSource": "ESPN",
@@ -1626,7 +1626,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 13
+      "homeScore": 19
     },
     {
       "id": "2026_08_BAL_BUF",
