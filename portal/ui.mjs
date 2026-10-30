@@ -1,3 +1,4 @@
+import {compactEnabled,compactTools,previewBar,openPreviewMenu,closePreviewMenu,openRegistrationConfirmation,closeRegistrationConfirmation} from './compact-preview.mjs';
 import {contributionsAction,openContributions,closeContributions} from './contributions.mjs';
 import {teamStatsAction,openTeamStats,closeTeamStats} from './team-stats.mjs';
 import {treasurerCard,openTreasurer,closeTreasurer} from './treasurer.mjs';
@@ -18,10 +19,11 @@ let activeGame=null;
 let modeChanging=false,loadEpoch=0,loadPromise=null;
 let adminSandbox=sessionStorage.getItem('qf-admin-sandbox')==='prueba';
 const modeUrl=path=>adminSandbox?path+(path.includes('?')?'&':'?')+'mode=prueba':path;
-function closeTools(){closeCompanion();closeTreasurer();closeContributions();closeTeamStats();if($('#detail').open)$('#detail').close();}
+function closeTools(){closeRegistrationConfirmation();closePreviewMenu();closeCompanion();closeTreasurer();closeContributions();closeTeamStats();if($('#detail').open)$('#detail').close();}
 
 let boardLayout=matchMedia('(min-width:1100px)').matches?'matrix':'cards';
 const user=()=>auth?.user||bundle?.user;
+const compact=()=>compactEnabled(user(),location.search);
 const me=()=>data.participants.find(p=>p.id===user().id);
 const logo=t=>t==='TIE'?'/assets/empate.svg':`/assets/teams/${encodeURIComponent(t)}.svg`;
 const name=t=>t==='TIE'?'Empate':data.teams[t]?.name||t;
@@ -40,7 +42,7 @@ async function api(path,options={}){
  if(!response.ok)throw Error(result.error||'No pudimos completar la solicitud.');return result;
 }
 function showLogin(message=''){
- closeTools();adminSandbox=false;data=null;bundle=null;sessionStorage.removeItem('qf-admin-sandbox');
+ closeTools();$('#portal').classList.remove('compact-preview');adminSandbox=false;data=null;bundle=null;sessionStorage.removeItem('qf-admin-sandbox');
  clearTimeout(timer);$('#portal').hidden=true;$('#entry').hidden=false;
  $('#entry-body').innerHTML=`<span class="section-kicker">TU ACCESO AL GRUPO</span><h2>Vamos a la jornada.</h2><p>Usa los datos de tu tarjeta para entrar.</p><form id="login-form"><label for="username">Usuario<input id="username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required maxlength="80"></label><label for="password">Contraseña<input type="password" id="password" name="password" autocomplete="current-password" required maxlength="72"></label><button class="primary-button full" type="submit">Entrar a mi quiniela <span aria-hidden="true">↗</span></button><p class="form-error" id="login-error" role="alert" ${message?'':'hidden'}>${esc(message)}</p></form><small>Si necesitas recuperar tu acceso, pide a Luis una contraseña temporal nueva.</small>`;
  $('#username').value=new URL(location.href).searchParams.get('usuario')||'';
@@ -58,7 +60,7 @@ async function changePassword(e,first=false){
 }
 async function logout(){if(dirty&&!confirm('Tienes elecciones sin guardar. ¿Quieres cerrar sesión?'))return;if(adminSandbox){await switchSandbox('exit');return;}try{await api('/api/logout',{method:'POST',body:'{}'});}catch{}auth=null;csrf='';dirty=false;bundle=null;serverClock=null;clearTimeout(deadlineTimer);showLogin();}
 async function enter(){
- $('#entry').hidden=true;$('#portal').hidden=false;await load(true);
+ $('#entry').hidden=true;$('#portal').hidden=false;if(compact()&&!adminSandbox)await switchSandbox('start');else await load(true);
 }
 function nav(){
  const links=[['picks','ball','Mi quiniela'],['board','grid','El grupo'],['ranking','trophy','Clasificación'],['calendar','calendar','Calendario NFL'],['standings','chart','Posiciones NFL'],['feedback','info','Ayuda y comentarios']].filter(x=>user().role!=='test'||['picks','calendar','standings','feedback'].includes(x[0]));
@@ -66,6 +68,7 @@ function nav(){
  $('#desktop-nav').innerHTML=links.map(([v,i,text])=>`<button class="nav ${view===v?'active':''}" data-view="${v}">${icon(i)}<span>${text}</span>${v==='admin'&&bundle.unread?`<b class="count">${bundle.unread}</b>`:''}</button>`).join('');
  $('#mobile-nav').innerHTML=links.filter(x=>['picks','board','ranking','calendar','feedback'].includes(x[0])).map(([v,i,text])=>`<button class="${view===v?'active':''}" data-view="${v}" aria-current="${view===v?'page':'false'}">${icon(i)}<span>${{picks:'Mi quiniela',board:'El grupo',ranking:'Ranking',calendar:'Calendario',feedback:'Comentarios'}[v]}</span></button>`).join('');
  $('#account-link').innerHTML=esc(user().name)+(user().role==='admin'&&bundle.unread?` · ${bundle.unread} ✉`:'');$('#my-avatar').textContent=initials(user().name);$('#my-name').innerHTML=`${esc(user().name)}<small>${user().role==='admin'?'Administración y participante':user().role==='test'?'Cuenta de prueba':'Participante'}</small>`;
+ if(compact())$('#mobile-nav').innerHTML=$('#mobile-nav').innerHTML.replace(/<button[^>]*data-view="feedback"[\s\S]*?<\/button>/,'<button type="button" data-preview-more>'+icon('grid')+'<span>Más</span></button>');
  $('#view-label').textContent=links.find(x=>x[0]===view)?.[2]||'Mi cuenta';
 }
 function roundTitle(r){return `${r.phase==='POST'?'Playoffs · ronda':'Semana'} ${r.week} · ${r.season}`;}
@@ -123,7 +126,7 @@ function scheduleCaptureClose(){
 function picksView(){
  const closed=!data.testMode&&captureIsClosed();if(closed)data.games.forEach(g=>g.locked=true);
  let previous='';const cards=data.games.map(g=>{const date=day(g.start),dateHeading=date!==previous?`<h3 class="day-heading">${esc(date)}</h3>`:'';previous=date;return `${dateHeading}<article class="choose-game ${g.locked?'locked':''}"><div class="choose-meta"><span>${esc(hour(g.start))} CDMX · ${esc(g.venue||'Sede por confirmar')}</span><span>${g.status==='final'?'FINAL':g.locked?'CERRADO':'POR JUGAR'}</span></div><fieldset ${g.locked?'disabled':''}><legend>${esc(g.away)} <span aria-label="contra">vs</span> ${esc(g.home)}</legend><div class="choose-options">${[g.away,'TIE',g.home].map(t=>`<label class="choose-option ${t==='TIE'?'tie-option':''}"><input type="radio" name="${esc(g.id)}" value="${t}" ${draft[g.id]===t?'checked':''} ${g.locked?'disabled':''}>${t==='TIE'?'<span class="tie-glyph" aria-hidden="true">=</span>':img(t)}<strong>${t==='TIE'?'Empate':esc(data.teams[t]?.nick||t)}</strong>${t==='TIE'?'':`<small>${t===g.away?'VISITANTE':'LOCAL'}</small>`}</label>`).join('')}</div></fieldset><button type="button" class="text-button team-matchup-stats" data-team-stats-away="${esc(g.away)}" data-team-stats-home="${esc(g.home)}" aria-haspopup="dialog">Ver estadísticas de estos equipos ↗</button><div class="choose-foot"><span>${g.status==='final'?`Marcador ${g.awayScore} – ${g.homeScore}`:g.locked?'Elección cerrada':`Cierra ${hour(g.closesAt)} · CDMX`}</span><span>${draft[g.id]?'Elegiste '+esc(name(draft[g.id])):'Por elegir'}</span></div>${data.testMode?'':`<button type="button" class="text-button game-choices-link" data-game="${esc(g.id)}" aria-haspopup="dialog">Ver elecciones del grupo</button>`}</article>`;}).join('');
- return heading('TU LUGAR EN EL JUEGO','Mi quiniela',`Selecciona una opción en cada partido y guarda. ${data.testMode?'Prueba aislada: cierre por inicio de cada partido; no participa en competencia.':data.deadline?'El cierre es '+fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' · CDMX.':'La captura de esta jornada aún no está habilitada.'} Si un partido comienza antes, su elección cierra al iniciar.`)+teamStatsAction(data)+captureNotice()+progress()+`<form id="picks-form"><div class="choose-grid">${cards}</div><div class="save-bar"><div><p id="save-label">${dirty?'Tienes cambios sin guardar':'Tus elecciones guardadas están al día'}</p><small id="save-detail">${data.games.some(g=>!g.locked)?'Puedes guardar aunque todavía te falten partidos.':'Las elecciones de esta jornada están cerradas.'}</small></div><button id="save-picks" type="submit" ${dirty&&!closed?'':'disabled'}>${closed?'Captura cerrada':'Guardar elecciones'}</button></div><p class="source-status">Los partidos sin elección quedan fuera del registro completo. El reloj de cierre se valida al guardar.</p></form>`;
+ return heading('TU LUGAR EN EL JUEGO','Mi quiniela',compact()?'Elige visitante, local o empate. Luego guarda.':`Selecciona una opción en cada partido y guarda. ${data.testMode?'Prueba aislada: cierre por inicio de cada partido; no participa en competencia.':data.deadline?'El cierre es '+fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false})+' · CDMX.':'La captura de esta jornada aún no está habilitada.'} Si un partido comienza antes, su elección cierra al iniciar.`)+(compact()?'':teamStatsAction(data))+captureNotice()+progress()+`<form id="picks-form"><div class="choose-grid">${cards}</div><div class="save-bar"><div><p id="save-label">${dirty?'Tienes cambios sin guardar':'Tus elecciones guardadas están al día'}</p><small id="save-detail">${data.games.some(g=>!g.locked)?'Puedes guardar aunque todavía te falten partidos.':'Las elecciones de esta jornada están cerradas.'}</small></div><button id="save-picks" type="submit" ${dirty&&!closed?'':'disabled'}>${closed?'Captura cerrada':'Guardar elecciones'}</button></div><p class="source-status">Los partidos sin elección quedan fuera del registro completo. El reloj de cierre se valida al guardar.</p></form>`;
 }
 function pickTag(p,g){const selected=p.choices[g.id],status=outcome(p,g),label={hit:'Acierto',miss:'Fallo',pending:'Por jugar',empty:'Sin elección'}[status];return `<span class="portal-pick ${status}" title="${esc(g.away+' vs '+g.home+': '+(selected?name(selected):'Sin elección')+' · '+label)}">${selected?img(selected):'—'}${status==='hit'?'<b aria-hidden="true">✓</b>':status==='miss'?'<b aria-hidden="true">×</b>':''}<span class="sr-only">${label}</span></span>`;}
 function gameChoices(){
@@ -159,7 +162,9 @@ function rulesView(){return heading('LA DINÁMICA DEL GRUPO','Así jugamos','Una
 async function render(){
  nav();let content;
  if(view==='picks')content=picksView();else if(view==='board')content=boardView();else if(view==='ranking')content=rankingView();else if(view==='calendar')content=gamesView();else if(view==='standings')content=standingsView(bundle.league,conference,data.teams);else if(view==='feedback')content=await feedbackView();else if(view==='admin'&&user().role==='admin')content=await adminView();else if(view==='rules')content=rulesView();else content=accountView();
- $('#workspace').innerHTML=adminTestBar()+(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?(data.treasurer?treasurerCard(data,contributionsAction(data)):contributionsAction(data))+companionActions(data):'')+content;hydrateIcons();
+ $('#portal').classList.toggle('compact-preview',compact());
+ const regular=()=>adminTestBar()+(data.testMode?'<div class="notice" role="status"><strong>Modo de prueba</strong> · Prueba aislada: cierre por inicio de cada partido; no participa en competencia. Tus elecciones se guardan por separado y no afectan al grupo, la clasificación ni la bolsa.</div>':'')+(['picks','board','ranking'].includes(view)?(data.treasurer?treasurerCard(data,contributionsAction(data)):contributionsAction(data))+companionActions(data):'')+content;
+ $('#workspace').innerHTML=compact()?previewBar(data)+(data.adminSandbox?'<details class="compact-sandbox-controls"><summary>Controles de prueba · datos separados</summary>'+adminTestBar()+'</details>':`<div class="admin-test-entry"><button type="button" class="small-button" data-sandbox="start">Probar con datos separados</button></div>`)+`<div class="compact-layout ${['picks','board','ranking'].includes(view)?'has-tools':''}"><section class="compact-primary" aria-label="${esc($('#view-label').textContent)}">${content}</section>${['picks','board','ranking'].includes(view)?compactTools(data):''}</div>`:regular();hydrateIcons();
  $('#picks-form')?.addEventListener('submit',savePicks);
  $('#account-password')?.addEventListener('submit',e=>changePassword(e));
  $('#account-logout')?.addEventListener('click',logout);
@@ -168,12 +173,12 @@ async function render(){
 }
 async function savePicks(e){
  e.preventDefault();const b=$('#save-picks');b.disabled=true;
- try{const changes=Object.fromEntries(Object.entries(draft).filter(([id,t])=>me().choices[id]!==t));if(!Object.keys(changes).length)return;await api('/api/picks',{method:'PUT',body:JSON.stringify({round:data.roundId,choices:changes})});dirty=false;toast('Tus elecciones quedaron guardadas.');await load(true);}catch(exc){toast(exc.message);}finally{if($('#save-picks'))$('#save-picks').disabled=!dirty||(!data.testMode&&captureIsClosed());}
+ try{const changes=Object.fromEntries(Object.entries(draft).filter(([id,t])=>me().choices[id]!==t));if(!Object.keys(changes).length)return;await api('/api/picks',{method:'PUT',body:JSON.stringify({round:data.roundId,choices:changes})});dirty=false;toast('Tus elecciones quedaron guardadas.');const refreshed=await load(true);if(refreshed&&compact())openRegistrationConfirmation(data,user().id);}catch(exc){toast(exc.message);}finally{if($('#save-picks'))$('#save-picks').disabled=!dirty||(!data.testMode&&captureIsClosed());}
 }
 function detail(id){activeGame=null;const p=data.participants.find(p=>p.id===id);if(!p)return;$('#detail-body').innerHTML=`<h2 id="detail-title">${esc(p.name)} ${paid(p)}</h2><p>${score(p,data.games).correct} aciertos · ${Object.keys(p.choices).length}/${data.games.length} elecciones</p><div class="detail-games">${data.games.map(g=>`<div class="detail-game"><span>${esc(g.away)} vs ${esc(g.home)}</span><b>${p.choices[g.id]?img(p.choices[g.id])+esc(name(p.choices[g.id])):'Sin elección'}</b><span>${{hit:'✓ Acierto',miss:'× Fallo',pending:'Por jugar',empty:'—'}[outcome(p,g)]}</span></div>`).join('')}</div>`;if(!$('#detail').open)$('#detail').showModal();}
 function adminTestBar(){
  if(user().role!=='admin')return '';
- return data.adminSandbox?`<section class="admin-test-banner" aria-label="Modo de prueba"><div><strong>MODO DE PRUEBA</strong><p>Puedes probar las funciones con datos separados. Las elecciones, aportaciones, accesos y sorteos reales se conservan.</p></div><div class="admin-test-actions"><button type="button" class="small-button" data-sandbox="scheduled">Partidos por jugar</button><button type="button" class="small-button" data-sandbox="live">Simular en juego</button><button type="button" class="small-button" data-sandbox="final">Simular finales</button><button type="button" class="small-button" data-sandbox="reset">Reiniciar prueba</button><button type="button" class="primary-button" data-sandbox="exit">Salir de prueba</button></div></section>`:'<div class="admin-test-entry"><span>Prueba las funciones de la plataforma con datos separados.</span><button type="button" class="small-button" data-sandbox="start">Probar funciones</button></div>';
+ return data.adminSandbox?`<section class="admin-test-banner" aria-label="Modo de prueba"><div><strong>MODO DE PRUEBA</strong><p>Puedes probar las funciones con datos separados. Las elecciones, aportaciones, accesos y sorteos reales se conservan.</p></div><div class="admin-test-actions"><button type="button" class="small-button" data-sandbox="scheduled">Partidos por jugar</button><button type="button" class="small-button" data-sandbox="live">Simular en juego</button><button type="button" class="small-button" data-sandbox="final">Simular finales</button><button type="button" class="small-button" data-sandbox="reset">Reiniciar prueba</button><button type="button" class="primary-button" data-sandbox="exit">Salir de prueba</button></div></section>`:`<div class="admin-test-entry">${user().id==='luis'?'<button type="button" class="small-button" data-layout-preview="on">Probar nueva vista</button>':''}<span>Prueba las funciones de la plataforma con datos separados.</span><button type="button" class="small-button" data-sandbox="start">Probar funciones</button></div>`;
 }
 async function switchSandbox(action){
  if(modeChanging)return;
@@ -184,7 +189,7 @@ async function switchSandbox(action){
  try{
   if(loadPromise)await loadPromise;
   if(action==='start'||action==='reset'){await api('/api/admin/sandbox',{method:'POST',body:JSON.stringify({reset:action==='reset'})});adminSandbox=true;round=null;}
-  else if(action==='exit'){adminSandbox=false;round=null;}
+  else if(action==='exit'){if(compact()){const url=new URL(location.href);url.searchParams.delete('vista');history.replaceState(null,'',url);}adminSandbox=false;round=null;}
   else {
    // Este endpoint sólo funciona en la copia y puede llamarse durante la transición.
    const result=await fetch('/api/admin/sandbox/scenario',{method:'POST',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf,'X-QF-Mode':'prueba'},body:JSON.stringify({scenario:action})});
@@ -198,6 +203,9 @@ async function switchSandbox(action){
 }
 
 document.addEventListener('click',async e=>{
+ const preview=e.target.closest('[data-layout-preview]');if(preview&&user()?.role==='admin'&&user()?.id==='luis'){if(modeChanging)return;const oldUrl=location.href,url=new URL(oldUrl),opening=preview.dataset.layoutPreview==='on';if(opening)url.searchParams.set('vista','compacta');else url.searchParams.delete('vista');history.replaceState(null,'',url);if(opening&&!adminSandbox)await switchSandbox('start');else if(!opening&&adminSandbox)await switchSandbox('exit');if(adminSandbox!==opening)history.replaceState(null,'',oldUrl);await render();return;}
+ if(compact()&&e.target.closest('[data-preview-tools]')){const tools=e.target.closest('.compact-tools');const open=tools.classList.toggle('is-open');e.target.closest('[data-preview-tools]').setAttribute('aria-expanded',String(open));return;}
+ if(compact()&&e.target.closest('[data-preview-more]')){closeTools();openPreviewMenu();return;}
  const mode=e.target.closest('[data-sandbox]');if(mode){mode.disabled=true;try{await switchSandbox(mode.dataset.sandbox);}finally{mode.disabled=false;}return;}
  const stats=e.target.closest('[data-team-stats],[data-team-stats-away]');if(stats){closeTools();openTeamStats({league:bundle.league,teams:data.teams,season:data.season,away:stats.dataset.teamStatsAway,home:stats.dataset.teamStatsHome,sandbox:data.adminSandbox,toast});return;}
  const contributions=e.target.closest('[data-contributions]');if(contributions){closeTools();await openContributions({api,roundId:data.roundId,toast,onUpdate:updated=>{for(const p of updated.participants){const target=data.participants.find(x=>x.id===p.id);if(target)target.paid=p.paid;}header();render();}});return;}
