@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T23:16:28.386Z",
+  "fetchedAt": "2026-11-01T23:18:41.593Z",
   "calendarUpdatedAt": "2026-11-01T23:16:28.386Z",
   "standingsUpdatedAt": "2026-11-01T23:16:28.386Z",
   "standingsSource": "ESPN",
@@ -1790,7 +1790,7 @@
       "venue": "Hard Rock Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 3,
+      "awayScore": 9,
       "homeScore": 13
     },
     {
