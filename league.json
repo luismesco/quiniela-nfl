@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T22:47:11.037Z",
-  "calendarUpdatedAt": "2026-11-01T22:44:57.156Z",
-  "standingsUpdatedAt": "2026-11-01T22:44:57.156Z",
+  "fetchedAt": "2026-11-01T22:47:26.316Z",
+  "calendarUpdatedAt": "2026-11-01T22:47:26.316Z",
+  "standingsUpdatedAt": "2026-11-01T22:47:26.316Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1761,7 +1761,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 9,
-      "homeScore": 16
+      "homeScore": 17
     },
     {
       "id": "2026_08_KC_DEN",
