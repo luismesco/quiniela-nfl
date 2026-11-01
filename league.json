@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:10:01.114Z",
-  "calendarUpdatedAt": "2026-11-01T21:07:51.647Z",
-  "standingsUpdatedAt": "2026-11-01T21:07:51.647Z",
+  "fetchedAt": "2026-11-01T21:10:15.850Z",
+  "calendarUpdatedAt": "2026-11-01T21:10:15.850Z",
+  "standingsUpdatedAt": "2026-11-01T21:10:15.850Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4946,30 +4946,19 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "CLE",
-          "sourceOrder": 3,
-          "wins": 5,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.71428573,
-          "differential": -13,
-          "pointsFor": 133,
-          "pointsAgainst": 146
-        },
-        {
           "team": "PIT",
-          "sourceOrder": 5,
-          "wins": 5,
+          "sourceOrder": 2,
+          "wins": 6,
           "losses": 2,
           "ties": 0,
-          "pct": 0.71428573,
-          "differential": 15,
-          "pointsFor": 153,
-          "pointsAgainst": 138
+          "pct": 0.75,
+          "differential": 36,
+          "pointsFor": 180,
+          "pointsAgainst": 144
         },
         {
           "team": "CIN",
-          "sourceOrder": 6,
+          "sourceOrder": 5,
           "wins": 4,
           "losses": 2,
           "ties": 0,
@@ -4977,6 +4966,17 @@
           "differential": 41,
           "pointsFor": 163,
           "pointsAgainst": 122
+        },
+        {
+          "team": "CLE",
+          "sourceOrder": 6,
+          "wins": 5,
+          "losses": 3,
+          "ties": 0,
+          "pct": 0.625,
+          "differential": -34,
+          "pointsFor": 139,
+          "pointsAgainst": 173
         },
         {
           "team": "BAL",
@@ -4997,7 +4997,7 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -5147,18 +5147,29 @@
       "teams": [
         {
           "team": "MIN",
-          "sourceOrder": 0,
+          "sourceOrder": 1,
           "wins": 6,
-          "losses": 0,
+          "losses": 1,
           "ties": 0,
-          "pct": 1,
-          "differential": 51,
-          "pointsFor": 125,
-          "pointsAgainst": 74
+          "pct": 0.85714287,
+          "differential": 47,
+          "pointsFor": 140,
+          "pointsAgainst": 93
+        },
+        {
+          "team": "DET",
+          "sourceOrder": 2,
+          "wins": 5,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.71428573,
+          "differential": 23,
+          "pointsFor": 203,
+          "pointsAgainst": 180
         },
         {
           "team": "CHI",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 37,
           "pointsFor": 180,
           "pointsAgainst": 143
-        },
-        {
-          "team": "DET",
-          "sourceOrder": 3,
-          "wins": 4,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.6666667,
-          "differential": 19,
-          "pointsFor": 184,
-          "pointsAgainst": 165
         },
         {
           "team": "GB",
@@ -5247,7 +5247,7 @@
       "teams": [
         {
           "team": "SF",
-          "sourceOrder": 1,
+          "sourceOrder": 0,
           "wins": 6,
           "losses": 1,
           "ties": 0,
