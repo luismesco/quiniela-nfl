@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T20:52:25.690Z",
+  "fetchedAt": "2026-11-01T20:52:30.826Z",
   "calendarUpdatedAt": "2026-11-01T20:52:25.690Z",
   "standingsUpdatedAt": "2026-11-01T20:52:25.690Z",
   "standingsSource": "ESPN",
@@ -1686,7 +1686,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 15,
-      "homeScore": 12
+      "homeScore": 18
     },
     {
       "id": "2026_08_IND_JAX",
