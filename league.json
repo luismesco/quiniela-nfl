@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:26:01.374Z",
-  "calendarUpdatedAt": "2026-11-01T21:23:47.470Z",
-  "standingsUpdatedAt": "2026-11-01T21:23:47.470Z",
+  "fetchedAt": "2026-11-01T21:26:15.233Z",
+  "calendarUpdatedAt": "2026-11-01T21:26:15.233Z",
+  "standingsUpdatedAt": "2026-11-01T21:26:15.233Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4897,14 +4897,14 @@
       "teams": [
         {
           "team": "BUF",
-          "sourceOrder": 1,
-          "wins": 5,
+          "sourceOrder": 0,
+          "wins": 6,
           "losses": 1,
           "ties": 0,
-          "pct": 0.8333333,
-          "differential": 26,
-          "pointsFor": 197,
-          "pointsAgainst": 171
+          "pct": 0.85714287,
+          "differential": 52,
+          "pointsFor": 233,
+          "pointsAgainst": 181
         },
         {
           "team": "NE",
@@ -4980,14 +4980,14 @@
         },
         {
           "team": "BAL",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 4,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": 2,
-          "pointsFor": 169,
-          "pointsAgainst": 167
+          "pct": 0.5,
+          "differential": -24,
+          "pointsFor": 179,
+          "pointsAgainst": 203
         }
       ]
     },
@@ -5047,7 +5047,7 @@
       "teams": [
         {
           "team": "KC",
-          "sourceOrder": 0,
+          "sourceOrder": 1,
           "wins": 5,
           "losses": 1,
           "ties": 0,
@@ -5069,7 +5069,7 @@
         },
         {
           "team": "LV",
-          "sourceOrder": 9,
+          "sourceOrder": 8,
           "wins": 4,
           "losses": 4,
           "ties": 0,
