@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:23:47.470Z",
+  "fetchedAt": "2026-11-01T21:26:01.374Z",
   "calendarUpdatedAt": "2026-11-01T21:23:47.470Z",
   "standingsUpdatedAt": "2026-11-01T21:23:47.470Z",
   "standingsSource": "ESPN",
@@ -1774,9 +1774,9 @@
       "timeTbd": false,
       "venue": "Empower Field at Mile High",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_08_NE_MIA",
@@ -1789,9 +1789,9 @@
       "timeTbd": false,
       "venue": "Hard Rock Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_08_PHI_WAS",
