@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T20:51:46.371Z",
+  "fetchedAt": "2026-11-01T20:52:00.901Z",
   "calendarUpdatedAt": "2026-11-01T20:51:46.371Z",
   "standingsUpdatedAt": "2026-11-01T20:51:46.371Z",
   "standingsSource": "ESPN",
@@ -1744,7 +1744,7 @@
       "timeTbd": false,
       "venue": "Raymond James Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 0,
       "homeScore": 16
     },
