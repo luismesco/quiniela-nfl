@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T22:32:16.559Z",
+  "fetchedAt": "2026-11-01T22:32:32.533Z",
   "calendarUpdatedAt": "2026-11-01T22:32:16.559Z",
   "standingsUpdatedAt": "2026-11-01T22:32:16.559Z",
   "standingsSource": "ESPN",
@@ -1775,7 +1775,7 @@
       "venue": "Empower Field at Mile High",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 14,
       "homeScore": 6
     },
     {
