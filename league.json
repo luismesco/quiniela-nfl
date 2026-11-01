@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:44:01.809Z",
-  "calendarUpdatedAt": "2026-11-01T21:42:46.699Z",
-  "standingsUpdatedAt": "2026-11-01T21:42:46.699Z",
+  "fetchedAt": "2026-11-01T21:44:16.743Z",
+  "calendarUpdatedAt": "2026-11-01T21:44:16.743Z",
+  "standingsUpdatedAt": "2026-11-01T21:44:16.743Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4959,13 +4959,13 @@
         {
           "team": "CIN",
           "sourceOrder": 5,
-          "wins": 4,
+          "wins": 5,
           "losses": 2,
           "ties": 0,
-          "pct": 0.6666667,
-          "differential": 41,
-          "pointsFor": 163,
-          "pointsAgainst": 122
+          "pct": 0.71428573,
+          "differential": 48,
+          "pointsFor": 206,
+          "pointsAgainst": 158
         },
         {
           "team": "CLE",
@@ -5032,12 +5032,12 @@
           "team": "TEN",
           "sourceOrder": 14,
           "wins": 1,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
-          "pct": 0.14285715,
-          "differential": -48,
-          "pointsFor": 108,
-          "pointsAgainst": 156
+          "pct": 0.125,
+          "differential": -55,
+          "pointsFor": 144,
+          "pointsAgainst": 199
         }
       ]
     },
