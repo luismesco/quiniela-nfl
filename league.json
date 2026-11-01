@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T20:22:30.235Z",
-  "calendarUpdatedAt": "2026-11-01T20:22:16.477Z",
-  "standingsUpdatedAt": "2026-11-01T20:22:16.477Z",
+  "fetchedAt": "2026-11-01T20:22:47.126Z",
+  "calendarUpdatedAt": "2026-11-01T20:22:47.126Z",
+  "standingsUpdatedAt": "2026-11-01T20:22:47.126Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1701,7 +1701,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 7,
-      "homeScore": 41
+      "homeScore": 42
     },
     {
       "id": "2026_08_LV_NYJ",
