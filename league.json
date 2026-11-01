@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T18:34:43.848Z",
+  "fetchedAt": "2026-11-01T18:36:28.380Z",
   "calendarUpdatedAt": "2026-11-01T18:34:43.848Z",
   "standingsUpdatedAt": "2026-11-01T18:34:43.848Z",
   "standingsSource": "ESPN",
@@ -1655,7 +1655,7 @@
       "venue": "Paycor Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 10,
+      "awayScore": 13,
       "homeScore": 0
     },
     {
@@ -1686,7 +1686,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 0
+      "homeScore": 3
     },
     {
       "id": "2026_08_IND_JAX",
