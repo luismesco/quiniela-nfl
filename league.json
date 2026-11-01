@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:39:31.551Z",
-  "calendarUpdatedAt": "2026-11-01T21:36:17.105Z",
-  "standingsUpdatedAt": "2026-11-01T21:36:17.105Z",
+  "fetchedAt": "2026-11-01T21:39:46.200Z",
+  "calendarUpdatedAt": "2026-11-01T21:39:46.200Z",
+  "standingsUpdatedAt": "2026-11-01T21:39:46.200Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5108,14 +5108,14 @@
         },
         {
           "team": "DAL",
-          "sourceOrder": 9,
+          "sourceOrder": 12,
           "wins": 3,
-          "losses": 4,
+          "losses": 5,
           "ties": 0,
-          "pct": 0.42857143,
-          "differential": 9,
-          "pointsFor": 189,
-          "pointsAgainst": 180
+          "pct": 0.375,
+          "differential": 6,
+          "pointsFor": 219,
+          "pointsAgainst": 213
         },
         {
           "team": "PHI",
@@ -5208,7 +5208,7 @@
         },
         {
           "team": "TB",
-          "sourceOrder": 10,
+          "sourceOrder": 9,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5219,7 +5219,7 @@
         },
         {
           "team": "ATL",
-          "sourceOrder": 11,
+          "sourceOrder": 10,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5230,7 +5230,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 12,
+          "sourceOrder": 13,
           "wins": 2,
           "losses": 5,
           "ties": 0,
@@ -5280,14 +5280,14 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 13,
-          "wins": 2,
+          "sourceOrder": 11,
+          "wins": 3,
           "losses": 5,
           "ties": 0,
-          "pct": 0.2857143,
-          "differential": -66,
-          "pointsFor": 142,
-          "pointsAgainst": 208
+          "pct": 0.375,
+          "differential": -63,
+          "pointsFor": 175,
+          "pointsAgainst": 238
         }
       ]
     }
