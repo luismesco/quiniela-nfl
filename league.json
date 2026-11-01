@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T18:36:43.893Z",
+  "fetchedAt": "2026-11-01T18:38:28.394Z",
   "calendarUpdatedAt": "2026-11-01T18:36:43.893Z",
   "standingsUpdatedAt": "2026-11-01T18:36:43.893Z",
   "standingsSource": "ESPN",
@@ -1640,7 +1640,7 @@
       "venue": "Highmark Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 6,
       "homeScore": 10
     },
     {
