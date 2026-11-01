@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T18:51:25.983Z",
+  "fetchedAt": "2026-11-01T18:51:58.716Z",
   "calendarUpdatedAt": "2026-11-01T18:51:25.983Z",
   "standingsUpdatedAt": "2026-11-01T18:51:25.983Z",
   "standingsSource": "ESPN",
@@ -1715,7 +1715,7 @@
       "venue": "MetLife Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 7,
+      "awayScore": 13,
       "homeScore": 13
     },
     {
