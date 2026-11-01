@@ -5,7 +5,7 @@ const localDay=s=>s?new Date(s).toLocaleDateString('es-MX',{weekday:'long',day:'
 const localHour=s=>s?new Date(s).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'America/Mexico_City'}):'Por confirmar';
 const option=(value,text,current)=>`<option value="${esc(value)}" ${String(current)===String(value)?'selected':''}>${esc(text)}</option>`;
 export async function loadLeague(){const r=await fetch('league.json',{cache:'no-store'});if(!r.ok)throw Error('Calendario no disponible');const d=await r.json();if(d.season!==2026||!Array.isArray(d.games)||!Array.isArray(d.standings))throw Error('Datos NFL inválidos');return d;}
-export function calendarView(d,selection,teams,currentGames){
+export function calendarView(d,selection,teams,currentGames,pickRounds=[]){
   if(!d)return '<div class="note-card"><h3>Calendario de la temporada 2026</h3><p>Estamos cargando el calendario. Puedes volver a intentarlo con Actualizar.</p></div>';
   const phase=selection.phase,week=selection.week,team=selection.team;
   const all=d.games.filter(g=>g.phase===phase),weeks=[...new Set([...all.map(g=>g.week),...(d.slots||[]).filter(x=>x.phase===phase).map(x=>x.week)])].sort((a,b)=>a-b);
@@ -15,8 +15,9 @@ export function calendarView(d,selection,teams,currentGames){
   for(const g of entries){
     const date=localDay(g.start||g.date);
     if(date!==previous){if(previous)body+='</div>';body+=`<h3 class="day-heading">${esc(localDay(g.start||g.date))}</h3><div class="games-grid">`;previous=date;}
-    const final=g.status==='final',live=g.status==='live';
-    body+=`<article class="game-card ${live?'live-card':''}"><div class="game-card-head"><span>${esc(label[g.phase])} · ${g.week}</span><span class="status-tag ${g.status}">${final?'FINAL':live?'EN JUEGO':g.status==='postponed'?'APLAZADO':g.status==='canceled'?'CANCELADO':g.timeTbd?'HORARIO POR CONFIRMAR':esc(localHour(g.start))}</span></div>${[g.away,g.home].map(t=>`<div class="game-team">${img(t,teams)}<strong>${esc(teams[t]?.nick||t)}</strong><span class="points">${final||live?t===g.away?g.awayScore:g.homeScore:'—'}</span></div>`).join('')}<p class="game-venue">${esc(g.venue||'Sede por confirmar')}${g.neutral?' · Neutral':''}</p></article>`;
+    const final=g.status==='final',live=g.status==='live',hasChoices=pickRounds.includes(`${d.season}-${g.phase}-${g.week}`);
+    const choicesButton=hasChoices?`<button type="button" class="calendar-game-open" data-calendar-game="${esc(g.id)}" aria-haspopup="dialog" aria-label="Ver elecciones de ${esc(teams[g.away]?.name||g.away)} contra ${esc(teams[g.home]?.name||g.home)} · ${esc(label[g.phase])} · ${g.week}"><span class="sr-only">Ver elecciones del grupo</span></button>`:'';
+    body+=`<article class="game-card ${live?'live-card':''} ${hasChoices?'calendar-has-choices':''}">${choicesButton}<div class="game-card-head"><span>${esc(label[g.phase])} · ${g.week}</span><span class="status-tag ${g.status}">${final?'FINAL':live?'EN JUEGO':g.status==='postponed'?'APLAZADO':g.status==='canceled'?'CANCELADO':g.timeTbd?'HORARIO POR CONFIRMAR':esc(localHour(g.start))}</span></div>${[g.away,g.home].map(t=>`<div class="game-team">${img(t,teams)}<strong>${esc(teams[t]?.nick||t)}</strong><span class="points">${final||live?t===g.away?g.awayScore:g.homeScore:'—'}</span></div>`).join('')}<p class="game-venue">${esc(g.venue||'Sede por confirmar')}${g.neutral?' · Neutral':''}</p>${hasChoices?'<span class="calendar-choices-prompt" aria-hidden="true">Ver elecciones del grupo ↗</span>':''}</article>`;
   }
   if(previous)body+='</div>';
   if(!entries.length){const slots=(d.slots||[]).filter(s=>s.phase===phase&&(week==='all'||String(s.week)===week));body=`<div class="note-card"><h3>${phase==='POST'?'El camino al Super Bowl':'Calendario por confirmar'}</h3><p>${phase==='POST'?'Los enfrentamientos se incorporarán cuando se definan los equipos clasificados.':'No hay encuentros publicados para este filtro.'}</p>${slots.map(s=>`<p style="margin-top:.75rem"><strong>${esc(s.label)}</strong> · ${esc(s.displayDate||localDay(s.start))}</p>`).join('')}</div>`;}

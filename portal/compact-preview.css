@@ -69,3 +69,10 @@
 @keyframes touchdown-cheer{0%{opacity:0;scale:.4}55%{opacity:1;scale:1.2}100%{opacity:1;scale:1}}
 @media(max-width:600px){.compact-confirmation{padding:1rem 1rem 1.5rem}.touchdown-scene{height:12rem}.touchdown-runner{height:11rem;width:9.2rem;left:calc(50% - 5.5rem)}.touchdown-ball{width:3.5rem;top:2.7rem}}
 @media(prefers-reduced-motion:reduce){.touchdown-runner,.touchdown-star{animation:none}.touchdown-runner{transform:translateX(2rem)}.touchdown-star{opacity:1}}
+
+/* Acceso a las elecciones desde las tarjetas del calendario. */
+.calendar-has-choices{position:relative}
+.calendar-game-open{position:absolute;inset:0;z-index:1;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;cursor:pointer}
+.calendar-game-open:focus-visible{outline:3px solid var(--olive,#6c894d);outline-offset:4px}
+.calendar-has-choices:hover{border-color:var(--olive,#6c894d)}
+.calendar-choices-prompt{display:block;margin-top:.75rem;color:var(--olive,#6c894d);font-size:.8rem;font-weight:600}

@@ -15,7 +15,7 @@ const fmt=(s,opt={})=>s?new Date(s).toLocaleString('es-MX',{timeZone:'America/Me
 const day=s=>fmt(s,{weekday:'long',day:'numeric',month:'long'});
 const hour=s=>fmt(s,{hour:'2-digit',minute:'2-digit',hour12:false});
 let auth=null,csrf='',bundle=null,data=null,view='picks',round=null,draft={},dirty=false,timer=null,requesting=false,conference='all',calendar={phase:'REG',week:'all',team:'all'},toastTimer=null,deadlineTimer=null,serverClock=null;
-let activeGame=null;
+let activeGame=null,activeGameRound=null,gameDetailEpoch=0;
 let modeChanging=false,loadEpoch=0,loadPromise=null;
 let adminSandbox=sessionStorage.getItem('qf-admin-sandbox')==='prueba';
 const modeUrl=path=>adminSandbox?path+(path.includes('?')?'&':'?')+'mode=prueba':path;
@@ -94,7 +94,7 @@ async function load(force=false){
  loadPromise=(async()=>{
   try{const next=await api('/api/state'+(round?'?round='+encodeURIComponent(round):''));if(epoch!==loadEpoch)return false;
    if(!!next.data.adminSandbox!==adminSandbox)throw Error('El modo solicitado no coincide con la jornada. Vuelve a cargar.');
-   bundle=next;data=bundle.data;serverClock={epoch:Date.parse(bundle.serverTime),tick:performance.now()};scheduleCaptureClose();auth.user=bundle.user;csrf=bundle.csrf;round=data.roundId;calendar.week=calendar.week==='all'?String(data.week):calendar.week;if(!dirty)draft={...me().choices};nav();header();await render();if($('#detail').open&&activeGame){if(data.games.some(g=>g.id===activeGame))gameDetail(activeGame);else $('#detail').close();}return true;
+   bundle=next;data=bundle.data;serverClock={epoch:Date.parse(bundle.serverTime),tick:performance.now()};scheduleCaptureClose();auth.user=bundle.user;csrf=bundle.csrf;round=data.roundId;calendar.week=calendar.week==='all'?String(data.week):calendar.week;if(!dirty)draft={...me().choices};nav();header();await render();if($('#detail').open&&activeGame){await openGameChoices(activeGame,activeGameRound);}return true;
   }catch(e){toast(e.message);return false;}finally{requesting=false;clearTimeout(timer);if(auth?.user&&!auth.user.mustChange&&!modeChanging)timer=setTimeout(()=>load(),data?.games.some(g=>g.status==='live')?30000:300000);}
  })();return loadPromise;
 }
@@ -138,13 +138,33 @@ function gameChoices(){
  if(data.testMode)return '';
  return `<section class="group-games" aria-labelledby="group-games-title"><h3 id="group-games-title">Elecciones por partido</h3><div class="group-games-grid">${data.games.map(g=>{const count=data.participants.filter(p=>p.choices[g.id]).length;return `<button type="button" class="group-game-button" data-game="${esc(g.id)}" aria-haspopup="dialog" aria-label="Ver elecciones de ${esc(name(g.away)+' contra '+name(g.home))}"><span class="group-game-teams">${img(g.away)}<strong>${esc(data.teams[g.away]?.nick||g.away)} <small>vs</small> ${esc(data.teams[g.home]?.nick||g.home)}</strong>${img(g.home)}</span><small>${count} ${count===1?'elección guardada':'elecciones guardadas'} · Ver nombres</small></button>`;}).join('')}</div></section>`;
 }
-function gameDetail(id){
- if(data.testMode)return;
- const game=data.games.find(g=>g.id===id);if(!game)return;
- activeGame=id;
+function gameDetail(id,context=data){
+ if(data.testMode||context.testMode)return;
+ const game=context.games.find(g=>g.id===id);if(!game)return;
+ activeGame=id;activeGameRound=context.roundId;
+ const name=t=>t==='TIE'?'Empate':context.teams[t]?.name||t;
+ const img=t=>`<img src="${logo(t)}" alt="${esc(name(t))}">`;
  const groups=[{key:game.away,label:name(game.away),kind:'Visitante'},{key:game.home,label:name(game.home),kind:'Local'},{key:'TIE',label:'Empate',kind:'TIE'},{key:null,label:'Sin elección',kind:'Por registrar'}];
- $('#detail-body').innerHTML=`<h2 id="detail-title" class="detail-title">${esc(data.teams[game.away]?.nick||game.away)} vs ${esc(data.teams[game.home]?.nick||game.home)}</h2><p class="detail-meta">${esc(roundTitle(data))} · ${esc(day(game.start))} · ${esc(hour(game.start))} CDMX</p><p class="game-choices-note">Elecciones guardadas del grupo. Los borradores sin guardar no aparecen.</p><div class="game-choice-groups">${groups.map(group=>{const people=data.participants.filter(p=>(p.choices[game.id]||null)===group.key).sort((a,b)=>a.name.localeCompare(b.name,'es'));return `<section class="game-choice-group" data-choice="${esc(group.key||'none')}" aria-label="${esc(group.label)}"><div class="game-choice-heading">${group.key?img(group.key):'<span class="no-choice-symbol" aria-hidden="true">—</span>'}<div><small>${esc(group.kind)}</small><h3>${esc(group.label)}</h3></div><strong class="game-choice-count">${people.length}</strong></div>${people.length?`<ul class="game-voters">${people.map(p=>`<li>${esc(p.name)}</li>`).join('')}</ul>`:'<p class="game-voters-empty">'+(group.key?'Nadie eligió esta opción.':'Todos tienen una elección guardada.')+'</p>'}</section>`;}).join('')}</div>`;
+ $('#detail-body').innerHTML=`<h2 id="detail-title" class="detail-title">${esc(context.teams[game.away]?.nick||game.away)} vs ${esc(context.teams[game.home]?.nick||game.home)}</h2><p class="detail-meta">${esc(roundTitle(context))} · ${esc(day(game.start))} · ${esc(hour(game.start))} CDMX</p><p class="game-choices-note">Elecciones guardadas del grupo. Los borradores sin guardar no aparecen.</p><div class="game-choice-groups">${groups.map(group=>{const people=context.participants.filter(p=>(p.choices[game.id]||null)===group.key).sort((a,b)=>a.name.localeCompare(b.name,'es'));return `<section class="game-choice-group" data-choice="${esc(group.key||'none')}" aria-label="${esc(group.label)}"><div class="game-choice-heading">${group.key?img(group.key):'<span class="no-choice-symbol" aria-hidden="true">—</span>'}<div><small>${esc(group.kind)}</small><h3>${esc(group.label)}</h3></div><strong class="game-choice-count">${people.length}</strong></div>${people.length?`<ul class="game-voters">${people.map(p=>`<li>${esc(p.name)}</li>`).join('')}</ul>`:'<p class="game-voters-empty">'+(group.key?'Nadie eligió esta opción.':'Todos tienen una elección guardada.')+'</p>'}</section>`;}).join('')}</div>`;
  if(!$('#detail').open)$('#detail').showModal();
+}
+async function openGameChoices(id,rid=data?.roundId){
+ if(!data||data.testMode)return;
+ const epoch=++gameDetailEpoch;
+ if(rid===data.roundId){gameDetail(id);return;}
+ activeGame=id;activeGameRound=rid;
+ $('#detail-body').innerHTML='<h2 id="detail-title">Elecciones del grupo</h2><p role="status">Cargando elecciones…</p>';
+ if(!$('#detail').open)$('#detail').showModal();
+ try{
+  const next=await api('/api/state?round='+encodeURIComponent(rid));
+  if(epoch!==gameDetailEpoch||!$('#detail').open)return;
+  if(next.data.roundId!==rid||!!next.data.adminSandbox!==adminSandbox||!next.data.games.some(g=>g.id===id))throw Error('No se encontraron las elecciones de este partido.');
+  gameDetail(id,next.data);
+ }catch(error){
+  if(epoch!==gameDetailEpoch)return;
+  activeGame=null;activeGameRound=null;
+  $('#detail-body').innerHTML='<h2 id="detail-title">Elecciones del grupo</h2><p role="alert">No pudimos cargar las elecciones. Cierra y vuelve a tocar el partido.</p>';
+ }
 }
 function comparisonTable(rows){
  const result=g=>g.status==='final'?`${g.awayScore} – ${g.homeScore} · ${winner(g)==='TIE'?'Empate final':'Final'}`:g.status==='live'?`${g.awayScore} – ${g.homeScore} · En juego`:{postponed:'Aplazado',suspended:'Suspendido',canceled:'Cancelado'}[g.status]||hour(g.start)+' CDMX';
@@ -155,7 +175,7 @@ function boardView(){
  return heading('LA JORNADA, ENTRE TODOS','El grupo','Compara las elecciones en filas, o abre un partido o un nombre para ver su detalle.')+`<div class="comparison-controls"><span>${rows.length} participantes · ${data.games.length} partidos</span><div class="comparison-switch" role="group" aria-label="Forma de visualizar las elecciones">${[['cards','Personas','group-people'],['matrix','Comparar','group-comparison']].map(([key,label,id])=>`<button type="button" data-board-layout="${key}" aria-controls="${id}" aria-pressed="${boardLayout===key}">${label}</button>`).join('')}</div></div><div id="group-people" class="portal-board" ${boardLayout==='cards'?'':'hidden'}>${rows.map(p=>`<button class="portal-person" data-person="${esc(p.id)}"><span class="portal-person-top"><span class="avatar">${esc(initials(p.name))}</span><span class="person-names"><strong>${esc(p.name)} ${paid(p)}</strong><small>${p.submitted}/${data.games.length} elecciones · ${p.complete?'Completa':'Por completar'}</small></span><span class="score-number">${p.correct}<small> aciertos</small></span></span><span class="portal-picks">${data.games.map(g=>pickTag(p,g)).join('')}</span></button>`).join('')}</div>`+comparisonTable(rows)+`<p class="comparison-legend" ${boardLayout==='matrix'?'':'hidden'}>✓ Acierto · × Fallo · Sin marca: por jugar · — Sin elección. Los aciertos se confirman al finalizar. Desliza la tabla para ver todos los partidos.</p>`+gameChoices();
 }
 function rankingView(){const s=summary(data);return heading('LA CARRERA POR LA BOLSA','La clasificación','Los aciertos se confirman al terminar cada partido. Los empates en aciertos comparten puesto.')+raceView(data,bundle.history)+`<div class="portal-rank">${standings(data).map(p=>`<div class="portal-rank-row ${p.rank===1?'top':''}"><span class="rank-num">${p.rank??'—'}</span><span class="avatar">${esc(initials(p.name))}</span><div class="portal-rank-name"><strong>${esc(p.name)} ${paid(p)}</strong><small>${p.complete?'Quiniela completa':p.submitted+'/'+data.games.length+' elecciones · por completar'} · máximo ${p.max}</small></div><span class="score-number">${p.correct}</span></div>`).join('')}</div>${s.settled&&s.leader?`<div class="notice" style="margin-top:1rem">La bolsa prevista se reparte entre ${esc(s.leader.names.join(', '))}: <strong>${money(s.expectedPot/s.leader.names.length)} por persona</strong>, sujeta a liquidación de aportaciones.</div>`:''}`;}
-function gamesView(){return calendarView(bundle.league,calendar,data.teams,data.games);}
+function gamesView(){return calendarView(bundle.league,calendar,data.teams,data.games,data.testMode?[]:bundle.rounds.map(r=>r.id));}
 async function feedbackView(){const {items}=await api('/api/feedback');return heading('TE ESCUCHAMOS','Errores, comentarios y sugerencias','Reporta un problema o comparte una idea. Tu mensaje llega al buzón privado de Luis, administrador. Aquí podrás consultar su respuesta.')+`<div class="feedback-grid"><form id="feedback-form" class="form-panel"><h3>Escribe a Luis</h3><label class="form-field">Asunto<input name="title" required minlength="3" maxlength="100" placeholder="¿Qué podemos mejorar?"></label><label class="form-field">Tu comentario<textarea name="body" required minlength="5" maxlength="3000" placeholder="Describe el error, tu comentario o sugerencia. Si es un problema, indica qué estabas haciendo."></textarea></label><button class="primary-button">Enviar a Luis</button><p role="alert" class="form-error" hidden></p></form><section><h3 class="day-heading">Tus mensajes</h3>${items.length?items.map(f=>feedbackCard(f,false)).join(''):'<div class="empty-box">Tus mensajes y respuestas aparecerán aquí.</div>'}</section></div>`;}
 function feedbackCard(f,isAdmin){return `<article class="feedback-item"><small>${esc(isAdmin?f.name+' · ':'')}${esc(fmt(f.created_at,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}))} · ${{new:'Recibido',read:'Leído',resolved:'Atendido'}[f.status]||esc(f.status)}</small><h3>${esc(f.title)}</h3><p>${esc(f.body)}</p>${f.reply?`<div class="feedback-reply"><strong>LUIS RESPONDIÓ</strong><p>${esc(f.reply)}</p></div>`:''}${isAdmin?`<form class="reply-form" data-id="${f.id}"><label class="form-field">Respuesta<textarea name="reply" maxlength="3000">${esc(f.reply||'')}</textarea></label><button class="small-button" name="status" value="read">Marcar leído y responder</button><button class="small-button" name="status" value="resolved">Marcar atendido</button></form>`:''}</article>`;}
 async function adminView(){
@@ -219,7 +239,8 @@ document.addEventListener('click',async e=>{
  const companion=e.target.closest('[data-companion]');if(companion){closeTools();await openCompanion(companion.dataset.companion,{api,userId:user().id,roundId:data.roundId,dirty,toast});return;}
  const layout=e.target.closest('[data-board-layout]');if(layout&&view==='board'&&!data.testMode){boardLayout=layout.dataset.boardLayout==='matrix'?'matrix':'cards';await render();document.querySelector(`[data-board-layout="${boardLayout}"]`)?.focus();return;}
  const n=e.target.closest('[data-view]');if(n){if(dirty&&n.dataset.view!=='picks'&&!confirm('Tienes cambios sin guardar. ¿Quieres salir de Mi quiniela?'))return;if(dirty&&n.dataset.view!=='picks'){dirty=false;draft={...me().choices};}closeTools();view=n.dataset.view;await render();return;}
- const game=e.target.closest('[data-game]');if(game){gameDetail(game.dataset.game);return;}
+ const calendarGame=e.target.closest('[data-calendar-game]');if(calendarGame){const g=bundle.league?.games.find(g=>g.id===calendarGame.dataset.calendarGame);if(g)await openGameChoices(g.id,`${bundle.league.season}-${g.phase}-${g.week}`);return;}
+ const game=e.target.closest('[data-game]');if(game){await openGameChoices(game.dataset.game);return;}
  const p=e.target.closest('[data-person]');if(p){detail(p.dataset.person);return;}
  const c=e.target.closest('[data-conference]');if(c){conference=c.dataset.conference;await render();return;}
  const reset=e.target.closest('[data-reset]');if(reset){if(!confirm('Se creará una contraseña temporal nueva y se cerrarán sus sesiones. ¿Continuar?'))return;try{const r=await api('/api/admin/reset-password',{method:'POST',body:JSON.stringify({user:reset.dataset.reset})});const out=$('#reset-output');out.hidden=false;out.innerHTML=`<div class="notice">${adminSandbox?'PRUEBA · Este acceso sólo cambia en la copia. No lo entregues a otra persona.':'Entrega estos datos únicamente a esa persona.'}<div class="reset-result">Usuario: ${esc(r.username)}<br>Contraseña temporal: ${esc(r.temporaryPassword)}</div>Al entrar deberá elegir una contraseña personal.</div>`;out.scrollIntoView({behavior:'smooth',block:'center'});}catch(exc){toast(exc.message);}return;}
@@ -236,3 +257,5 @@ $('#logout').onclick=logout;$('#close-detail').onclick=()=>$('#detail').close();
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&auth&&!auth.user.mustChange)load();});
 try{auth=await api('/api/me');csrf=auth.csrf;if(auth.user.mustChange)showChange(true);else await enter();}catch{showLogin();}
+
+$('#detail').addEventListener('close',()=>{gameDetailEpoch++;activeGame=null;activeGameRound=null;});
