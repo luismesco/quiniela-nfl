@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:10:15.850Z",
+  "fetchedAt": "2026-11-01T21:11:31.089Z",
   "calendarUpdatedAt": "2026-11-01T21:10:15.850Z",
   "standingsUpdatedAt": "2026-11-01T21:10:15.850Z",
   "standingsSource": "ESPN",
@@ -1641,7 +1641,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 35
+      "homeScore": 36
     },
     {
       "id": "2026_08_TEN_CIN",
