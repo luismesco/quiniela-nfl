@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T20:02:43.976Z",
+  "fetchedAt": "2026-11-01T20:02:59.910Z",
   "calendarUpdatedAt": "2026-11-01T20:02:43.976Z",
   "standingsUpdatedAt": "2026-11-01T20:02:43.976Z",
   "standingsSource": "ESPN",
@@ -1731,7 +1731,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 6,
-      "homeScore": 26
+      "homeScore": 27
     },
     {
       "id": "2026_08_ATL_TB",
