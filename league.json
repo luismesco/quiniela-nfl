@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:02:30.921Z",
-  "calendarUpdatedAt": "2026-11-01T20:58:46.914Z",
-  "standingsUpdatedAt": "2026-11-01T20:58:46.914Z",
+  "fetchedAt": "2026-11-01T21:02:45.199Z",
+  "calendarUpdatedAt": "2026-11-01T21:02:45.199Z",
+  "standingsUpdatedAt": "2026-11-01T21:02:45.199Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1670,7 +1670,7 @@
       "venue": "AT&T Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 23,
+      "awayScore": 24,
       "homeScore": 27
     },
     {
