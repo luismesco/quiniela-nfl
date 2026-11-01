@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T20:05:31.892Z",
+  "fetchedAt": "2026-11-01T20:08:29.959Z",
   "calendarUpdatedAt": "2026-11-01T20:05:31.892Z",
   "standingsUpdatedAt": "2026-11-01T20:05:31.892Z",
   "standingsSource": "ESPN",
@@ -1655,7 +1655,7 @@
       "venue": "Paycor Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 19,
       "homeScore": 21
     },
     {
