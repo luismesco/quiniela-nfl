@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T00:31:42.828Z",
-  "calendarUpdatedAt": "2026-11-02T00:26:26.672Z",
-  "standingsUpdatedAt": "2026-11-02T00:26:26.672Z",
+  "fetchedAt": "2026-11-02T00:31:59.137Z",
+  "calendarUpdatedAt": "2026-11-02T00:31:59.137Z",
+  "standingsUpdatedAt": "2026-11-02T00:31:59.137Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4908,14 +4908,14 @@
         },
         {
           "team": "NE",
-          "sourceOrder": 7,
-          "wins": 4,
+          "sourceOrder": 6,
+          "wins": 5,
           "losses": 3,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": 17,
-          "pointsFor": 160,
-          "pointsAgainst": 143
+          "pct": 0.625,
+          "differential": 22,
+          "pointsFor": 184,
+          "pointsAgainst": 162
         },
         {
           "team": "NYJ",
@@ -4932,12 +4932,12 @@
           "team": "MIA",
           "sourceOrder": 13,
           "wins": 1,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.16666667,
-          "differential": -59,
-          "pointsFor": 98,
-          "pointsAgainst": 157
+          "pct": 0.14285715,
+          "differential": -64,
+          "pointsFor": 117,
+          "pointsAgainst": 181
         }
       ]
     },
@@ -4969,7 +4969,7 @@
         },
         {
           "team": "CLE",
-          "sourceOrder": 6,
+          "sourceOrder": 7,
           "wins": 5,
           "losses": 3,
           "ties": 0,
