@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T00:00:12.316Z",
-  "calendarUpdatedAt": "2026-11-01T23:54:57.523Z",
-  "standingsUpdatedAt": "2026-11-01T23:54:57.523Z",
+  "fetchedAt": "2026-11-02T00:00:26.408Z",
+  "calendarUpdatedAt": "2026-11-02T00:00:26.408Z",
+  "standingsUpdatedAt": "2026-11-02T00:00:26.408Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5082,12 +5082,12 @@
           "team": "LAC",
           "sourceOrder": 15,
           "wins": 0,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
           "pct": 0,
-          "differential": -61,
-          "pointsFor": 90,
-          "pointsAgainst": 151
+          "differential": -76,
+          "pointsFor": 99,
+          "pointsAgainst": 175
         }
       ]
     },
@@ -5197,7 +5197,7 @@
       "teams": [
         {
           "team": "CAR",
-          "sourceOrder": 7,
+          "sourceOrder": 8,
           "wins": 3,
           "losses": 4,
           "ties": 0,
@@ -5269,14 +5269,14 @@
         },
         {
           "team": "LA",
-          "sourceOrder": 8,
-          "wins": 3,
+          "sourceOrder": 7,
+          "wins": 4,
           "losses": 4,
           "ties": 0,
-          "pct": 0.42857143,
-          "differential": 11,
-          "pointsFor": 170,
-          "pointsAgainst": 159
+          "pct": 0.5,
+          "differential": 26,
+          "pointsFor": 194,
+          "pointsAgainst": 168
         },
         {
           "team": "ARI",
