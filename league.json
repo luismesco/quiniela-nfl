@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T00:43:43.025Z",
-  "calendarUpdatedAt": "2026-11-02T00:38:27.692Z",
-  "standingsUpdatedAt": "2026-11-02T00:38:27.692Z",
+  "fetchedAt": "2026-11-02T00:44:00.754Z",
+  "calendarUpdatedAt": "2026-11-02T00:44:00.754Z",
+  "standingsUpdatedAt": "2026-11-02T00:44:00.754Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5046,26 +5046,26 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "KC",
+          "team": "DEN",
           "sourceOrder": 1,
-          "wins": 5,
-          "losses": 1,
+          "wins": 6,
+          "losses": 2,
           "ties": 0,
-          "pct": 0.8333333,
-          "differential": 40,
-          "pointsFor": 143,
-          "pointsAgainst": 103
+          "pct": 0.75,
+          "differential": 7,
+          "pointsFor": 172,
+          "pointsAgainst": 165
         },
         {
-          "team": "DEN",
+          "team": "KC",
           "sourceOrder": 4,
           "wins": 5,
           "losses": 2,
           "ties": 0,
           "pct": 0.71428573,
-          "differential": 3,
-          "pointsFor": 144,
-          "pointsAgainst": 141
+          "differential": 36,
+          "pointsFor": 167,
+          "pointsAgainst": 131
         },
         {
           "team": "LV",
