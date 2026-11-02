@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T00:15:00.008Z",
+  "fetchedAt": "2026-11-02T00:18:42.585Z",
   "calendarUpdatedAt": "2026-11-02T00:15:00.008Z",
   "standingsUpdatedAt": "2026-11-02T00:15:00.008Z",
   "standingsSource": "ESPN",
@@ -1791,7 +1791,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 24,
-      "homeScore": 13
+      "homeScore": 19
     },
     {
       "id": "2026_08_PHI_WAS",
