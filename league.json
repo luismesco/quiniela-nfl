@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T02:02:28.560Z",
+  "fetchedAt": "2026-11-02T02:05:44.462Z",
   "calendarUpdatedAt": "2026-11-02T02:02:28.560Z",
   "standingsUpdatedAt": "2026-11-02T02:02:28.560Z",
   "standingsSource": "ESPN",
@@ -1806,7 +1806,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 0
+      "homeScore": 3
     },
     {
       "id": "2026_08_CHI_SEA",
