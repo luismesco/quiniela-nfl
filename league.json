@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-02T20:47:37.352Z",
+  "fetchedAt": "2026-11-03T02:16:14.142Z",
   "calendarUpdatedAt": "2026-11-02T20:47:37.352Z",
-  "standingsUpdatedAt": "2026-11-02T20:47:37.352Z",
+  "standingsUpdatedAt": "2026-11-03T02:16:14.142Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1819,9 +1819,9 @@
       "timeTbd": false,
       "venue": "Lumen Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 10,
+      "homeScore": 3
     },
     {
       "id": "2026_09_JAX_BAL",
