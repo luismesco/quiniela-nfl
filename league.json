@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-01T21:45:19.921Z",
-  "calendarUpdatedAt": "2026-11-01T21:45:19.921Z",
-  "standingsUpdatedAt": "2026-11-01T21:45:19.921Z",
+  "fetchedAt": "2026-11-03T04:25:39.955Z",
+  "calendarUpdatedAt": "2026-11-03T04:25:39.955Z",
+  "standingsUpdatedAt": "2026-11-03T04:25:39.955Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1759,9 +1759,9 @@
       "timeTbd": false,
       "venue": "SoFi Stadium",
       "neutral": false,
-      "status": "live",
-      "awayScore": 3,
-      "homeScore": 3
+      "status": "final",
+      "awayScore": 9,
+      "homeScore": 24
     },
     {
       "id": "2026_08_KC_DEN",
@@ -1774,9 +1774,9 @@
       "timeTbd": false,
       "venue": "Empower Field at Mile High",
       "neutral": false,
-      "status": "live",
-      "awayScore": 7,
-      "homeScore": 3
+      "status": "final",
+      "awayScore": 24,
+      "homeScore": 28
     },
     {
       "id": "2026_08_NE_MIA",
@@ -1789,9 +1789,9 @@
       "timeTbd": false,
       "venue": "Hard Rock Stadium",
       "neutral": false,
-      "status": "live",
-      "awayScore": 3,
-      "homeScore": 0
+      "status": "final",
+      "awayScore": 24,
+      "homeScore": 19
     },
     {
       "id": "2026_08_PHI_WAS",
@@ -1804,9 +1804,9 @@
       "timeTbd": false,
       "venue": "Northwest Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "final",
+      "awayScore": 10,
+      "homeScore": 27
     },
     {
       "id": "2026_08_CHI_SEA",
@@ -1819,9 +1819,9 @@
       "timeTbd": false,
       "venue": "Lumen Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "final",
+      "awayScore": 34,
+      "homeScore": 17
     },
     {
       "id": "2026_09_JAX_BAL",
@@ -4908,14 +4908,14 @@
         },
         {
           "team": "NE",
-          "sourceOrder": 7,
-          "wins": 4,
+          "sourceOrder": 6,
+          "wins": 5,
           "losses": 3,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": 17,
-          "pointsFor": 160,
-          "pointsAgainst": 143
+          "pct": 0.625,
+          "differential": 22,
+          "pointsFor": 184,
+          "pointsAgainst": 162
         },
         {
           "team": "NYJ",
@@ -4932,12 +4932,12 @@
           "team": "MIA",
           "sourceOrder": 13,
           "wins": 1,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.16666667,
-          "differential": -59,
-          "pointsFor": 98,
-          "pointsAgainst": 157
+          "pct": 0.14285715,
+          "differential": -64,
+          "pointsFor": 117,
+          "pointsAgainst": 181
         }
       ]
     },
@@ -4969,7 +4969,7 @@
         },
         {
           "team": "CLE",
-          "sourceOrder": 6,
+          "sourceOrder": 7,
           "wins": 5,
           "losses": 3,
           "ties": 0,
@@ -5046,26 +5046,26 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "KC",
+          "team": "DEN",
           "sourceOrder": 1,
-          "wins": 5,
-          "losses": 1,
+          "wins": 6,
+          "losses": 2,
           "ties": 0,
-          "pct": 0.8333333,
-          "differential": 40,
-          "pointsFor": 143,
-          "pointsAgainst": 103
+          "pct": 0.75,
+          "differential": 7,
+          "pointsFor": 172,
+          "pointsAgainst": 165
         },
         {
-          "team": "DEN",
+          "team": "KC",
           "sourceOrder": 4,
           "wins": 5,
           "losses": 2,
           "ties": 0,
           "pct": 0.71428573,
-          "differential": 3,
-          "pointsFor": 144,
-          "pointsAgainst": 141
+          "differential": 36,
+          "pointsFor": 167,
+          "pointsAgainst": 131
         },
         {
           "team": "LV",
@@ -5082,12 +5082,12 @@
           "team": "LAC",
           "sourceOrder": 15,
           "wins": 0,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
           "pct": 0,
-          "differential": -61,
-          "pointsFor": 90,
-          "pointsAgainst": 151
+          "differential": -76,
+          "pointsFor": 99,
+          "pointsAgainst": 175
         }
       ]
     },
@@ -5118,26 +5118,26 @@
           "pointsAgainst": 213
         },
         {
-          "team": "PHI",
-          "sourceOrder": 14,
-          "wins": 2,
-          "losses": 5,
-          "ties": 0,
-          "pct": 0.2857143,
-          "differential": -48,
-          "pointsFor": 127,
-          "pointsAgainst": 175
-        },
-        {
           "team": "WAS",
-          "sourceOrder": 15,
-          "wins": 1,
+          "sourceOrder": 13,
+          "wins": 2,
           "losses": 4,
           "ties": 1,
+          "pct": 0.35714287,
+          "differential": -23,
+          "pointsFor": 159,
+          "pointsAgainst": 182
+        },
+        {
+          "team": "PHI",
+          "sourceOrder": 15,
+          "wins": 2,
+          "losses": 6,
+          "ties": 0,
           "pct": 0.25,
-          "differential": -40,
-          "pointsFor": 132,
-          "pointsAgainst": 172
+          "differential": -65,
+          "pointsFor": 137,
+          "pointsAgainst": 202
         }
       ]
     },
@@ -5157,8 +5157,19 @@
           "pointsAgainst": 93
         },
         {
-          "team": "DET",
+          "team": "CHI",
           "sourceOrder": 2,
+          "wins": 6,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.75,
+          "differential": 54,
+          "pointsFor": 214,
+          "pointsAgainst": 160
+        },
+        {
+          "team": "DET",
+          "sourceOrder": 3,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 23,
           "pointsFor": 203,
           "pointsAgainst": 180
-        },
-        {
-          "team": "CHI",
-          "sourceOrder": 3,
-          "wins": 5,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.71428573,
-          "differential": 37,
-          "pointsFor": 180,
-          "pointsAgainst": 143
         },
         {
           "team": "GB",
@@ -5197,7 +5197,7 @@
       "teams": [
         {
           "team": "CAR",
-          "sourceOrder": 7,
+          "sourceOrder": 8,
           "wins": 3,
           "losses": 4,
           "ties": 0,
@@ -5230,7 +5230,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 13,
+          "sourceOrder": 14,
           "wins": 2,
           "losses": 5,
           "ties": 0,
@@ -5260,23 +5260,23 @@
           "team": "SEA",
           "sourceOrder": 6,
           "wins": 4,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": 43,
-          "pointsFor": 168,
-          "pointsAgainst": 125
+          "pct": 0.5,
+          "differential": 26,
+          "pointsFor": 185,
+          "pointsAgainst": 159
         },
         {
           "team": "LA",
-          "sourceOrder": 8,
-          "wins": 3,
+          "sourceOrder": 7,
+          "wins": 4,
           "losses": 4,
           "ties": 0,
-          "pct": 0.42857143,
-          "differential": 11,
-          "pointsFor": 170,
-          "pointsAgainst": 159
+          "pct": 0.5,
+          "differential": 26,
+          "pointsFor": 194,
+          "pointsAgainst": 168
         },
         {
           "team": "ARI",
