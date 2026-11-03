@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-03T03:14:33.087Z",
-  "calendarUpdatedAt": "2026-11-03T03:10:19.063Z",
-  "standingsUpdatedAt": "2026-11-03T03:10:19.063Z",
+  "fetchedAt": "2026-11-03T03:14:58.626Z",
+  "calendarUpdatedAt": "2026-11-03T03:14:58.626Z",
+  "standingsUpdatedAt": "2026-11-03T03:14:58.626Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1820,7 +1820,7 @@
       "venue": "Lumen Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 19,
+      "awayScore": 20,
       "homeScore": 9
     },
     {
