@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-03T03:53:48.658Z",
+  "fetchedAt": "2026-11-03T03:54:03.783Z",
   "calendarUpdatedAt": "2026-11-03T03:53:48.658Z",
   "standingsUpdatedAt": "2026-11-03T03:53:48.658Z",
   "standingsSource": "ESPN",
@@ -1820,7 +1820,7 @@
       "venue": "Lumen Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 26,
+      "awayScore": 27,
       "homeScore": 17
     },
     {
