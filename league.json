@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-03T04:24:34.238Z",
-  "calendarUpdatedAt": "2026-11-03T04:19:51.118Z",
-  "standingsUpdatedAt": "2026-11-03T04:19:51.118Z",
+  "fetchedAt": "2026-11-03T04:24:48.243Z",
+  "calendarUpdatedAt": "2026-11-03T04:24:48.243Z",
+  "standingsUpdatedAt": "2026-11-03T04:24:48.243Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5157,8 +5157,19 @@
           "pointsAgainst": 93
         },
         {
-          "team": "DET",
+          "team": "CHI",
           "sourceOrder": 2,
+          "wins": 6,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.75,
+          "differential": 54,
+          "pointsFor": 214,
+          "pointsAgainst": 160
+        },
+        {
+          "team": "DET",
+          "sourceOrder": 3,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 23,
           "pointsFor": 203,
           "pointsAgainst": 180
-        },
-        {
-          "team": "CHI",
-          "sourceOrder": 3,
-          "wins": 5,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.71428573,
-          "differential": 37,
-          "pointsFor": 180,
-          "pointsAgainst": 143
         },
         {
           "team": "GB",
@@ -5260,12 +5260,12 @@
           "team": "SEA",
           "sourceOrder": 6,
           "wins": 4,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.5714286,
-          "differential": 43,
-          "pointsFor": 168,
-          "pointsAgainst": 125
+          "pct": 0.5,
+          "differential": 26,
+          "pointsFor": 185,
+          "pointsAgainst": 159
         },
         {
           "team": "LA",
