@@ -13,10 +13,11 @@ import threading
 import time
 import zipfile
 from contextlib import contextmanager
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import wraps
 from pathlib import Path
 from urllib.parse import urlparse
+from zoneinfo import ZoneInfo
 
 import bcrypt
 from flask import Flask, abort, g, has_app_context, jsonify, redirect, request, send_file, send_from_directory
@@ -181,8 +182,8 @@ def create_app(config=None):
             conn.execute('UPDATE users SET password_hash=?,username=? WHERE id=? AND password_hash IS NULL',
                          (u['password_hash'], u['username'], u['id']))
 
-    # Persist only the published capture deadline; future calendar rounds stay closed
-    # until their own weekly controller supplies one. Never re-import participant data.
+    # Preserve published controllers. New rounds use the recurring window below;
+    # participant data is never re-imported here.
     with db() as conn:
         controllers = sorted((ROOT / 'archivo').glob('*/semana-*/quiniela.json')) + [ROOT / 'quiniela.json']
         for path in controllers:
@@ -195,8 +196,27 @@ def create_app(config=None):
             if cache_get(conn, key) is None:
                 cache_set(conn, key, deadline)
 
-    def capture_deadline(conn, rid):
-        return cache_get(conn, 'round_deadline:' + rid)
+    def capture_window(conn, rid):
+        explicit = cache_get(conn, 'round_deadline:' + rid)
+        # Preserve old controllers and isolated admin scenarios. No writes are
+        # needed to advance the weekly schedule, including after a restart.
+        if has_app_context() and getattr(g, 'admin_sandbox', False):
+            return {'opensAt': None, 'deadline': explicit}
+        r = conn.execute('SELECT season,phase,week FROM rounds WHERE id=?', (rid,)).fetchone()
+        eligible = r and r['phase'] in ('REG', 'POST') and (r['season'] > 2026 or
+                    r['season'] == 2026 and (r['phase'] == 'POST' or r['week'] >= 9))
+        if not eligible:
+            return {'opensAt': None, 'deadline': explicit}
+        starts = [epoch(row['start']) for row in conn.execute(
+            "SELECT start FROM games WHERE round_id=? AND status!='canceled'", (rid,))]
+        starts = [value for value in starts if value is not None]
+        if not starts:
+            return {'opensAt': None, 'deadline': explicit}
+        local = datetime.fromtimestamp(min(starts), ZoneInfo('America/Mexico_City'))
+        tuesday = local.date() - timedelta(days=(local.weekday() - 1) % 7)
+        opens = datetime.combine(tuesday, datetime.min.time(), local.tzinfo)
+        closes = opens + timedelta(days=2, hours=18)
+        return {'opensAt': opens.isoformat(), 'deadline': explicit or closes.isoformat()}
 
     def capture_extension(conn, rid, user_id):
         # Individual grants live only in the private database and never change the round controller.
@@ -404,15 +424,17 @@ def create_app(config=None):
 
     def state(conn, rid, sandbox=False):
         r = selected_round(conn, rid)
-        deadline = capture_deadline(conn, r['id'])
+        window = capture_window(conn, r['id'])
+        deadline = window['deadline']
         now = app.config['NOW']()
+        before_open = not sandbox and epoch(window['opensAt']) is not None and now < epoch(window['opensAt'])
         games = []
         for row in conn.execute('SELECT * FROM games WHERE round_id=? ORDER BY start,id', (r['id'],)):
             game = json.loads(row['payload'])
             game.update(id=row['id'], away=row['away'], home=row['home'], start=row['start'], venue=row['venue'],
                         neutral=bool(row['neutral']), status=row['status'], awayScore=row['away_score'], homeScore=row['home_score'], checkedAt=row['checked_at'])
             game['closesAt'] = game_closes_at(row['start'], deadline, sandbox)
-            game['locked'] = bool(game.get('timeTbd')) or row['status'] != 'scheduled' or not game['closesAt'] or now >= epoch(game['closesAt'])
+            game['locked'] = before_open or bool(game.get('timeTbd')) or row['status'] != 'scheduled' or not game['closesAt'] or now >= epoch(game['closesAt'])
             games.append(game)
         participants = []
         for user in conn.execute("SELECT * FROM users WHERE active=1 AND role!='test' ORDER BY name COLLATE NOCASE"):
@@ -423,8 +445,8 @@ def create_app(config=None):
                                  'paid': None if not paid or paid['paid'] is None else bool(paid['paid']), 'choices': choices})
         return {'schema': 1, 'author': AUTHOR, 'roundId': r['id'], 'season': r['season'], 'phase': r['phase'], 'week': r['week'],
                 'fee': r['fee'], 'currency': 'MXN', 'updatedAt': stamp(), 'teams': cache_get(conn, 'teams'),
-                'deadline': deadline, 'captureRule': 'per-game' if sandbox else 'weekly',
-                'captureClosed': all(game['locked'] for game in games) if sandbox else not epoch(deadline) or now >= epoch(deadline),
+                'deadline': deadline, 'opensAt': None if sandbox else window['opensAt'], 'captureRule': 'per-game' if sandbox else 'weekly',
+                'captureClosed': all(game['locked'] for game in games) if sandbox else before_open or not epoch(deadline) or now >= epoch(deadline),
                 'games': games, 'participants': participants, 'demo': False}
 
     def record_state(conn, data):
@@ -505,13 +527,16 @@ def create_app(config=None):
         with db() as conn:
             conn.execute('BEGIN IMMEDIATE')
             selected_round(conn,rid)
-            deadline = capture_deadline(conn, rid)
+            window = capture_window(conn, rid)
+            deadline = window['deadline']
             now = app.config['NOW']()
             sandbox = g.user['role'] == 'test'
             picks_table = 'sandbox_picks' if sandbox else 'picks'
             extension = capture_extension(conn, rid, g.user['id']) if not sandbox and not g.admin_sandbox else None
             if extension:
                 deadline = extension['deadline']
+            if not sandbox and not extension and epoch(window['opensAt']) is not None and now < epoch(window['opensAt']):
+                abort(409,'La captura de esta jornada aún no abre. Actualiza la jornada.')
             changes=[]
             for gid,choice in choices.items():
                 game=conn.execute('SELECT * FROM games WHERE id=? AND round_id=?',(gid,rid)).fetchone()

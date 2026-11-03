@@ -113,6 +113,7 @@ function captureNotice(){
   return `<section class="notice" role="status"><strong>Registro excepcional habilitado para ti</strong><p>Puedes registrar tu quiniela hasta ${closes} · CDMX. ${data.captureExtension.initialClosedGames.length?'Los partidos ya iniciados autorizados admiten una sola elección; después de guardarla queda fija.':'Los partidos que ya comenzaron conservan su cierre.'}</p></section>`;
  }
  if(!data.deadline)return '<p class="capture-deadline">La captura de esta jornada aún no está habilitada.</p>';
+ if(data.opensAt&&serverClock&&serverClock.epoch+performance.now()-serverClock.tick<Date.parse(data.opensAt))return `<p class="capture-deadline" role="status">La captura abre el ${esc(fmt(data.opensAt,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false}))} · CDMX. Cierra el jueves a las 18:00 · CDMX.</p>`;
  const closes=`<time datetime="${esc(data.deadline)}">${esc(fmt(data.deadline,{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',hour12:false}))} · CDMX</time>`;
  if(captureIsClosed())return `<p class="capture-deadline" role="status">El plazo de esta jornada ya cerró: ${closes}. Tus elecciones guardadas se conservan.</p>`;
  const saved=data.games.filter(g=>Object.hasOwn(me().choices,g.id)).length,missing=Math.max(0,data.games.length-saved);
@@ -123,6 +124,10 @@ function captureNotice(){
 }
 function scheduleCaptureClose(){
  clearTimeout(deadlineTimer);
+ if(!data.testMode&&data.opensAt&&serverClock){
+  const untilOpen=Date.parse(data.opensAt)-(serverClock.epoch+performance.now()-serverClock.tick);
+  if(untilOpen>0){deadlineTimer=setTimeout(()=>load(),Math.min(2147483647,Math.max(1,untilOpen)));return;}
+ }
  if(data.testMode||data.captureClosed||!data.deadline||!serverClock)return;
  const delay=Date.parse(data.deadline)-(serverClock.epoch+performance.now()-serverClock.tick);
  if(!Number.isFinite(delay))return;
