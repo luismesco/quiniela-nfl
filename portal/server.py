@@ -688,6 +688,15 @@ def create_app(config=None):
 
     @app.get('/portal/<path:filename>')
     def portal_assets(filename):
+        if filename in ('nueva-vista.html', 'nueva-vista.mjs'):
+            if not g.user:
+                abort(401, 'Inicia sesión para continuar.')
+            if g.user['role'] != 'admin' or g.user['id'] != 'luis':
+                abort(403, 'Esta vista está disponible para Luis.')
+            response = send_from_directory(ROOT/'portal', filename)
+            response.headers['Cache-Control'] = 'private, no-store'
+            response.headers['X-Robots-Tag'] = 'noindex, nofollow'
+            return response
         if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs','contributions.mjs','team-stats.mjs','compact-preview.mjs','compact-preview.css'):abort(404)
         return send_from_directory(ROOT/'portal',filename)
 
