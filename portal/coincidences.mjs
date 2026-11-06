@@ -37,7 +37,7 @@ export function coincidences(data,userId){
 export function coincidencesView(data,userId,{dirty=false}={}){
  const r=coincidences(data,userId),label=t=>t==='TIE'?'Empate · TIE':data.teams?.[t]?.nick||t;
  const names=rows=>rows.map(p=>esc(p.name)).join(', '),point=n=>`${n} acierto${n===1?'':'s'}`;
- const head=`<div class="investigator-heading"><img src="/assets/mascotas/ajolote-coincidencias.png" width="130" height="130" alt="Ajolote comparando dos quinielas junto a un trofeo"><div><span class="section-kicker">TU QUINIELA FRENTE AL GRUPO</span><h2 id="companion-title">Coincidencias</h2><p>Quién eligió lo mismo y con quién podrías compartir el primer lugar.</p></div></div>`;
+ const head=`<div class="investigator-heading"><img src="/assets/mascotas/ajolote-coincidencias-v2.png" width="130" height="130" alt="Ajolote comparando dos quinielas junto a un trofeo"><div><span class="section-kicker">TU QUINIELA FRENTE AL GRUPO</span><h2 id="companion-title">Coincidencias</h2><p>Quién eligió lo mismo y con quién podrías compartir el primer lugar.</p></div></div>`;
  if(!r.available)return head+`<p class="notice" role="status">${esc(r.reason)}</p>`;
  const scenario=r.scenario,otherLeaders=scenario?.leaders.filter(p=>p.id!==userId)||[];
  const title=!scenario?'Tu escenario está pendiente':!r.pending?scenario.leads?(scenario.shared?'Compartes el primer lugar':'Ganaste el primer lugar'):'Así terminó la jornada':scenario.leads?(scenario.shared?'Si aciertas lo pendiente, compartes':'Si aciertas lo pendiente, ganas solo'):'Aun acertando lo pendiente, no alcanzas';

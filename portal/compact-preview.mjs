@@ -1,18 +1,18 @@
 // Autor: Luis Montañez Escobar.
-import {roundVerdict} from './investigator.mjs';
+import {journeyToolButtons,secondarySections} from './journey-tools.mjs';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const compactEnabled=user=>!!user&&['admin','participant','test'].includes(user.role);
-export const previewEnabled=(user,search)=>user?.role==='admin'&&user?.id==='luis'&&new URLSearchParams(search).get('vista')==='compacta';
+export const canPreview=user=>user?.role==='admin'&&user?.id==='luis';
+export const previewMode=(user,search)=>canPreview(user)?new URLSearchParams(search).get('vista'):null;
+export const previewEnabled=(user,search)=>['compacta','app'].includes(previewMode(user,search));
 export function previewBar(data){return `<div class="compact-review" role="status"><span><b>Vista compacta · ${data.adminSandbox?'Prueba':'En revisión'}</b><small> Sólo para tu cuenta</small></span><button type="button" class="small-button" data-layout-preview="off">Volver a vista habitual</button></div>`;}
 export function compactTools(data){
- const verdict=roundVerdict(data),winner=data.treasurer?.winner?.name;
- const tile=(title,text,attribute,mascot)=>`<button type="button" class="compact-tool" ${attribute} aria-haspopup="dialog" aria-label="${esc(title+': '+text)}"><img src="/assets/mascotas/${mascot}.png" width="40" height="44" alt=""><strong>${title}</strong></button>`;
- return `<aside class="compact-tools" aria-label="Herramientas de la jornada"><button type="button" class="compact-tools-toggle" data-preview-tools aria-expanded="false" aria-controls="compact-tool-grid">Herramientas de la jornada <span aria-hidden="true">＋</span></button><div id="compact-tool-grid" class="compact-tool-grid">${!data.testMode&&data.treasurer?tile('Tesorero',winner||'Ver la tómbola','data-treasurer','ajolote-tesorero'):''}${data.testMode?'':tile('La bolsa',verdict.status==='final'?'Ver ganadores':`${verdict.finished}/${verdict.total} partidos finalizados`,'data-companion="outlook"','ajolote-adivino')}${data.testMode?'':tile('Mis posibilidades','Simular cómo puedo ganar','data-companion="investigate"','ajolote-investigador')}${data.testMode?'':tile('Coincidencias','Ver tarjetas iguales y con quién compartirías el primer lugar','data-companion="coincidences"','ajolote-coincidencias')}${tile('Compartir','Descargar mi selección','data-companion="share"','ajolote-fotografo')}${data.contributionAccess?.canView?tile('Aportaciones','Control y Excel','data-contributions','ajolote-tesorero'):''}${tile('Los equipos','Ver estadísticas NFL','data-team-stats','ajolote-estadisticas')}</div></aside>`;
+ return `<aside class="compact-tools" aria-label="Herramientas de la jornada"><button type="button" class="compact-tools-toggle" data-preview-tools aria-expanded="false" aria-controls="compact-tool-grid">Herramientas de la jornada <span aria-hidden="true">＋</span></button><div id="compact-tool-grid" class="compact-tool-grid">${journeyToolButtons(data)}</div></aside>`;
 }
 export function closePreviewMenu(){document.querySelector('#compact-more')?.close();}
 export function openPreviewMenu(user){
  closePreviewMenu();const previous=document.activeElement,dialog=document.createElement('dialog');dialog.id='compact-more';dialog.className='compact-more';dialog.setAttribute('aria-labelledby','compact-more-title');
- dialog.innerHTML='<div class="dialog-top"><h2 id="compact-more-title">Más opciones</h2><button type="button" class="icon-button" data-close-preview-menu aria-label="Cerrar menú">×</button></div><nav aria-label="Más secciones">'+[['standings','Posiciones NFL'],['feedback','Ayuda y comentarios'],...(user?.role==='admin'?[['admin','Administración']]:[]),['rules','Cómo se juega'],['account','Mi cuenta']].map(([v,label])=>`<button type="button" data-view="${v}">${label}<span aria-hidden="true">↗</span></button>`).join('')+'</nav>';
+ dialog.innerHTML='<div class="dialog-top"><h2 id="compact-more-title">Más opciones</h2><button type="button" class="icon-button" data-close-preview-menu aria-label="Cerrar menú">×</button></div><nav aria-label="Más secciones">'+secondarySections(user).map(({id:v,title:label})=>`<button type="button" data-view="${v}">${label}<span aria-hidden="true">↗</span></button>`).join('')+'</nav>';
  document.body.append(dialog);dialog.addEventListener('close',()=>{dialog.remove();previous?.focus();},{once:true});dialog.querySelector('[data-close-preview-menu]').onclick=()=>dialog.close();dialog.showModal();
 }
 
