@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-06T04:07:21.850Z",
-  "calendarUpdatedAt": "2026-11-06T04:07:21.850Z",
-  "standingsUpdatedAt": "2026-11-06T04:07:21.850Z",
+  "fetchedAt": "2026-11-06T17:23:07.596Z",
+  "calendarUpdatedAt": "2026-11-06T17:23:07.596Z",
+  "standingsUpdatedAt": "2026-11-06T17:23:07.596Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4947,7 +4947,7 @@
       "teams": [
         {
           "team": "PIT",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -4982,12 +4982,12 @@
           "team": "BAL",
           "sourceOrder": 9,
           "wins": 4,
-          "losses": 4,
+          "losses": 5,
           "ties": 0,
-          "pct": 0.5,
-          "differential": -24,
-          "pointsFor": 179,
-          "pointsAgainst": 203
+          "pct": 0.44444445,
+          "differential": -47,
+          "pointsFor": 189,
+          "pointsAgainst": 236
         }
       ]
     },
@@ -4997,14 +4997,14 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 3,
-          "wins": 5,
+          "sourceOrder": 2,
+          "wins": 6,
           "losses": 2,
           "ties": 0,
-          "pct": 0.71428573,
-          "differential": 85,
-          "pointsFor": 196,
-          "pointsAgainst": 111
+          "pct": 0.75,
+          "differential": 108,
+          "pointsFor": 229,
+          "pointsAgainst": 121
         },
         {
           "team": "HOU",
