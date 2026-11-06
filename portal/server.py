@@ -697,7 +697,7 @@ def create_app(config=None):
             response.headers['Cache-Control'] = 'private, no-store'
             response.headers['X-Robots-Tag'] = 'noindex, nofollow'
             return response
-        if filename not in ('ui.mjs','portal.css','companion.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs','contributions.mjs','team-stats.mjs','compact-preview.mjs','compact-preview.css'):abort(404)
+        if filename not in ('ui.mjs','portal.css','companion.mjs','coincidences.mjs','investigator.mjs','selection-export.mjs','round-outlook.mjs','treasurer.mjs','contributions.mjs','team-stats.mjs','compact-preview.mjs','compact-preview.css'):abort(404)
         return send_from_directory(ROOT/'portal',filename)
 
     @app.get('/<filename>')
