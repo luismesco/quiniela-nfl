@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-05T22:37:47.705Z",
+  "fetchedAt": "2026-11-06T02:13:05.038Z",
   "calendarUpdatedAt": "2026-11-05T22:37:47.705Z",
   "standingsUpdatedAt": "2026-11-05T22:37:47.705Z",
   "standingsSource": "ESPN",
@@ -1834,9 +1834,9 @@
       "timeTbd": false,
       "venue": "M&T Bank Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 10,
+      "homeScore": 3
     },
     {
       "id": "2026_09_CIN_ATL",
