@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T14:48:26.693Z",
+  "fetchedAt": "2026-11-08T14:50:13.092Z",
   "calendarUpdatedAt": "2026-11-08T14:48:26.693Z",
   "standingsUpdatedAt": "2026-11-08T14:48:26.693Z",
   "standingsSource": "ESPN",
@@ -1850,7 +1850,7 @@
       "venue": "Santiago Bernabéu",
       "neutral": true,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 7,
       "homeScore": 7
     },
     {
