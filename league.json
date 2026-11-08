@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T20:35:14.401Z",
+  "fetchedAt": "2026-11-08T20:38:26.986Z",
   "calendarUpdatedAt": "2026-11-08T20:35:14.401Z",
   "standingsUpdatedAt": "2026-11-08T20:35:14.401Z",
   "standingsSource": "ESPN",
@@ -1940,7 +1940,7 @@
       "venue": "Lincoln Financial Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 16,
       "homeScore": 8
     },
     {
