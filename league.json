@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:34:28.005Z",
-  "calendarUpdatedAt": "2026-11-08T21:33:12.715Z",
-  "standingsUpdatedAt": "2026-11-08T21:33:12.715Z",
+  "fetchedAt": "2026-11-08T21:34:41.507Z",
+  "calendarUpdatedAt": "2026-11-08T21:34:41.507Z",
+  "standingsUpdatedAt": "2026-11-08T21:34:41.507Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1879,7 +1879,7 @@
       "timeTbd": false,
       "venue": "Lucas Oil Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 27,
       "homeScore": 23
     },
@@ -1986,7 +1986,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 6
+      "homeScore": 7
     },
     {
       "id": "2026_09_GB_NE",
@@ -4971,12 +4971,12 @@
           "team": "CLE",
           "sourceOrder": 7,
           "wins": 5,
-          "losses": 3,
+          "losses": 4,
           "ties": 0,
-          "pct": 0.625,
-          "differential": -34,
-          "pointsFor": 139,
-          "pointsAgainst": 173
+          "pct": 0.5555556,
+          "differential": -35,
+          "pointsFor": 161,
+          "pointsAgainst": 196
         },
         {
           "team": "BAL",
@@ -5218,8 +5218,19 @@
           "pointsAgainst": 219
         },
         {
-          "team": "ATL",
+          "team": "NO",
           "sourceOrder": 12,
+          "wins": 3,
+          "losses": 5,
+          "ties": 0,
+          "pct": 0.375,
+          "differential": -31,
+          "pointsFor": 185,
+          "pointsAgainst": 216
+        },
+        {
+          "team": "ATL",
+          "sourceOrder": 13,
           "wins": 3,
           "losses": 6,
           "ties": 0,
@@ -5227,17 +5238,6 @@
           "differential": -35,
           "pointsFor": 188,
           "pointsAgainst": 223
-        },
-        {
-          "team": "NO",
-          "sourceOrder": 13,
-          "wins": 2,
-          "losses": 5,
-          "ties": 0,
-          "pct": 0.2857143,
-          "differential": -32,
-          "pointsFor": 162,
-          "pointsAgainst": 194
         }
       ]
     },
