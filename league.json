@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:06:27.480Z",
-  "calendarUpdatedAt": "2026-11-08T21:06:11.897Z",
-  "standingsUpdatedAt": "2026-11-08T21:06:11.897Z",
+  "fetchedAt": "2026-11-08T21:06:50.654Z",
+  "calendarUpdatedAt": "2026-11-08T21:06:50.654Z",
+  "standingsUpdatedAt": "2026-11-08T21:06:50.654Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1894,7 +1894,7 @@
       "timeTbd": false,
       "venue": "Arrowhead Stadium",
       "neutral": false,
-      "status": "live",
+      "status": "final",
       "awayScore": 12,
       "homeScore": 35
     },
@@ -1925,7 +1925,7 @@
       "venue": "Caesars Superdome",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 16,
       "homeScore": 16
     },
     {
