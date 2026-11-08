@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T20:55:57.318Z",
-  "calendarUpdatedAt": "2026-11-08T20:53:16.323Z",
-  "standingsUpdatedAt": "2026-11-08T20:53:16.323Z",
+  "fetchedAt": "2026-11-08T20:56:10.996Z",
+  "calendarUpdatedAt": "2026-11-08T20:56:10.996Z",
+  "standingsUpdatedAt": "2026-11-08T20:56:10.996Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4932,12 +4932,12 @@
           "team": "MIA",
           "sourceOrder": 13,
           "wins": 1,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
-          "pct": 0.14285715,
-          "differential": -64,
-          "pointsFor": 117,
-          "pointsAgainst": 181
+          "pct": 0.125,
+          "differential": -74,
+          "pointsFor": 126,
+          "pointsAgainst": 200
         }
       ]
     },
@@ -5157,8 +5157,19 @@
           "pointsAgainst": 93
         },
         {
-          "team": "CHI",
+          "team": "DET",
           "sourceOrder": 2,
+          "wins": 6,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.75,
+          "differential": 33,
+          "pointsFor": 222,
+          "pointsAgainst": 189
+        },
+        {
+          "team": "CHI",
+          "sourceOrder": 3,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 54,
           "pointsFor": 214,
           "pointsAgainst": 160
-        },
-        {
-          "team": "DET",
-          "sourceOrder": 3,
-          "wins": 5,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.71428573,
-          "differential": 23,
-          "pointsFor": 203,
-          "pointsAgainst": 180
         },
         {
           "team": "GB",
