@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:22:42.454Z",
+  "fetchedAt": "2026-11-08T21:25:57.812Z",
   "calendarUpdatedAt": "2026-11-08T21:22:42.454Z",
   "standingsUpdatedAt": "2026-11-08T21:22:42.454Z",
   "standingsSource": "ESPN",
@@ -1999,9 +1999,9 @@
       "timeTbd": false,
       "venue": "Gillette Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_ARI_SEA",
