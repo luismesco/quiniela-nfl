@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T23:26:59.934Z",
-  "calendarUpdatedAt": "2026-11-08T23:22:13.420Z",
-  "standingsUpdatedAt": "2026-11-08T23:22:13.420Z",
+  "fetchedAt": "2026-11-08T23:27:15.761Z",
+  "calendarUpdatedAt": "2026-11-08T23:27:15.761Z",
+  "standingsUpdatedAt": "2026-11-08T23:27:15.761Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2000,7 +2000,7 @@
       "venue": "Gillette Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 30,
+      "awayScore": 31,
       "homeScore": 14
     },
     {
