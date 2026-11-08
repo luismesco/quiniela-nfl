@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T17:41:16.028Z",
-  "calendarUpdatedAt": "2026-11-08T17:35:59.912Z",
-  "standingsUpdatedAt": "2026-11-08T17:35:59.912Z",
+  "fetchedAt": "2026-11-08T17:41:34.777Z",
+  "calendarUpdatedAt": "2026-11-08T17:41:34.777Z",
+  "standingsUpdatedAt": "2026-11-08T17:41:34.777Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4958,14 +4958,14 @@
         },
         {
           "team": "CIN",
-          "sourceOrder": 5,
-          "wins": 5,
+          "sourceOrder": 4,
+          "wins": 6,
           "losses": 2,
           "ties": 0,
-          "pct": 0.71428573,
-          "differential": 48,
-          "pointsFor": 206,
-          "pointsAgainst": 158
+          "pct": 0.75,
+          "differential": 65,
+          "pointsFor": 240,
+          "pointsAgainst": 175
         },
         {
           "team": "CLE",
@@ -5058,7 +5058,7 @@
         },
         {
           "team": "KC",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 5,
           "losses": 2,
           "ties": 0,
@@ -5108,7 +5108,7 @@
         },
         {
           "team": "DAL",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5119,7 +5119,7 @@
         },
         {
           "team": "WAS",
-          "sourceOrder": 13,
+          "sourceOrder": 12,
           "wins": 2,
           "losses": 4,
           "ties": 1,
@@ -5219,14 +5219,14 @@
         },
         {
           "team": "ATL",
-          "sourceOrder": 10,
+          "sourceOrder": 13,
           "wins": 3,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.375,
-          "differential": -18,
-          "pointsFor": 171,
-          "pointsAgainst": 189
+          "pct": 0.33333334,
+          "differential": -35,
+          "pointsFor": 188,
+          "pointsAgainst": 223
         },
         {
           "team": "NO",
@@ -5280,7 +5280,7 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 11,
+          "sourceOrder": 10,
           "wins": 3,
           "losses": 5,
           "ties": 0,
