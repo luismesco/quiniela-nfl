@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T18:50:33.799Z",
+  "fetchedAt": "2026-11-08T18:52:47.338Z",
   "calendarUpdatedAt": "2026-11-08T18:50:33.799Z",
   "standingsUpdatedAt": "2026-11-08T18:50:33.799Z",
   "standingsSource": "ESPN",
@@ -1895,7 +1895,7 @@
       "venue": "Arrowhead Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 6,
+      "awayScore": 9,
       "homeScore": 7
     },
     {
