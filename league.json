@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:25:57.812Z",
-  "calendarUpdatedAt": "2026-11-08T21:22:42.454Z",
-  "standingsUpdatedAt": "2026-11-08T21:22:42.454Z",
+  "fetchedAt": "2026-11-08T21:26:12.173Z",
+  "calendarUpdatedAt": "2026-11-08T21:26:12.173Z",
+  "standingsUpdatedAt": "2026-11-08T21:26:12.173Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -1984,9 +1984,9 @@
       "timeTbd": false,
       "venue": "Levi's Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_GB_NE",
@@ -2014,9 +2014,9 @@
       "timeTbd": false,
       "venue": "Lumen Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_TB_CHI",
