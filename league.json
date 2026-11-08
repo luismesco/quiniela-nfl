@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T22:28:44.425Z",
+  "fetchedAt": "2026-11-08T22:30:29.031Z",
   "calendarUpdatedAt": "2026-11-08T22:28:44.425Z",
   "standingsUpdatedAt": "2026-11-08T22:28:44.425Z",
   "standingsSource": "ESPN",
@@ -1985,7 +1985,7 @@
       "venue": "Levi's Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 7,
+      "awayScore": 10,
       "homeScore": 21
     },
     {
