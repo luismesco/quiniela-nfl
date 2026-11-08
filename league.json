@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T19:50:04.501Z",
+  "fetchedAt": "2026-11-08T19:50:48.226Z",
   "calendarUpdatedAt": "2026-11-08T19:50:04.501Z",
   "standingsUpdatedAt": "2026-11-08T19:50:04.501Z",
   "standingsSource": "ESPN",
@@ -1866,7 +1866,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 13,
-      "homeScore": 7
+      "homeScore": 13
     },
     {
       "id": "2026_09_DAL_IND",
