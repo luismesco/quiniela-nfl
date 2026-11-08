@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T17:58:00.343Z",
+  "fetchedAt": "2026-11-08T18:03:16.366Z",
   "calendarUpdatedAt": "2026-11-08T17:58:00.343Z",
   "standingsUpdatedAt": "2026-11-08T17:58:00.343Z",
   "standingsSource": "ESPN",
@@ -1894,9 +1894,9 @@
       "timeTbd": false,
       "venue": "Arrowhead Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_DET_MIA",
@@ -1909,9 +1909,9 @@
       "timeTbd": false,
       "venue": "Hard Rock Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_CLE_NO",
@@ -1924,9 +1924,9 @@
       "timeTbd": false,
       "venue": "Caesars Superdome",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_NYG_PHI",
@@ -1939,9 +1939,9 @@
       "timeTbd": false,
       "venue": "Lincoln Financial Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_LA_WAS",
