@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T14:42:28.646Z",
+  "fetchedAt": "2026-11-08T14:42:42.909Z",
   "calendarUpdatedAt": "2026-11-08T14:42:28.646Z",
   "standingsUpdatedAt": "2026-11-08T14:42:28.646Z",
   "standingsSource": "ESPN",
@@ -1851,7 +1851,7 @@
       "neutral": true,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 6
+      "homeScore": 7
     },
     {
       "id": "2026_09_DEN_CAR",
