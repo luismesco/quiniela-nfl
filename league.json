@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:17:57.687Z",
-  "calendarUpdatedAt": "2026-11-08T21:14:13.172Z",
-  "standingsUpdatedAt": "2026-11-08T21:14:13.172Z",
+  "fetchedAt": "2026-11-08T21:18:12.953Z",
+  "calendarUpdatedAt": "2026-11-08T21:18:12.953Z",
+  "standingsUpdatedAt": "2026-11-08T21:18:12.953Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5046,8 +5046,19 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "KC",
+          "team": "DEN",
           "sourceOrder": 1,
+          "wins": 7,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.7777778,
+          "differential": 12,
+          "pointsFor": 198,
+          "pointsAgainst": 186
+        },
+        {
+          "team": "KC",
+          "sourceOrder": 4,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5055,17 +5066,6 @@
           "differential": 59,
           "pointsFor": 202,
           "pointsAgainst": 143
-        },
-        {
-          "team": "DEN",
-          "sourceOrder": 4,
-          "wins": 6,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.75,
-          "differential": 7,
-          "pointsFor": 172,
-          "pointsAgainst": 165
         },
         {
           "team": "LV",
@@ -5196,19 +5196,8 @@
       "division": "Sur",
       "teams": [
         {
-          "team": "CAR",
-          "sourceOrder": 8,
-          "wins": 3,
-          "losses": 4,
-          "ties": 0,
-          "pct": 0.42857143,
-          "differential": -15,
-          "pointsFor": 178,
-          "pointsAgainst": 193
-        },
-        {
           "team": "TB",
-          "sourceOrder": 9,
+          "sourceOrder": 8,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5216,6 +5205,17 @@
           "differential": 27,
           "pointsFor": 178,
           "pointsAgainst": 151
+        },
+        {
+          "team": "CAR",
+          "sourceOrder": 9,
+          "wins": 3,
+          "losses": 5,
+          "ties": 0,
+          "pct": 0.375,
+          "differential": -20,
+          "pointsFor": 199,
+          "pointsAgainst": 219
         },
         {
           "team": "ATL",
