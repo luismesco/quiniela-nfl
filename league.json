@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T22:48:45.202Z",
+  "fetchedAt": "2026-11-08T22:48:59.268Z",
   "calendarUpdatedAt": "2026-11-08T22:48:45.202Z",
   "standingsUpdatedAt": "2026-11-08T22:48:45.202Z",
   "standingsSource": "ESPN",
@@ -2001,7 +2001,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 24,
-      "homeScore": 13
+      "homeScore": 14
     },
     {
       "id": "2026_09_ARI_SEA",
