@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:18:12.953Z",
+  "fetchedAt": "2026-11-08T21:20:27.738Z",
   "calendarUpdatedAt": "2026-11-08T21:18:12.953Z",
   "standingsUpdatedAt": "2026-11-08T21:18:12.953Z",
   "standingsSource": "ESPN",
@@ -1926,7 +1926,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 16,
-      "homeScore": 16
+      "homeScore": 22
     },
     {
       "id": "2026_09_NYG_PHI",
