@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T14:34:59.774Z",
+  "fetchedAt": "2026-11-08T14:35:12.900Z",
   "calendarUpdatedAt": "2026-11-07T16:50:44.679Z",
   "standingsUpdatedAt": "2026-11-08T14:34:59.774Z",
   "standingsSource": "ESPN",
@@ -1849,9 +1849,9 @@
       "timeTbd": false,
       "venue": "Santiago Bernabéu",
       "neutral": true,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_09_DEN_CAR",
