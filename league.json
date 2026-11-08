@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T20:22:43.120Z",
+  "fetchedAt": "2026-11-08T20:27:26.799Z",
   "calendarUpdatedAt": "2026-11-08T20:22:43.120Z",
   "standingsUpdatedAt": "2026-11-08T20:22:43.120Z",
   "standingsSource": "ESPN",
@@ -1865,7 +1865,7 @@
       "venue": "Bank of America Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 19,
       "homeScore": 14
     },
     {
@@ -1955,7 +1955,7 @@
       "venue": "Northwest Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 13,
+      "awayScore": 20,
       "homeScore": 13
     },
     {
