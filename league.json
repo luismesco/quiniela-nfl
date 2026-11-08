@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:13:57.694Z",
-  "calendarUpdatedAt": "2026-11-08T21:13:40.298Z",
-  "standingsUpdatedAt": "2026-11-08T21:13:40.298Z",
+  "fetchedAt": "2026-11-08T21:14:13.172Z",
+  "calendarUpdatedAt": "2026-11-08T21:14:13.172Z",
+  "standingsUpdatedAt": "2026-11-08T21:14:13.172Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5119,14 +5119,14 @@
         },
         {
           "team": "WAS",
-          "sourceOrder": 12,
+          "sourceOrder": 14,
           "wins": 2,
-          "losses": 4,
+          "losses": 5,
           "ties": 1,
-          "pct": 0.35714287,
-          "differential": -23,
-          "pointsFor": 159,
-          "pointsAgainst": 182
+          "pct": 0.3125,
+          "differential": -30,
+          "pointsFor": 172,
+          "pointsAgainst": 202
         },
         {
           "team": "PHI",
@@ -5219,7 +5219,7 @@
         },
         {
           "team": "ATL",
-          "sourceOrder": 13,
+          "sourceOrder": 12,
           "wins": 3,
           "losses": 6,
           "ties": 0,
@@ -5230,7 +5230,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 14,
+          "sourceOrder": 13,
           "wins": 2,
           "losses": 5,
           "ties": 0,
@@ -5257,8 +5257,19 @@
           "pointsAgainst": 139
         },
         {
-          "team": "SEA",
+          "team": "LA",
           "sourceOrder": 6,
+          "wins": 5,
+          "losses": 4,
+          "ties": 0,
+          "pct": 0.5555556,
+          "differential": 33,
+          "pointsFor": 214,
+          "pointsAgainst": 181
+        },
+        {
+          "team": "SEA",
+          "sourceOrder": 7,
           "wins": 4,
           "losses": 4,
           "ties": 0,
@@ -5266,17 +5277,6 @@
           "differential": 26,
           "pointsFor": 185,
           "pointsAgainst": 159
-        },
-        {
-          "team": "LA",
-          "sourceOrder": 7,
-          "wins": 4,
-          "losses": 4,
-          "ties": 0,
-          "pct": 0.5,
-          "differential": 26,
-          "pointsFor": 194,
-          "pointsAgainst": 168
         },
         {
           "team": "ARI",
