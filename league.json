@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:12:27.618Z",
-  "calendarUpdatedAt": "2026-11-08T21:07:17.330Z",
-  "standingsUpdatedAt": "2026-11-08T21:07:17.330Z",
+  "fetchedAt": "2026-11-08T21:12:46.832Z",
+  "calendarUpdatedAt": "2026-11-08T21:12:46.832Z",
+  "standingsUpdatedAt": "2026-11-08T21:12:46.832Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4919,14 +4919,14 @@
         },
         {
           "team": "NYJ",
-          "sourceOrder": 11,
+          "sourceOrder": 12,
           "wins": 2,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
-          "pct": 0.25,
-          "differential": -18,
-          "pointsFor": 170,
-          "pointsAgainst": 188
+          "pct": 0.22222222,
+          "differential": -41,
+          "pointsFor": 182,
+          "pointsAgainst": 223
         },
         {
           "team": "MIA",
@@ -4958,7 +4958,7 @@
         },
         {
           "team": "CIN",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5019,7 +5019,7 @@
         },
         {
           "team": "IND",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 2,
           "losses": 6,
           "ties": 0,
@@ -5046,8 +5046,19 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "DEN",
+          "team": "KC",
           "sourceOrder": 1,
+          "wins": 6,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.75,
+          "differential": 59,
+          "pointsFor": 202,
+          "pointsAgainst": 143
+        },
+        {
+          "team": "DEN",
+          "sourceOrder": 4,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5055,17 +5066,6 @@
           "differential": 7,
           "pointsFor": 172,
           "pointsAgainst": 165
-        },
-        {
-          "team": "KC",
-          "sourceOrder": 5,
-          "wins": 5,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.71428573,
-          "differential": 36,
-          "pointsFor": 167,
-          "pointsAgainst": 131
         },
         {
           "team": "LV",
