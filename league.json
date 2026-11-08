@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-08T21:30:42.672Z",
+  "fetchedAt": "2026-11-08T21:30:57.931Z",
   "calendarUpdatedAt": "2026-11-08T21:30:42.672Z",
   "standingsUpdatedAt": "2026-11-08T21:30:42.672Z",
   "standingsSource": "ESPN",
@@ -2000,7 +2000,7 @@
       "venue": "Gillette Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 6,
+      "awayScore": 7,
       "homeScore": 0
     },
     {
