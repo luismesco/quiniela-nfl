@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T01:32:02.037Z",
-  "calendarUpdatedAt": "2026-11-09T01:30:17.913Z",
-  "standingsUpdatedAt": "2026-11-09T01:30:17.913Z",
+  "fetchedAt": "2026-11-09T01:32:17.228Z",
+  "calendarUpdatedAt": "2026-11-09T01:32:17.228Z",
+  "standingsUpdatedAt": "2026-11-09T01:32:17.228Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2031,7 +2031,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 6
+      "homeScore": 7
     },
     {
       "id": "2026_09_BUF_MIN",
