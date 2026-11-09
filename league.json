@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T04:40:40.032Z",
-  "calendarUpdatedAt": "2026-11-09T04:40:40.032Z",
-  "standingsUpdatedAt": "2026-11-09T04:40:40.032Z",
+  "fetchedAt": "2026-11-09T21:27:02.304Z",
+  "calendarUpdatedAt": "2026-11-09T21:27:02.304Z",
+  "standingsUpdatedAt": "2026-11-09T21:27:02.304Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5157,8 +5157,19 @@
           "pointsAgainst": 93
         },
         {
-          "team": "DET",
+          "team": "CHI",
           "sourceOrder": 2,
+          "wins": 7,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.7777778,
+          "differential": 57,
+          "pointsFor": 241,
+          "pointsAgainst": 184
+        },
+        {
+          "team": "DET",
+          "sourceOrder": 3,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 33,
           "pointsFor": 222,
           "pointsAgainst": 189
-        },
-        {
-          "team": "CHI",
-          "sourceOrder": 3,
-          "wins": 6,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.75,
-          "differential": 54,
-          "pointsFor": 214,
-          "pointsAgainst": 160
         },
         {
           "team": "GB",
@@ -5196,19 +5196,8 @@
       "division": "Sur",
       "teams": [
         {
-          "team": "TB",
-          "sourceOrder": 9,
-          "wins": 3,
-          "losses": 5,
-          "ties": 0,
-          "pct": 0.375,
-          "differential": 27,
-          "pointsFor": 178,
-          "pointsAgainst": 151
-        },
-        {
           "team": "CAR",
-          "sourceOrder": 10,
+          "sourceOrder": 9,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5219,7 +5208,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 11,
+          "sourceOrder": 10,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5227,6 +5216,17 @@
           "differential": -31,
           "pointsFor": 185,
           "pointsAgainst": 216
+        },
+        {
+          "team": "TB",
+          "sourceOrder": 11,
+          "wins": 3,
+          "losses": 6,
+          "ties": 0,
+          "pct": 0.33333334,
+          "differential": 24,
+          "pointsFor": 202,
+          "pointsAgainst": 178
         },
         {
           "team": "ATL",
