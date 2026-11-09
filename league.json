@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T00:31:01.075Z",
-  "calendarUpdatedAt": "2026-11-09T00:30:15.907Z",
-  "standingsUpdatedAt": "2026-11-09T00:30:15.907Z",
+  "fetchedAt": "2026-11-09T00:31:16.489Z",
+  "calendarUpdatedAt": "2026-11-09T00:31:16.489Z",
+  "standingsUpdatedAt": "2026-11-09T00:31:16.489Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5009,13 +5009,13 @@
         {
           "team": "HOU",
           "sourceOrder": 10,
-          "wins": 2,
+          "wins": 3,
           "losses": 5,
           "ties": 0,
-          "pct": 0.2857143,
-          "differential": -5,
-          "pointsFor": 165,
-          "pointsAgainst": 170
+          "pct": 0.375,
+          "differential": 17,
+          "pointsFor": 209,
+          "pointsAgainst": 192
         },
         {
           "team": "IND",
@@ -5082,12 +5082,12 @@
           "team": "LAC",
           "sourceOrder": 15,
           "wins": 0,
-          "losses": 7,
+          "losses": 8,
           "ties": 0,
           "pct": 0,
-          "differential": -76,
-          "pointsFor": 99,
-          "pointsAgainst": 175
+          "differential": -98,
+          "pointsFor": 121,
+          "pointsAgainst": 219
         }
       ]
     },
