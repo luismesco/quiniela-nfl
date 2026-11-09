@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T00:06:16.863Z",
+  "fetchedAt": "2026-11-09T00:11:00.647Z",
   "calendarUpdatedAt": "2026-11-09T00:06:16.863Z",
   "standingsUpdatedAt": "2026-11-09T00:06:16.863Z",
   "standingsSource": "ESPN",
@@ -1971,7 +1971,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 41,
-      "homeScore": 15
+      "homeScore": 21
     },
     {
       "id": "2026_09_LV_SF",
@@ -2000,7 +2000,7 @@
       "venue": "Gillette Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 42,
+      "awayScore": 45,
       "homeScore": 21
     },
     {
