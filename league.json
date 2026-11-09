@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T00:27:30.915Z",
-  "calendarUpdatedAt": "2026-11-09T00:22:14.701Z",
-  "standingsUpdatedAt": "2026-11-09T00:22:14.701Z",
+  "fetchedAt": "2026-11-09T00:27:51.140Z",
+  "calendarUpdatedAt": "2026-11-09T00:27:51.140Z",
+  "standingsUpdatedAt": "2026-11-09T00:27:51.140Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5219,7 +5219,7 @@
         },
         {
           "team": "NO",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 3,
           "losses": 5,
           "ties": 0,
@@ -5230,7 +5230,7 @@
         },
         {
           "team": "ATL",
-          "sourceOrder": 13,
+          "sourceOrder": 12,
           "wins": 3,
           "losses": 6,
           "ties": 0,
@@ -5257,8 +5257,19 @@
           "pointsAgainst": 156
         },
         {
-          "team": "LA",
+          "team": "SEA",
           "sourceOrder": 6,
+          "wins": 5,
+          "losses": 4,
+          "ties": 0,
+          "pct": 0.5555556,
+          "differential": 40,
+          "pointsFor": 202,
+          "pointsAgainst": 162
+        },
+        {
+          "team": "LA",
+          "sourceOrder": 7,
           "wins": 5,
           "losses": 4,
           "ties": 0,
@@ -5268,26 +5279,15 @@
           "pointsAgainst": 181
         },
         {
-          "team": "SEA",
-          "sourceOrder": 7,
-          "wins": 4,
-          "losses": 4,
-          "ties": 0,
-          "pct": 0.5,
-          "differential": 26,
-          "pointsFor": 185,
-          "pointsAgainst": 159
-        },
-        {
           "team": "ARI",
-          "sourceOrder": 11,
+          "sourceOrder": 13,
           "wins": 3,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.375,
-          "differential": -63,
-          "pointsFor": 175,
-          "pointsAgainst": 238
+          "pct": 0.33333334,
+          "differential": -77,
+          "pointsFor": 178,
+          "pointsAgainst": 255
         }
       ]
     }
