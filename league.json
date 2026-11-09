@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-09T03:09:43.041Z",
-  "calendarUpdatedAt": "2026-11-09T03:04:27.624Z",
-  "standingsUpdatedAt": "2026-11-09T03:04:27.624Z",
+  "fetchedAt": "2026-11-09T03:09:59.410Z",
+  "calendarUpdatedAt": "2026-11-09T03:09:59.410Z",
+  "standingsUpdatedAt": "2026-11-09T03:09:59.410Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
