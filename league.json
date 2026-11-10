@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-10T04:29:42.709Z",
-  "calendarUpdatedAt": "2026-11-10T04:29:42.709Z",
-  "standingsUpdatedAt": "2026-11-10T04:29:42.709Z",
+  "fetchedAt": "2026-11-10T18:41:01.654Z",
+  "calendarUpdatedAt": "2026-11-10T18:41:01.654Z",
+  "standingsUpdatedAt": "2026-11-10T18:41:01.654Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4898,13 +4898,13 @@
         {
           "team": "BUF",
           "sourceOrder": 0,
-          "wins": 6,
+          "wins": 7,
           "losses": 1,
           "ties": 0,
-          "pct": 0.85714287,
-          "differential": 52,
-          "pointsFor": 233,
-          "pointsAgainst": 181
+          "pct": 0.875,
+          "differential": 69,
+          "pointsFor": 256,
+          "pointsAgainst": 187
         },
         {
           "team": "NE",
@@ -5146,19 +5146,8 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "MIN",
-          "sourceOrder": 1,
-          "wins": 6,
-          "losses": 1,
-          "ties": 0,
-          "pct": 0.85714287,
-          "differential": 47,
-          "pointsFor": 140,
-          "pointsAgainst": 93
-        },
-        {
           "team": "CHI",
-          "sourceOrder": 2,
+          "sourceOrder": 1,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -5169,7 +5158,7 @@
         },
         {
           "team": "DET",
-          "sourceOrder": 3,
+          "sourceOrder": 2,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5177,6 +5166,17 @@
           "differential": 33,
           "pointsFor": 222,
           "pointsAgainst": 189
+        },
+        {
+          "team": "MIN",
+          "sourceOrder": 3,
+          "wins": 6,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.75,
+          "differential": 30,
+          "pointsFor": 146,
+          "pointsAgainst": 116
         },
         {
           "team": "GB",
