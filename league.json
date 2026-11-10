@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-10T04:05:28.613Z",
-  "calendarUpdatedAt": "2026-11-10T04:03:22.775Z",
-  "standingsUpdatedAt": "2026-11-10T04:03:22.775Z",
+  "fetchedAt": "2026-11-10T04:05:46.434Z",
+  "calendarUpdatedAt": "2026-11-10T04:05:46.434Z",
+  "standingsUpdatedAt": "2026-11-10T04:05:46.434Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2045,7 +2045,7 @@
       "venue": "U.S. Bank Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 19,
+      "awayScore": 20,
       "homeScore": 6
     },
     {
