@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-13T03:07:57.259Z",
-  "calendarUpdatedAt": "2026-11-13T03:06:20.848Z",
-  "standingsUpdatedAt": "2026-11-13T03:06:20.848Z",
+  "fetchedAt": "2026-11-13T03:08:15.406Z",
+  "calendarUpdatedAt": "2026-11-13T03:08:15.406Z",
+  "standingsUpdatedAt": "2026-11-13T03:08:15.406Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2060,7 +2060,7 @@
       "venue": "MetLife Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 16,
+      "awayScore": 17,
       "homeScore": 14
     },
     {
