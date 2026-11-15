@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T23:05:55.628Z",
+  "fetchedAt": "2026-11-15T23:06:09.683Z",
   "calendarUpdatedAt": "2026-11-15T23:05:55.628Z",
   "standingsUpdatedAt": "2026-11-15T23:05:55.628Z",
   "standingsSource": "ESPN",
@@ -2195,7 +2195,7 @@
       "venue": "State Farm Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 30,
+      "awayScore": 31,
       "homeScore": 6
     },
     {
