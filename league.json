@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T17:04:54.025Z",
+  "fetchedAt": "2026-11-15T17:08:29.575Z",
   "calendarUpdatedAt": "2026-11-15T17:04:54.025Z",
   "standingsUpdatedAt": "2026-11-15T17:04:54.025Z",
   "standingsSource": "ESPN",
@@ -2075,7 +2075,7 @@
       "venue": "FC Bayern Munich Stadium",
       "neutral": true,
       "status": "live",
-      "awayScore": 3,
+      "awayScore": 9,
       "homeScore": 28
     },
     {
