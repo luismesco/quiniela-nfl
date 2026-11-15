@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T18:49:19.780Z",
+  "fetchedAt": "2026-11-15T18:50:01.249Z",
   "calendarUpdatedAt": "2026-11-15T18:49:19.780Z",
   "standingsUpdatedAt": "2026-11-15T18:49:19.780Z",
   "standingsSource": "ESPN",
@@ -2135,7 +2135,7 @@
       "venue": "Lucas Oil Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 7,
       "homeScore": 7
     },
     {
