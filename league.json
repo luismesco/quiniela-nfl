@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T20:46:23.828Z",
+  "fetchedAt": "2026-11-15T20:46:37.409Z",
   "calendarUpdatedAt": "2026-11-15T20:46:23.828Z",
   "standingsUpdatedAt": "2026-11-15T20:46:23.828Z",
   "standingsSource": "ESPN",
@@ -2151,7 +2151,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 13
+      "homeScore": 14
     },
     {
       "id": "2026_10_BUF_NYJ",
@@ -2181,7 +2181,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 30,
-      "homeScore": 16
+      "homeScore": 22
     },
     {
       "id": "2026_10_LA_ARI",
