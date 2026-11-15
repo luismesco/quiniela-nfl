@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T18:58:45.566Z",
+  "fetchedAt": "2026-11-15T19:00:31.417Z",
   "calendarUpdatedAt": "2026-11-15T18:58:45.566Z",
   "standingsUpdatedAt": "2026-11-15T18:58:45.566Z",
   "standingsSource": "ESPN",
@@ -2150,7 +2150,7 @@
       "venue": "Caesars Superdome",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 6,
       "homeScore": 0
     },
     {
