@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T17:59:45.780Z",
+  "fetchedAt": "2026-11-15T18:03:00.419Z",
   "calendarUpdatedAt": "2026-11-15T17:59:45.780Z",
   "standingsUpdatedAt": "2026-11-15T17:59:45.780Z",
   "standingsSource": "ESPN",
@@ -2089,9 +2089,9 @@
       "timeTbd": false,
       "venue": "Mercedes-Benz Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_HOU_CLE",
@@ -2104,9 +2104,9 @@
       "timeTbd": false,
       "venue": "Huntington Bank Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_MIN_GB",
@@ -2119,9 +2119,9 @@
       "timeTbd": false,
       "venue": "Lambeau Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_MIA_IND",
@@ -2149,9 +2149,9 @@
       "timeTbd": false,
       "venue": "Caesars Superdome",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_BUF_NYJ",
