@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T21:24:08.002Z",
-  "calendarUpdatedAt": "2026-11-15T21:18:54.474Z",
-  "standingsUpdatedAt": "2026-11-15T21:18:54.474Z",
+  "fetchedAt": "2026-11-15T21:24:26.102Z",
+  "calendarUpdatedAt": "2026-11-15T21:24:26.102Z",
+  "standingsUpdatedAt": "2026-11-15T21:24:26.102Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4932,12 +4932,12 @@
           "team": "MIA",
           "sourceOrder": 13,
           "wins": 1,
-          "losses": 7,
+          "losses": 8,
           "ties": 0,
-          "pct": 0.125,
-          "differential": -74,
-          "pointsFor": 126,
-          "pointsAgainst": 200
+          "pct": 0.11111111,
+          "differential": -76,
+          "pointsFor": 148,
+          "pointsAgainst": 224
         }
       ]
     },
@@ -5020,13 +5020,13 @@
         {
           "team": "IND",
           "sourceOrder": 11,
-          "wins": 2,
+          "wins": 3,
           "losses": 7,
           "ties": 0,
-          "pct": 0.22222222,
-          "differential": -65,
-          "pointsFor": 184,
-          "pointsAgainst": 249
+          "pct": 0.3,
+          "differential": -63,
+          "pointsFor": 208,
+          "pointsAgainst": 271
         },
         {
           "team": "TEN",
