@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T19:29:31.922Z",
-  "calendarUpdatedAt": "2026-11-15T19:24:16.552Z",
-  "standingsUpdatedAt": "2026-11-15T19:24:16.552Z",
+  "fetchedAt": "2026-11-15T19:29:50.719Z",
+  "calendarUpdatedAt": "2026-11-15T19:29:50.719Z",
+  "standingsUpdatedAt": "2026-11-15T19:29:50.719Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2166,7 +2166,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 10,
-      "homeScore": 3
+      "homeScore": 6
     },
     {
       "id": "2026_10_JAX_TEN",
