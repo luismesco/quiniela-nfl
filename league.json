@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T22:58:39.812Z",
-  "calendarUpdatedAt": "2026-11-15T22:53:58.199Z",
-  "standingsUpdatedAt": "2026-11-15T22:53:58.199Z",
+  "fetchedAt": "2026-11-15T22:59:00.611Z",
+  "calendarUpdatedAt": "2026-11-15T22:59:00.611Z",
+  "standingsUpdatedAt": "2026-11-15T22:59:00.611Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2210,7 +2210,7 @@
       "venue": "Allegiant Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 20,
+      "awayScore": 21,
       "homeScore": 10
     },
     {
