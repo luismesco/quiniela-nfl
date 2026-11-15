@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T21:15:07.906Z",
-  "calendarUpdatedAt": "2026-11-15T21:13:53.003Z",
-  "standingsUpdatedAt": "2026-11-15T21:13:53.003Z",
+  "fetchedAt": "2026-11-15T21:15:27.182Z",
+  "calendarUpdatedAt": "2026-11-15T21:15:27.182Z",
+  "standingsUpdatedAt": "2026-11-15T21:15:27.182Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5108,7 +5108,7 @@
         },
         {
           "team": "DAL",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 4,
           "losses": 5,
           "ties": 0,
@@ -5119,7 +5119,7 @@
         },
         {
           "team": "WAS",
-          "sourceOrder": 11,
+          "sourceOrder": 10,
           "wins": 3,
           "losses": 5,
           "ties": 1,
@@ -5197,29 +5197,18 @@
       "teams": [
         {
           "team": "CAR",
-          "sourceOrder": 9,
-          "wins": 3,
+          "sourceOrder": 8,
+          "wins": 4,
           "losses": 5,
           "ties": 0,
-          "pct": 0.375,
-          "differential": -20,
-          "pointsFor": 199,
-          "pointsAgainst": 219
-        },
-        {
-          "team": "NO",
-          "sourceOrder": 10,
-          "wins": 3,
-          "losses": 5,
-          "ties": 0,
-          "pct": 0.375,
-          "differential": -31,
-          "pointsFor": 185,
-          "pointsAgainst": 216
+          "pct": 0.44444445,
+          "differential": -17,
+          "pointsFor": 219,
+          "pointsAgainst": 236
         },
         {
           "team": "TB",
-          "sourceOrder": 12,
+          "sourceOrder": 11,
           "wins": 3,
           "losses": 6,
           "ties": 0,
@@ -5229,15 +5218,26 @@
           "pointsAgainst": 178
         },
         {
-          "team": "ATL",
+          "team": "NO",
           "sourceOrder": 13,
           "wins": 3,
           "losses": 6,
           "ties": 0,
           "pct": 0.33333334,
-          "differential": -35,
-          "pointsFor": 188,
-          "pointsAgainst": 223
+          "differential": -34,
+          "pointsFor": 202,
+          "pointsAgainst": 236
+        },
+        {
+          "team": "ATL",
+          "sourceOrder": 14,
+          "wins": 3,
+          "losses": 7,
+          "ties": 0,
+          "pct": 0.3,
+          "differential": -57,
+          "pointsFor": 201,
+          "pointsAgainst": 258
         }
       ]
     },
@@ -5280,7 +5280,7 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 14,
+          "sourceOrder": 12,
           "wins": 3,
           "losses": 6,
           "ties": 0,
