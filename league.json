@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T18:09:45.790Z",
+  "fetchedAt": "2026-11-15T18:11:30.609Z",
   "calendarUpdatedAt": "2026-11-15T18:09:45.790Z",
   "standingsUpdatedAt": "2026-11-15T18:09:45.790Z",
   "standingsSource": "ESPN",
@@ -2105,7 +2105,7 @@
       "venue": "Huntington Bank Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 6,
       "homeScore": 0
     },
     {
