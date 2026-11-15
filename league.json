@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T21:24:26.102Z",
+  "fetchedAt": "2026-11-15T21:26:38.003Z",
   "calendarUpdatedAt": "2026-11-15T21:24:26.102Z",
   "standingsUpdatedAt": "2026-11-15T21:24:26.102Z",
   "standingsSource": "ESPN",
@@ -2224,9 +2224,9 @@
       "timeTbd": false,
       "venue": "AT&T Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_PIT_CIN",
