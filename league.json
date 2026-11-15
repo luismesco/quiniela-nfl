@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T20:09:20.639Z",
+  "fetchedAt": "2026-11-15T20:17:37.058Z",
   "calendarUpdatedAt": "2026-11-15T20:09:20.639Z",
   "standingsUpdatedAt": "2026-11-15T20:09:20.639Z",
   "standingsSource": "ESPN",
@@ -2106,7 +2106,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 17,
-      "homeScore": 17
+      "homeScore": 20
     },
     {
       "id": "2026_10_MIN_GB",
@@ -2136,7 +2136,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 16,
-      "homeScore": 21
+      "homeScore": 24
     },
     {
       "id": "2026_10_CAR_NO",
@@ -2165,8 +2165,8 @@
       "venue": "MetLife Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 17,
-      "homeScore": 9
+      "awayScore": 24,
+      "homeScore": 12
     },
     {
       "id": "2026_10_JAX_TEN",
@@ -2180,7 +2180,7 @@
       "venue": "Nissan Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 16,
+      "awayScore": 23,
       "homeScore": 13
     },
     {
