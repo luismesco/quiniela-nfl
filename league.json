@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T21:13:37.810Z",
-  "calendarUpdatedAt": "2026-11-15T21:13:00.723Z",
-  "standingsUpdatedAt": "2026-11-15T21:13:00.723Z",
+  "fetchedAt": "2026-11-15T21:13:53.003Z",
+  "calendarUpdatedAt": "2026-11-15T21:13:53.003Z",
+  "standingsUpdatedAt": "2026-11-15T21:13:53.003Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4947,7 +4947,7 @@
       "teams": [
         {
           "team": "PIT",
-          "sourceOrder": 3,
+          "sourceOrder": 4,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -4997,7 +4997,7 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 6,
           "losses": 2,
           "ties": 0,
@@ -5046,8 +5046,19 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "DEN",
+          "team": "KC",
           "sourceOrder": 1,
+          "wins": 7,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.7777778,
+          "differential": 81,
+          "pointsFor": 237,
+          "pointsAgainst": 156
+        },
+        {
+          "team": "DEN",
+          "sourceOrder": 2,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -5055,17 +5066,6 @@
           "differential": 12,
           "pointsFor": 198,
           "pointsAgainst": 186
-        },
-        {
-          "team": "KC",
-          "sourceOrder": 4,
-          "wins": 6,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.75,
-          "differential": 59,
-          "pointsFor": 202,
-          "pointsAgainst": 143
         },
         {
           "team": "LV",
