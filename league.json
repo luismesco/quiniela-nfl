@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-15T19:05:31.463Z",
-  "calendarUpdatedAt": "2026-11-15T19:05:26.520Z",
-  "standingsUpdatedAt": "2026-11-15T19:05:26.520Z",
+  "fetchedAt": "2026-11-15T19:05:57.814Z",
+  "calendarUpdatedAt": "2026-11-15T19:05:57.814Z",
+  "standingsUpdatedAt": "2026-11-15T19:05:57.814Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2120,7 +2120,7 @@
       "venue": "Lambeau Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 10,
+      "awayScore": 16,
       "homeScore": 0
     },
     {
