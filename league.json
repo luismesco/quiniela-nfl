@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-16T00:37:28.370Z",
+  "fetchedAt": "2026-11-16T00:38:11.257Z",
   "calendarUpdatedAt": "2026-11-16T00:37:28.370Z",
   "standingsUpdatedAt": "2026-11-16T00:37:28.370Z",
   "standingsSource": "ESPN",
@@ -2226,7 +2226,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 46,
-      "homeScore": 38
+      "homeScore": 40
     },
     {
       "id": "2026_10_PIT_CIN",
