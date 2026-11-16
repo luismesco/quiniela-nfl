@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-16T04:25:40.609Z",
-  "calendarUpdatedAt": "2026-11-16T04:25:40.609Z",
-  "standingsUpdatedAt": "2026-11-16T04:25:40.609Z",
+  "fetchedAt": "2026-11-16T21:03:12.942Z",
+  "calendarUpdatedAt": "2026-11-16T21:03:12.942Z",
+  "standingsUpdatedAt": "2026-11-16T21:03:12.942Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4946,26 +4946,26 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "PIT",
-          "sourceOrder": 4,
-          "wins": 6,
+          "team": "CIN",
+          "sourceOrder": 3,
+          "wins": 7,
           "losses": 2,
           "ties": 0,
-          "pct": 0.75,
-          "differential": 36,
-          "pointsFor": 180,
-          "pointsAgainst": 144
+          "pct": 0.7777778,
+          "differential": 85,
+          "pointsFor": 278,
+          "pointsAgainst": 193
         },
         {
-          "team": "CIN",
+          "team": "PIT",
           "sourceOrder": 5,
           "wins": 6,
-          "losses": 2,
+          "losses": 3,
           "ties": 0,
-          "pct": 0.75,
-          "differential": 65,
-          "pointsFor": 240,
-          "pointsAgainst": 175
+          "pct": 0.6666667,
+          "differential": 16,
+          "pointsFor": 198,
+          "pointsAgainst": 182
         },
         {
           "team": "CLE",
@@ -5058,7 +5058,7 @@
         },
         {
           "team": "DEN",
-          "sourceOrder": 3,
+          "sourceOrder": 4,
           "wins": 7,
           "losses": 2,
           "ties": 0,
