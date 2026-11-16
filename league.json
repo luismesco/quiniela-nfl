@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-16T00:52:41.477Z",
-  "calendarUpdatedAt": "2026-11-16T00:47:28.261Z",
-  "standingsUpdatedAt": "2026-11-16T00:47:28.261Z",
+  "fetchedAt": "2026-11-16T00:53:01.487Z",
+  "calendarUpdatedAt": "2026-11-16T00:53:01.487Z",
+  "standingsUpdatedAt": "2026-11-16T00:53:01.487Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5110,12 +5110,12 @@
           "team": "DAL",
           "sourceOrder": 9,
           "wins": 4,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.44444445,
-          "differential": 10,
-          "pointsFor": 246,
-          "pointsAgainst": 236
+          "pct": 0.4,
+          "differential": 4,
+          "pointsFor": 286,
+          "pointsAgainst": 282
         },
         {
           "team": "WAS",
@@ -5248,13 +5248,13 @@
         {
           "team": "SF",
           "sourceOrder": 0,
-          "wins": 7,
+          "wins": 8,
           "losses": 1,
           "ties": 0,
-          "pct": 0.875,
-          "differential": 79,
-          "pointsFor": 235,
-          "pointsAgainst": 156
+          "pct": 0.8888889,
+          "differential": 85,
+          "pointsFor": 281,
+          "pointsAgainst": 196
         },
         {
           "team": "SEA",
