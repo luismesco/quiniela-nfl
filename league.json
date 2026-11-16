@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-16T01:20:28.414Z",
+  "fetchedAt": "2026-11-16T01:23:11.926Z",
   "calendarUpdatedAt": "2026-11-16T01:20:28.414Z",
   "standingsUpdatedAt": "2026-11-16T01:20:28.414Z",
   "standingsSource": "ESPN",
@@ -2239,9 +2239,9 @@
       "timeTbd": false,
       "venue": "Paycor Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_10_LAC_BAL",
