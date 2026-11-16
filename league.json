@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-16T03:56:40.105Z",
+  "fetchedAt": "2026-11-16T03:57:23.360Z",
   "calendarUpdatedAt": "2026-11-16T03:56:40.105Z",
   "standingsUpdatedAt": "2026-11-16T03:56:40.105Z",
   "standingsSource": "ESPN",
@@ -2241,7 +2241,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 11,
-      "homeScore": 37
+      "homeScore": 38
     },
     {
       "id": "2026_10_LAC_BAL",
