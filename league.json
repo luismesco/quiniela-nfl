@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-17T01:23:08.978Z",
+  "fetchedAt": "2026-11-17T01:24:10.226Z",
   "calendarUpdatedAt": "2026-11-17T01:23:08.978Z",
   "standingsUpdatedAt": "2026-11-17T01:23:08.978Z",
   "standingsSource": "ESPN",
@@ -2255,7 +2255,7 @@
       "venue": "M&T Bank Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 6,
       "homeScore": 0
     },
     {
