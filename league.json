@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-17T04:25:43.764Z",
-  "calendarUpdatedAt": "2026-11-17T04:25:43.764Z",
-  "standingsUpdatedAt": "2026-11-17T04:25:43.764Z",
+  "fetchedAt": "2026-11-17T19:51:50.950Z",
+  "calendarUpdatedAt": "2026-11-17T19:51:50.950Z",
+  "standingsUpdatedAt": "2026-11-17T19:51:50.950Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2544,21 +2544,6 @@
       "homeScore": null
     },
     {
-      "id": "2026_12_LV_CLE",
-      "phase": "REG",
-      "week": 12,
-      "away": "LV",
-      "home": "CLE",
-      "start": "2026-11-29T18:00:00.000Z",
-      "date": "2026-11-29T18:00:00Z",
-      "timeTbd": false,
-      "venue": "Huntington Bank Field",
-      "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
-    },
-    {
       "id": "2026_12_BAL_HOU",
       "phase": "REG",
       "week": 12,
@@ -2583,6 +2568,21 @@
       "date": "2026-11-29T18:00:00Z",
       "timeTbd": false,
       "venue": "Lucas Oil Stadium",
+      "neutral": false,
+      "status": "scheduled",
+      "awayScore": null,
+      "homeScore": null
+    },
+    {
+      "id": "2026_12_TEN_JAX",
+      "phase": "REG",
+      "week": 12,
+      "away": "TEN",
+      "home": "JAX",
+      "start": "2026-11-29T18:00:00.000Z",
+      "date": "2026-11-29T18:00:00Z",
+      "timeTbd": false,
+      "venue": "EverBank Stadium",
       "neutral": false,
       "status": "scheduled",
       "awayScore": null,
@@ -2619,15 +2619,15 @@
       "homeScore": null
     },
     {
-      "id": "2026_12_TEN_JAX",
+      "id": "2026_12_NE_LAC",
       "phase": "REG",
       "week": 12,
-      "away": "TEN",
-      "home": "JAX",
+      "away": "NE",
+      "home": "LAC",
       "start": "2026-11-29T21:05:00.000Z",
       "date": "2026-11-29T18:00:00Z",
       "timeTbd": false,
-      "venue": "EverBank Stadium",
+      "venue": "SoFi Stadium",
       "neutral": false,
       "status": "scheduled",
       "awayScore": null,
@@ -2664,15 +2664,15 @@
       "homeScore": null
     },
     {
-      "id": "2026_12_NE_LAC",
+      "id": "2026_12_LV_CLE",
       "phase": "REG",
       "week": 12,
-      "away": "NE",
-      "home": "LAC",
+      "away": "LV",
+      "home": "CLE",
       "start": "2026-11-30T01:20:00.000Z",
       "date": "2026-11-29T18:00:00Z",
       "timeTbd": false,
-      "venue": "SoFi Stadium",
+      "venue": "Huntington Bank Field",
       "neutral": false,
       "status": "scheduled",
       "awayScore": null,
@@ -4930,7 +4930,7 @@
         },
         {
           "team": "MIA",
-          "sourceOrder": 13,
+          "sourceOrder": 14,
           "wins": 1,
           "losses": 8,
           "ties": 0,
@@ -4980,14 +4980,14 @@
         },
         {
           "team": "BAL",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 4,
-          "losses": 5,
+          "losses": 6,
           "ties": 0,
-          "pct": 0.44444445,
-          "differential": -47,
-          "pointsFor": 189,
-          "pointsAgainst": 236
+          "pct": 0.4,
+          "differential": -50,
+          "pointsFor": 209,
+          "pointsAgainst": 259
         }
       ]
     },
@@ -5030,7 +5030,7 @@
         },
         {
           "team": "TEN",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 1,
           "losses": 8,
           "ties": 0,
@@ -5069,7 +5069,7 @@
         },
         {
           "team": "LV",
-          "sourceOrder": 9,
+          "sourceOrder": 8,
           "wins": 4,
           "losses": 6,
           "ties": 0,
@@ -5080,14 +5080,14 @@
         },
         {
           "team": "LAC",
-          "sourceOrder": 15,
-          "wins": 0,
+          "sourceOrder": 13,
+          "wins": 1,
           "losses": 8,
           "ties": 0,
-          "pct": 0,
-          "differential": -98,
-          "pointsFor": 121,
-          "pointsAgainst": 219
+          "pct": 0.11111111,
+          "differential": -95,
+          "pointsFor": 144,
+          "pointsAgainst": 239
         }
       ]
     },
