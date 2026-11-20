@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-20T04:07:28.511Z",
-  "calendarUpdatedAt": "2026-11-20T04:07:28.511Z",
-  "standingsUpdatedAt": "2026-11-20T04:07:28.511Z",
+  "fetchedAt": "2026-11-20T19:07:17.687Z",
+  "calendarUpdatedAt": "2026-11-20T19:07:17.687Z",
+  "standingsUpdatedAt": "2026-11-20T19:07:17.687Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4980,7 +4980,7 @@
         },
         {
           "team": "BAL",
-          "sourceOrder": 9,
+          "sourceOrder": 10,
           "wins": 4,
           "losses": 6,
           "ties": 0,
@@ -5008,25 +5008,25 @@
         },
         {
           "team": "HOU",
-          "sourceOrder": 10,
-          "wins": 3,
+          "sourceOrder": 8,
+          "wins": 4,
           "losses": 6,
           "ties": 0,
-          "pct": 0.33333334,
-          "differential": 14,
-          "pointsFor": 233,
-          "pointsAgainst": 219
+          "pct": 0.4,
+          "differential": 37,
+          "pointsFor": 259,
+          "pointsAgainst": 222
         },
         {
           "team": "IND",
           "sourceOrder": 11,
           "wins": 3,
-          "losses": 7,
+          "losses": 8,
           "ties": 0,
-          "pct": 0.3,
-          "differential": -63,
-          "pointsFor": 208,
-          "pointsAgainst": 271
+          "pct": 0.27272728,
+          "differential": -86,
+          "pointsFor": 211,
+          "pointsAgainst": 297
         },
         {
           "team": "TEN",
@@ -5069,7 +5069,7 @@
         },
         {
           "team": "LV",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 4,
           "losses": 6,
           "ties": 0,
