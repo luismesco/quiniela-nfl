@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T21:02:10.770Z",
-  "calendarUpdatedAt": "2026-11-22T21:02:05.844Z",
-  "standingsUpdatedAt": "2026-11-22T21:02:05.844Z",
+  "fetchedAt": "2026-11-22T21:02:34.072Z",
+  "calendarUpdatedAt": "2026-11-22T21:02:34.072Z",
+  "standingsUpdatedAt": "2026-11-22T21:02:34.072Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2315,7 +2315,7 @@
       "venue": "Soldier Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 10,
+      "awayScore": 13,
       "homeScore": 21
     },
     {
