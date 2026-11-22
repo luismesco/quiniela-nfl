@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T19:06:38.772Z",
-  "calendarUpdatedAt": "2026-11-22T19:04:54.677Z",
-  "standingsUpdatedAt": "2026-11-22T19:04:54.677Z",
+  "fetchedAt": "2026-11-22T19:07:05.578Z",
+  "calendarUpdatedAt": "2026-11-22T19:07:05.578Z",
+  "standingsUpdatedAt": "2026-11-22T19:07:05.578Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2361,7 +2361,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 7,
-      "homeScore": 23
+      "homeScore": 24
     },
     {
       "id": "2026_11_PIT_PHI",
