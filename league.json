@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T21:08:40.956Z",
-  "calendarUpdatedAt": "2026-11-22T21:06:01.705Z",
-  "standingsUpdatedAt": "2026-11-22T21:06:01.705Z",
+  "fetchedAt": "2026-11-22T21:08:57.107Z",
+  "calendarUpdatedAt": "2026-11-22T21:08:57.107Z",
+  "standingsUpdatedAt": "2026-11-22T21:08:57.107Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4898,13 +4898,13 @@
         {
           "team": "BUF",
           "sourceOrder": 0,
-          "wins": 8,
+          "wins": 9,
           "losses": 1,
           "ties": 0,
-          "pct": 0.8888889,
-          "differential": 88,
-          "pointsFor": 287,
-          "pointsAgainst": 199
+          "pct": 0.9,
+          "differential": 105,
+          "pointsFor": 313,
+          "pointsAgainst": 208
         },
         {
           "team": "NE",
@@ -4930,14 +4930,14 @@
         },
         {
           "team": "MIA",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 1,
-          "losses": 8,
+          "losses": 9,
           "ties": 0,
-          "pct": 0.11111111,
-          "differential": -76,
-          "pointsFor": 148,
-          "pointsAgainst": 224
+          "pct": 0.1,
+          "differential": -93,
+          "pointsFor": 157,
+          "pointsAgainst": 250
         }
       ]
     },
@@ -5030,14 +5030,14 @@
         },
         {
           "team": "TEN",
-          "sourceOrder": 15,
+          "sourceOrder": 14,
           "wins": 1,
-          "losses": 8,
+          "losses": 9,
           "ties": 0,
-          "pct": 0.11111111,
-          "differential": -72,
-          "pointsFor": 167,
-          "pointsAgainst": 239
+          "pct": 0.1,
+          "differential": -93,
+          "pointsFor": 197,
+          "pointsAgainst": 290
         }
       ]
     },
@@ -5108,14 +5108,14 @@
         },
         {
           "team": "DAL",
-          "sourceOrder": 9,
-          "wins": 4,
+          "sourceOrder": 8,
+          "wins": 5,
           "losses": 6,
           "ties": 0,
-          "pct": 0.4,
-          "differential": 4,
-          "pointsFor": 286,
-          "pointsAgainst": 282
+          "pct": 0.45454547,
+          "differential": 25,
+          "pointsFor": 337,
+          "pointsAgainst": 312
         },
         {
           "team": "WAS",
@@ -5146,8 +5146,19 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "DET",
+          "team": "CHI",
           "sourceOrder": 1,
+          "wins": 8,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.8,
+          "differential": 65,
+          "pointsFor": 262,
+          "pointsAgainst": 197
+        },
+        {
+          "team": "DET",
+          "sourceOrder": 2,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -5158,7 +5169,7 @@
         },
         {
           "team": "MIN",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -5166,17 +5177,6 @@
           "differential": 50,
           "pointsFor": 176,
           "pointsAgainst": 126
-        },
-        {
-          "team": "CHI",
-          "sourceOrder": 3,
-          "wins": 7,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.7777778,
-          "differential": 57,
-          "pointsFor": 241,
-          "pointsAgainst": 184
         },
         {
           "team": "GB",
@@ -5197,7 +5197,7 @@
       "teams": [
         {
           "team": "CAR",
-          "sourceOrder": 8,
+          "sourceOrder": 9,
           "wins": 4,
           "losses": 5,
           "ties": 0,
@@ -5218,19 +5218,8 @@
           "pointsAgainst": 178
         },
         {
-          "team": "NO",
-          "sourceOrder": 12,
-          "wins": 3,
-          "losses": 6,
-          "ties": 0,
-          "pct": 0.33333334,
-          "differential": -34,
-          "pointsFor": 202,
-          "pointsAgainst": 236
-        },
-        {
           "team": "ATL",
-          "sourceOrder": 13,
+          "sourceOrder": 12,
           "wins": 3,
           "losses": 7,
           "ties": 0,
@@ -5238,6 +5227,17 @@
           "differential": -57,
           "pointsFor": 201,
           "pointsAgainst": 258
+        },
+        {
+          "team": "NO",
+          "sourceOrder": 13,
+          "wins": 3,
+          "losses": 7,
+          "ties": 0,
+          "pct": 0.3,
+          "differential": -42,
+          "pointsFor": 215,
+          "pointsAgainst": 257
         }
       ]
     },
