@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T21:24:59.141Z",
+  "fetchedAt": "2026-11-22T21:25:41.158Z",
   "calendarUpdatedAt": "2026-11-22T21:24:59.141Z",
   "standingsUpdatedAt": "2026-11-22T21:24:59.141Z",
   "standingsSource": "ESPN",
@@ -2404,9 +2404,9 @@
       "timeTbd": false,
       "venue": "Empower Field at Mile High",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_11_JAX_NYG",
@@ -2419,9 +2419,9 @@
       "timeTbd": false,
       "venue": "MetLife Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_11_MIN_SF",
