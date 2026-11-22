@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T20:56:29.422Z",
+  "fetchedAt": "2026-11-22T20:57:40.653Z",
   "calendarUpdatedAt": "2026-11-22T20:56:29.422Z",
   "standingsUpdatedAt": "2026-11-22T20:56:29.422Z",
   "standingsSource": "ESPN",
@@ -2346,7 +2346,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 14,
-      "homeScore": 24
+      "homeScore": 30
     },
     {
       "id": "2026_11_ARI_KC",
