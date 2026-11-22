@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T21:11:10.914Z",
-  "calendarUpdatedAt": "2026-11-22T21:10:26.410Z",
-  "standingsUpdatedAt": "2026-11-22T21:10:26.410Z",
+  "fetchedAt": "2026-11-22T21:11:32.316Z",
+  "calendarUpdatedAt": "2026-11-22T21:11:32.316Z",
+  "standingsUpdatedAt": "2026-11-22T21:11:32.316Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4957,19 +4957,8 @@
           "pointsAgainst": 193
         },
         {
-          "team": "PIT",
-          "sourceOrder": 5,
-          "wins": 6,
-          "losses": 3,
-          "ties": 0,
-          "pct": 0.6666667,
-          "differential": 16,
-          "pointsFor": 198,
-          "pointsAgainst": 182
-        },
-        {
           "team": "CLE",
-          "sourceOrder": 6,
+          "sourceOrder": 5,
           "wins": 6,
           "losses": 4,
           "ties": 0,
@@ -4977,6 +4966,17 @@
           "differential": -32,
           "pointsFor": 188,
           "pointsAgainst": 220
+        },
+        {
+          "team": "PIT",
+          "sourceOrder": 6,
+          "wins": 6,
+          "losses": 4,
+          "ties": 0,
+          "pct": 0.6,
+          "differential": 13,
+          "pointsFor": 214,
+          "pointsAgainst": 201
         },
         {
           "team": "BAL",
@@ -5130,14 +5130,14 @@
         },
         {
           "team": "PHI",
-          "sourceOrder": 15,
-          "wins": 2,
+          "sourceOrder": 14,
+          "wins": 3,
           "losses": 7,
           "ties": 0,
-          "pct": 0.22222222,
-          "differential": -73,
-          "pointsFor": 148,
-          "pointsAgainst": 221
+          "pct": 0.3,
+          "differential": -70,
+          "pointsFor": 167,
+          "pointsAgainst": 237
         }
       ]
     },
@@ -5280,7 +5280,7 @@
         },
         {
           "team": "ARI",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 3,
           "losses": 8,
           "ties": 0,
