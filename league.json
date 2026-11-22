@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-21T17:58:52.279Z",
-  "calendarUpdatedAt": "2026-11-21T17:58:52.279Z",
-  "standingsUpdatedAt": "2026-11-21T17:58:52.279Z",
+  "fetchedAt": "2026-11-22T18:31:49.656Z",
+  "calendarUpdatedAt": "2026-11-22T18:31:49.656Z",
+  "standingsUpdatedAt": "2026-11-22T18:31:49.656Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2284,9 +2284,9 @@
       "timeTbd": false,
       "venue": "Highmark Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 6
     },
     {
       "id": "2026_11_BAL_CAR",
@@ -2299,9 +2299,9 @@
       "timeTbd": false,
       "venue": "Bank of America Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 9,
+      "homeScore": 0
     },
     {
       "id": "2026_11_NO_CHI",
@@ -2314,9 +2314,9 @@
       "timeTbd": false,
       "venue": "Soldier Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 3
     },
     {
       "id": "2026_11_TEN_DAL",
@@ -2329,9 +2329,9 @@
       "timeTbd": false,
       "venue": "AT&T Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 3,
+      "homeScore": 6
     },
     {
       "id": "2026_11_TB_DET",
@@ -2344,9 +2344,9 @@
       "timeTbd": false,
       "venue": "Ford Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_11_ARI_KC",
@@ -2359,24 +2359,24 @@
       "timeTbd": false,
       "venue": "Arrowhead Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 7
     },
     {
-      "id": "2026_11_JAX_NYG",
+      "id": "2026_11_PIT_PHI",
       "phase": "REG",
       "week": 11,
-      "away": "JAX",
-      "home": "NYG",
-      "start": "2026-11-22T21:25Z",
-      "date": "2026-11-22T21:25Z",
+      "away": "PIT",
+      "home": "PHI",
+      "start": "2026-11-22T18:00Z",
+      "date": "2026-11-22T18:00Z",
       "timeTbd": false,
-      "venue": "MetLife Stadium",
+      "venue": "Lincoln Financial Field",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 6
     },
     {
       "id": "2026_11_NYJ_LAC",
@@ -2409,15 +2409,15 @@
       "homeScore": null
     },
     {
-      "id": "2026_11_PIT_PHI",
+      "id": "2026_11_JAX_NYG",
       "phase": "REG",
       "week": 11,
-      "away": "PIT",
-      "home": "PHI",
-      "start": "2026-11-22T18:00Z",
-      "date": "2026-11-22T18:00Z",
+      "away": "JAX",
+      "home": "NYG",
+      "start": "2026-11-22T21:25Z",
+      "date": "2026-11-22T21:25Z",
       "timeTbd": false,
-      "venue": "Lincoln Financial Field",
+      "venue": "MetLife Stadium",
       "neutral": false,
       "status": "scheduled",
       "awayScore": null,
