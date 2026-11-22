@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T18:43:53.995Z",
+  "fetchedAt": "2026-11-22T18:44:08.373Z",
   "calendarUpdatedAt": "2026-11-22T18:43:53.995Z",
   "standingsUpdatedAt": "2026-11-22T18:43:53.995Z",
   "standingsSource": "ESPN",
@@ -2301,7 +2301,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 12,
-      "homeScore": 0
+      "homeScore": 6
     },
     {
       "id": "2026_11_NO_CHI",
