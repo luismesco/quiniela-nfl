@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T23:52:13.605Z",
-  "calendarUpdatedAt": "2026-11-22T23:46:59.222Z",
-  "standingsUpdatedAt": "2026-11-22T23:46:59.222Z",
+  "fetchedAt": "2026-11-22T23:52:29.238Z",
+  "calendarUpdatedAt": "2026-11-22T23:52:29.238Z",
+  "standingsUpdatedAt": "2026-11-22T23:52:29.238Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4919,18 +4919,18 @@
         },
         {
           "team": "NYJ",
-          "sourceOrder": 12,
-          "wins": 2,
+          "sourceOrder": 11,
+          "wins": 3,
           "losses": 8,
           "ties": 0,
-          "pct": 0.2,
-          "differential": -60,
-          "pointsFor": 194,
-          "pointsAgainst": 254
+          "pct": 0.27272728,
+          "differential": -57,
+          "pointsFor": 221,
+          "pointsAgainst": 278
         },
         {
           "team": "MIA",
-          "sourceOrder": 15,
+          "sourceOrder": 14,
           "wins": 1,
           "losses": 9,
           "ties": 0,
@@ -5019,7 +5019,7 @@
         },
         {
           "team": "IND",
-          "sourceOrder": 11,
+          "sourceOrder": 12,
           "wins": 3,
           "losses": 8,
           "ties": 0,
@@ -5030,7 +5030,7 @@
         },
         {
           "team": "TEN",
-          "sourceOrder": 14,
+          "sourceOrder": 15,
           "wins": 1,
           "losses": 9,
           "ties": 0,
@@ -5082,12 +5082,12 @@
           "team": "LAC",
           "sourceOrder": 13,
           "wins": 1,
-          "losses": 8,
+          "losses": 9,
           "ties": 0,
-          "pct": 0.11111111,
-          "differential": -95,
-          "pointsFor": 144,
-          "pointsAgainst": 239
+          "pct": 0.1,
+          "differential": -98,
+          "pointsFor": 168,
+          "pointsAgainst": 266
         }
       ]
     },
