@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T18:35:33.108Z",
+  "fetchedAt": "2026-11-22T18:37:08.364Z",
   "calendarUpdatedAt": "2026-11-22T18:35:33.108Z",
   "standingsUpdatedAt": "2026-11-22T18:35:33.108Z",
   "standingsSource": "ESPN",
@@ -2376,7 +2376,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 6
+      "homeScore": 12
     },
     {
       "id": "2026_11_NYJ_LAC",
