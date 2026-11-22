@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T18:41:24.160Z",
+  "fetchedAt": "2026-11-22T18:43:38.391Z",
   "calendarUpdatedAt": "2026-11-22T18:41:24.160Z",
   "standingsUpdatedAt": "2026-11-22T18:41:24.160Z",
   "standingsSource": "ESPN",
@@ -2286,7 +2286,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 6
+      "homeScore": 12
     },
     {
       "id": "2026_11_BAL_CAR",
