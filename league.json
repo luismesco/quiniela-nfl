@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T23:14:59.664Z",
+  "fetchedAt": "2026-11-22T23:17:13.014Z",
   "calendarUpdatedAt": "2026-11-22T23:14:59.664Z",
   "standingsUpdatedAt": "2026-11-22T23:14:59.664Z",
   "standingsSource": "ESPN",
@@ -2390,7 +2390,7 @@
       "venue": "SoFi Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 20,
+      "awayScore": 26,
       "homeScore": 17
     },
     {
