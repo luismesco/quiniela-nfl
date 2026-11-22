@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T18:44:08.373Z",
-  "calendarUpdatedAt": "2026-11-22T18:43:53.995Z",
-  "standingsUpdatedAt": "2026-11-22T18:43:53.995Z",
+  "fetchedAt": "2026-11-22T18:44:25.243Z",
+  "calendarUpdatedAt": "2026-11-22T18:44:25.243Z",
+  "standingsUpdatedAt": "2026-11-22T18:44:25.243Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2286,7 +2286,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 12
+      "homeScore": 13
     },
     {
       "id": "2026_11_BAL_CAR",
