@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T20:30:28.771Z",
+  "fetchedAt": "2026-11-22T20:32:10.215Z",
   "calendarUpdatedAt": "2026-11-22T20:30:28.771Z",
   "standingsUpdatedAt": "2026-11-22T20:30:28.771Z",
   "standingsSource": "ESPN",
@@ -2331,7 +2331,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 23,
-      "homeScore": 41
+      "homeScore": 44
     },
     {
       "id": "2026_11_TB_DET",
