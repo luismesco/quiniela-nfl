@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T19:16:09.001Z",
-  "calendarUpdatedAt": "2026-11-22T19:14:55.107Z",
-  "standingsUpdatedAt": "2026-11-22T19:14:55.107Z",
+  "fetchedAt": "2026-11-22T19:16:29.665Z",
+  "calendarUpdatedAt": "2026-11-22T19:16:29.665Z",
+  "standingsUpdatedAt": "2026-11-22T19:16:29.665Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2301,7 +2301,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 19,
-      "homeScore": 20
+      "homeScore": 22
     },
     {
       "id": "2026_11_NO_CHI",
@@ -2345,7 +2345,7 @@
       "venue": "Ford Field",
       "neutral": false,
       "status": "live",
-      "awayScore": 6,
+      "awayScore": 7,
       "homeScore": 10
     },
     {
