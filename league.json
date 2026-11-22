@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T21:10:10.864Z",
-  "calendarUpdatedAt": "2026-11-22T21:08:57.107Z",
-  "standingsUpdatedAt": "2026-11-22T21:08:57.107Z",
+  "fetchedAt": "2026-11-22T21:10:26.410Z",
+  "calendarUpdatedAt": "2026-11-22T21:10:26.410Z",
+  "standingsUpdatedAt": "2026-11-22T21:10:26.410Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5146,8 +5146,19 @@
       "division": "Norte",
       "teams": [
         {
-          "team": "CHI",
+          "team": "DET",
           "sourceOrder": 1,
+          "wins": 8,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.8,
+          "differential": 68,
+          "pointsFor": 288,
+          "pointsAgainst": 220
+        },
+        {
+          "team": "CHI",
+          "sourceOrder": 2,
           "wins": 8,
           "losses": 2,
           "ties": 0,
@@ -5155,17 +5166,6 @@
           "differential": 65,
           "pointsFor": 262,
           "pointsAgainst": 197
-        },
-        {
-          "team": "DET",
-          "sourceOrder": 2,
-          "wins": 7,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.7777778,
-          "differential": 58,
-          "pointsFor": 257,
-          "pointsAgainst": 199
         },
         {
           "team": "MIN",
@@ -5210,12 +5210,12 @@
           "team": "TB",
           "sourceOrder": 11,
           "wins": 3,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
-          "pct": 0.33333334,
-          "differential": 24,
-          "pointsFor": 202,
-          "pointsAgainst": 178
+          "pct": 0.3,
+          "differential": 14,
+          "pointsFor": 223,
+          "pointsAgainst": 209
         },
         {
           "team": "ATL",
