@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-22T23:05:07.696Z",
+  "fetchedAt": "2026-11-22T23:08:43.001Z",
   "calendarUpdatedAt": "2026-11-22T23:05:07.696Z",
   "standingsUpdatedAt": "2026-11-22T23:05:07.696Z",
   "standingsSource": "ESPN",
@@ -2391,7 +2391,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 20,
-      "homeScore": 10
+      "homeScore": 16
     },
     {
       "id": "2026_11_LV_DEN",
