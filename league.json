@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-23T00:02:45.271Z",
+  "fetchedAt": "2026-11-23T00:02:55.542Z",
   "calendarUpdatedAt": "2026-11-23T00:02:45.271Z",
   "standingsUpdatedAt": "2026-11-23T00:02:45.271Z",
   "standingsSource": "ESPN",
@@ -2406,7 +2406,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 17,
-      "homeScore": 24
+      "homeScore": 30
     },
     {
       "id": "2026_11_JAX_NYG",
