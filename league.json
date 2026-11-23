@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-23T02:18:13.217Z",
+  "fetchedAt": "2026-11-23T02:18:57.807Z",
   "calendarUpdatedAt": "2026-11-23T02:18:13.217Z",
   "standingsUpdatedAt": "2026-11-23T02:18:13.217Z",
   "standingsSource": "ESPN",
@@ -2435,7 +2435,7 @@
       "venue": "Estadio Banorte",
       "neutral": true,
       "status": "live",
-      "awayScore": 7,
+      "awayScore": 10,
       "homeScore": 14
     },
     {
