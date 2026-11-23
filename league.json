@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-23T00:51:56.287Z",
-  "calendarUpdatedAt": "2026-11-23T00:46:42.615Z",
-  "standingsUpdatedAt": "2026-11-23T00:46:42.615Z",
+  "fetchedAt": "2026-11-23T00:52:13.930Z",
+  "calendarUpdatedAt": "2026-11-23T00:52:13.930Z",
+  "standingsUpdatedAt": "2026-11-23T00:52:13.930Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4947,7 +4947,7 @@
       "teams": [
         {
           "team": "CIN",
-          "sourceOrder": 3,
+          "sourceOrder": 4,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -4997,7 +4997,7 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 2,
+          "sourceOrder": 3,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -5046,8 +5046,19 @@
       "division": "Oeste",
       "teams": [
         {
-          "team": "KC",
+          "team": "DEN",
           "sourceOrder": 1,
+          "wins": 8,
+          "losses": 2,
+          "ties": 0,
+          "pct": 0.8,
+          "differential": 26,
+          "pointsFor": 236,
+          "pointsAgainst": 210
+        },
+        {
+          "team": "KC",
+          "sourceOrder": 2,
           "wins": 8,
           "losses": 2,
           "ties": 0,
@@ -5057,26 +5068,15 @@
           "pointsAgainst": 163
         },
         {
-          "team": "DEN",
-          "sourceOrder": 4,
-          "wins": 7,
-          "losses": 2,
-          "ties": 0,
-          "pct": 0.7777778,
-          "differential": 12,
-          "pointsFor": 198,
-          "pointsAgainst": 186
-        },
-        {
           "team": "LV",
           "sourceOrder": 9,
           "wins": 4,
-          "losses": 6,
+          "losses": 7,
           "ties": 0,
-          "pct": 0.4,
-          "differential": -38,
-          "pointsFor": 251,
-          "pointsAgainst": 289
+          "pct": 0.36363637,
+          "differential": -52,
+          "pointsFor": 275,
+          "pointsAgainst": 327
         },
         {
           "team": "LAC",
