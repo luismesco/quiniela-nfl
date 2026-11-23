@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-23T01:00:26.446Z",
-  "calendarUpdatedAt": "2026-11-23T00:55:23.837Z",
-  "standingsUpdatedAt": "2026-11-23T00:55:23.837Z",
+  "fetchedAt": "2026-11-23T01:00:41.303Z",
+  "calendarUpdatedAt": "2026-11-23T01:00:41.303Z",
+  "standingsUpdatedAt": "2026-11-23T01:00:41.303Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -4947,7 +4947,7 @@
       "teams": [
         {
           "team": "CIN",
-          "sourceOrder": 4,
+          "sourceOrder": 3,
           "wins": 7,
           "losses": 2,
           "ties": 0,
@@ -4997,14 +4997,14 @@
       "teams": [
         {
           "team": "JAX",
-          "sourceOrder": 3,
+          "sourceOrder": 4,
           "wins": 7,
-          "losses": 2,
+          "losses": 3,
           "ties": 0,
-          "pct": 0.7777778,
-          "differential": 125,
-          "pointsFor": 269,
-          "pointsAgainst": 144
+          "pct": 0.7,
+          "differential": 120,
+          "pointsFor": 287,
+          "pointsAgainst": 167
         },
         {
           "team": "HOU",
@@ -5097,14 +5097,14 @@
       "teams": [
         {
           "team": "NYG",
-          "sourceOrder": 7,
-          "wins": 5,
+          "sourceOrder": 4,
+          "wins": 6,
           "losses": 3,
           "ties": 1,
-          "pct": 0.6111111,
-          "differential": 7,
-          "pointsFor": 203,
-          "pointsAgainst": 196
+          "pct": 0.65,
+          "differential": 12,
+          "pointsFor": 226,
+          "pointsAgainst": 214
         },
         {
           "team": "DAL",
@@ -5180,7 +5180,7 @@
         },
         {
           "team": "GB",
-          "sourceOrder": 4,
+          "sourceOrder": 5,
           "wins": 6,
           "losses": 4,
           "ties": 0,
@@ -5258,7 +5258,7 @@
         },
         {
           "team": "SEA",
-          "sourceOrder": 5,
+          "sourceOrder": 6,
           "wins": 6,
           "losses": 4,
           "ties": 0,
@@ -5269,7 +5269,7 @@
         },
         {
           "team": "LA",
-          "sourceOrder": 6,
+          "sourceOrder": 7,
           "wins": 6,
           "losses": 4,
           "ties": 0,
