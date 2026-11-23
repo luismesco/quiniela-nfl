@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-23T04:26:52.613Z",
-  "calendarUpdatedAt": "2026-11-23T04:26:52.613Z",
-  "standingsUpdatedAt": "2026-11-23T04:26:52.613Z",
+  "fetchedAt": "2026-11-23T22:39:51.928Z",
+  "calendarUpdatedAt": "2026-11-23T22:39:51.928Z",
+  "standingsUpdatedAt": "2026-11-23T22:39:51.928Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -5171,12 +5171,12 @@
           "team": "MIN",
           "sourceOrder": 3,
           "wins": 7,
-          "losses": 2,
+          "losses": 3,
           "ties": 0,
-          "pct": 0.7777778,
-          "differential": 50,
-          "pointsFor": 176,
-          "pointsAgainst": 126
+          "pct": 0.7,
+          "differential": 25,
+          "pointsFor": 186,
+          "pointsAgainst": 161
         },
         {
           "team": "GB",
@@ -5248,13 +5248,13 @@
         {
           "team": "SF",
           "sourceOrder": 0,
-          "wins": 8,
+          "wins": 9,
           "losses": 1,
           "ties": 0,
-          "pct": 0.8888889,
-          "differential": 85,
-          "pointsFor": 281,
-          "pointsAgainst": 196
+          "pct": 0.9,
+          "differential": 110,
+          "pointsFor": 316,
+          "pointsAgainst": 206
         },
         {
           "team": "SEA",
