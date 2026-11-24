@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-24T04:13:45.955Z",
+  "fetchedAt": "2026-11-24T04:14:28.673Z",
   "calendarUpdatedAt": "2026-11-24T04:13:45.955Z",
   "standingsUpdatedAt": "2026-11-24T04:13:45.955Z",
   "standingsSource": "ESPN",
@@ -2450,7 +2450,7 @@
       "venue": "Northwest Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 17,
+      "awayScore": 20,
       "homeScore": 19
     },
     {
