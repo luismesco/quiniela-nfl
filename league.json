@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-26T21:44:31.755Z",
+  "fetchedAt": "2026-11-26T21:47:13.968Z",
   "calendarUpdatedAt": "2026-11-26T21:44:31.755Z",
   "standingsUpdatedAt": "2026-11-26T21:44:31.755Z",
   "standingsSource": "ESPN",
@@ -2494,9 +2494,9 @@
       "timeTbd": false,
       "venue": "AT&T Stadium",
       "neutral": false,
-      "status": "scheduled",
-      "awayScore": null,
-      "homeScore": null
+      "status": "live",
+      "awayScore": 0,
+      "homeScore": 0
     },
     {
       "id": "2026_12_KC_BUF",
