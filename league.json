@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-26T22:22:07.718Z",
+  "fetchedAt": "2026-11-26T22:25:44.693Z",
   "calendarUpdatedAt": "2026-11-26T22:22:07.718Z",
   "standingsUpdatedAt": "2026-11-26T22:22:07.718Z",
   "standingsSource": "ESPN",
@@ -2496,7 +2496,7 @@
       "neutral": false,
       "status": "live",
       "awayScore": 0,
-      "homeScore": 7
+      "homeScore": 13
     },
     {
       "id": "2026_12_KC_BUF",
