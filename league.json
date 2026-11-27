@@ -2,7 +2,7 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-27T20:46:50.846Z",
+  "fetchedAt": "2026-11-27T20:51:06.357Z",
   "calendarUpdatedAt": "2026-11-27T20:46:50.846Z",
   "standingsUpdatedAt": "2026-11-27T20:46:50.846Z",
   "standingsSource": "ESPN",
@@ -2525,7 +2525,7 @@
       "venue": "Acrisure Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 0,
+      "awayScore": 2,
       "homeScore": 14
     },
     {
