@@ -2,9 +2,9 @@
   "schema": 1,
   "author": "Luis Montañez Escobar",
   "season": 2026,
-  "fetchedAt": "2026-11-27T03:12:02.399Z",
-  "calendarUpdatedAt": "2026-11-27T03:11:29.225Z",
-  "standingsUpdatedAt": "2026-11-27T03:11:29.225Z",
+  "fetchedAt": "2026-11-27T03:12:20.045Z",
+  "calendarUpdatedAt": "2026-11-27T03:12:20.045Z",
+  "standingsUpdatedAt": "2026-11-27T03:12:20.045Z",
   "standingsSource": "ESPN",
   "calendarSource": "nflverse / ESPN",
   "games": [
@@ -2510,7 +2510,7 @@
       "venue": "Highmark Stadium",
       "neutral": false,
       "status": "live",
-      "awayScore": 9,
+      "awayScore": 10,
       "homeScore": 7
     },
     {
